@@ -70,6 +70,21 @@ toml = ["toml"]
 yaml = ["pyyaml"]
 
 [[package]]
+name = "beautifulsoup4"
+version = "4.11.1"
+description = "Screen-scraping library"
+category = "dev"
+optional = false
+python-versions = ">=3.6.0"
+
+[package.dependencies]
+soupsieve = ">1.2"
+
+[package.extras]
+html5lib = ["html5lib"]
+lxml = ["lxml"]
+
+[[package]]
 name = "colorama"
 version = "0.4.5"
 description = "Cross-platform colored terminal text."
@@ -116,6 +131,18 @@ tzdata = {version = "*", markers = "sys_platform == \"win32\""}
 [package.extras]
 argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
+
+[[package]]
+name = "django-bootstrap4"
+version = "22.1"
+description = "Bootstrap 4 for Django"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+beautifulsoup4 = ">=4.8.0"
+Django = ">=2.2"
 
 [[package]]
 name = "docutils"
@@ -544,6 +571,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "soupsieve"
+version = "2.3.2.post1"
+description = "A modern CSS selector implementation for Beautiful Soup."
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "sqlparse"
 version = "0.4.2"
 description = "A non-validating SQL parser."
@@ -626,7 +661,7 @@ typing_extensions = ">=3.6,<5.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "e5646157a3e7e5e4d4a625cb2416597c4f4ad70ae1725b99a7f3f1c44aef1322"
+content-hash = "a6e0352b8a88c9ce0f56fd168b73dae4ad2aa6231b294cc7a0b7a121ec81503c"
 
 [metadata.files]
 asgiref = []
@@ -635,10 +670,12 @@ atomicwrites = []
 attrs = []
 "backports.zoneinfo" = []
 bandit = []
+beautifulsoup4 = []
 colorama = []
 coverage = []
 darglint = []
 django = []
+django-bootstrap4 = []
 docutils = []
 eradicate = []
 flake8 = [
@@ -716,6 +753,7 @@ pyyaml = [
 restructuredtext-lint = []
 smmap = []
 snowballstemmer = []
+soupsieve = []
 sqlparse = []
 stevedore = []
 toml = []
