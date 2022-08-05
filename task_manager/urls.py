@@ -16,10 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from task_manager import views
-from task_manager.static.css import bootstrap.min
+#from task_manager.static.css import bootstrap.min
 
 urlpatterns = [
     path('', views.index),
-    path('static/css/bootstrap.min.css', bootstrap.min),
+    #path('static/css/bootstrap.min.css', bootstrap.min),
     #path('admin/', admin.site.urls),
 ]
