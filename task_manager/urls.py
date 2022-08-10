@@ -1,27 +1,16 @@
-"""task_manager URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from task_manager import views
+from task_manager.views import task_manager_detail
 
 
+appname = 'task_manager'
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', views.index),
-    #path('i18n/', include('django.conf.urls.i18n')),
-    #path('admin/', admin.site.urls),
+    #path('', include('templates.index', namespace='task_manager')),
+    path('<slug:slug>', task_manager_detail, name='task_manager_detail'),
+    path('i18n/', include('django.conf.urls.i18n')),
 ]
 
 #urlpatterns += i18n_patterns(
