@@ -20,5 +20,10 @@ from task_manager import views
 
 urlpatterns = [
     path('', views.index),
+    #path('i18n/', include('django.conf.urls.i18n')),
     #path('admin/', admin.site.urls),
 ]
+
+#urlpatterns += i18n_patterns(
+#    path('task_manager/', include('task_manager.urls')),
+#)

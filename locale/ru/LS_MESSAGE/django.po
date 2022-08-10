@@ -1,0 +1,3 @@
+#: task_manager/templates/index.html:17
+msgid "Test texst"
+msgstr "Тестовый текст"

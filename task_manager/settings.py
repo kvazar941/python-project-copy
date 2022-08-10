@@ -116,6 +116,16 @@ USE_I18N = True
 USE_TZ = True
 
 
+gettext = lambda s: s
+LANGUAGES = [
+    ('ru', gettext('Russia')),
+    ('en', gettext('English')),
+]
+
+LOCALE_PATHS = [
+    Path(BASE_DIR, 'locale'),
+]
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 

@@ -11,7 +11,11 @@
     <title>Cover Template · Bootstrap</title>
   </head>
   <body class="text-center">
-  <title>{% translate "Test text" %}</title>
+  
+  {% language 'ru' %}
+      {% get_current_language as LANGUAGE_CODE %}
+      <title>{% translate "Test text" %}</title>
+  {% endlanguage %}
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   <header class="masthead mb-auto">
     <div class="inner">
