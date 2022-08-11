@@ -10,4 +10,4 @@ class my_class(models.Model):
         return self.title
     
     def get_absolute_url(self):
-        return reverse('')
+        return reverse('task_manager:task_manager_detail', kwargs={'slug': self.slug})
