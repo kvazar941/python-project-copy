@@ -1,15 +1,3 @@
-install:
-	poetry install
-
-run:
-	poetry run page-loader
-
-build:
-	poetry build
-
-package-install:
-	python3 -m pip install --force-reinstall dist/*.whl
-
 lint:
 	poetry run flake8 page_loader
 	poetry run flake8 tests
@@ -20,10 +8,12 @@ tests:
 test-coverage:
 	poetry run pytest --cov=page_loader tests/ --cov-report xml
 
-fast-dev:
+server:
 	poetry run python manage.py runserver
-	#poetry build
-	#python3 -m pip install --force-reinstall dist/*.whl
-	#poetry run pytest
-	#poetry run flake8 page_loader
-	#poetry run flake8 tests
+
+locale:
+	django-admin makemessages --ignore="static" --ignore="env" -l en
+
+locale-compile:
+	django-admin compilemessages --ignore="static" --ignore="env" -l en
+	
