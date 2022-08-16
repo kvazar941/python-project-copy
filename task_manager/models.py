@@ -11,3 +11,12 @@ class my_class(models.Model):
     
     def get_absolute_url(self):
         return reverse('task_manager:task_manager_detail', kwargs={'slug': self.slug})
+
+class Employee(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    mobile = models.CharField(max_length=10)
+    email = models.EmailField()
+    
+    def __str__(self):
+        return "%s %s" %(self.first_name, self.last_name)
