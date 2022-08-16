@@ -3,14 +3,15 @@ from django.urls import include, path
 from task_manager import views
 from task_manager.views import users, users_update, users_delete, login, logout, NewView
 from django.conf.urls.i18n import i18n_patterns
+from .views import EmployeeCreate
 
 
 appname = 'task_manager'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
-    path('users/', views.users),
-    path('users/create/', NewView.as_view()),
+    path('users/', NewView.as_view()),
+    path('users/create/', EmployeeCreate.as_view(), name = 'EmployeeCreate'),
     path('users/<int:pk>/update/', views.users_update),
     path('users/<int:pk>/delete/', views.users_delete),
     path('login/', views.login),

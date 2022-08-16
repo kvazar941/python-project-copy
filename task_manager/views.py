@@ -1,7 +1,9 @@
 from django.shortcuts import get_object_or_404, render
-from .models import my_class
+from .models import my_class, Employee
 from django.http import HttpResponse
 from django.views import View
+from .form import EmployeeForm
+from django .views.generic.edit import CreateView
 
 
 def home(request):
@@ -18,22 +20,18 @@ def users(request):
     return render(request, 'users.html', context)
 
 
-#def users_create(request):
-#    if request.method == 'GET':
-#        context = {
-#            'who': request.method,
-#        }
-#        return render(request, 'users_create.html', context)
-#    elif request.method == 'POST':
-#        context = {
-#            'who': request.method,
-#        }
-#        return render(request, 'users_create.html', context)
-
 class NewView(View):
     def get(self, request):
-        #
-        return HttpResponse('response')
+        context = {
+            'who': request.method,
+        }
+        response = render(request, 'users_create.html', context)
+        return HttpResponse(response)
+
+class EmployeeCreate(CreateView):
+    model = Employee
+    
+    fields = '__all__'
 
 
 def users_update(request):
