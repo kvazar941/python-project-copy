@@ -7,40 +7,33 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <title>Cover Template · Bootstrap</title>
+    <title>{% trans "Главная страница" %}</title>
   </head>
-  <body class="text-center">
-  
-  {% language 'ru' %}
-      {% get_current_language as LANGUAGE_CODE %}
-      <title>{% translate "Test text" %}</title>
-  {% endlanguage %}
+  <body class="h-100 text-center text-white bg-dark">
+    <header class="masthead mb-auto bg-white sticky-top">
+      <div class="container-fluid">
+        <nav class="nav nav-masthead justify-content-end sticky-top">
+          <a class="nav-link text-dark" href="/login/">Вход</a>
+          <a class="nav-link text-dark" href="/user/create/">Регистрация</a>
+          <a class="nav-link text-dark" href="/users/">Пользователи</a>
+        </nav>
+      </div>
+    </header>
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-  <header class="masthead mb-auto">
-    <div class="inner">
-      <h3 class="masthead-brand">Cover</h3>
-      <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link active" href="#">Home</a>
-        <a class="nav-link" href="#">Features</a>
-        <a class="nav-link" href="#">Contact</a>
-      </nav>
-    </div>
-  </header>
+      <main role="main" class="py-3">
+        <h1 class="cover-heading">Добро пожаловать на наш сайт!</h1>
+        <p class="lead">Вы на главной странице сайта. Незарегистрированным пользователям доступен просмотр списка пользователей. Для того, чтобы иметь возможность редактировать информацию других профилей, необходимо зарегистрироваться на сайте или выполнить вход, если Вы были зарегистрированы ранее.</p>
+        <p class="lead">
+          <a href="/login/" class="btn btn-lg btn-secondary">Вход</a>
+          <a href="/user/create/" class="btn btn-lg btn-secondary">Регистрация</a>
+        </p>
+      </main>
 
-  <main role="main" class="inner cover">
-    <h1 class="cover-heading">Cover your page.</h1>
-    <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-    <p class="lead">
-      <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
-    </p>
-  </main>
-
-  <footer class="mastfoot mt-auto">
-    <div class="inner">
-      <p>Cover template for <a href="">Bootstrap</a></p>
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Cover template for <a href="">Bootstrap</a></p>
+        </div>
+      </footer>
     </div>
-  </footer>
-</div>
-</body>
+  </body>
 </html>
