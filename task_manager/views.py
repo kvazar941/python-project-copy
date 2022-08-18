@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from .models import my_class, Employee
+from .models import Employee
 from django.http import HttpResponse
 from django.views import View
 from .form import EmployeeForm
@@ -13,7 +13,6 @@ def home(request):
 
 
 def users(request):
-    #instance = get_object_or_404(my_class, slug='2')
     context = {
         'who': 'users',
     }
