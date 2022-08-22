@@ -1,0 +1,16 @@
+{% extends 'site_header.html' %}
+{% load i18n %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="cover-container d-flex w-100 h-100 p-5 mx-auto flex-column">
+  <h1 class="my-4">{% trans 'Изменение статуса' %}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            {% bootstrap_form form %}
+        </div>
+        <input class="btn btn-primary" type="submit" value={% trans 'Изменить' %}>
+    </form>
+</div>
+{% endblock %}
