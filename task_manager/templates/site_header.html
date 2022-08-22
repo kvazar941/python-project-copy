@@ -13,9 +13,18 @@
     <header class="masthead mb-auto bg-white sticky-top">
       <div class="container-fluid">
         <nav class="nav nav-masthead justify-content-end sticky-top">
+          {% if not user.is_authenticated %}
           <a class="nav-link text-dark" href="/login/">Вход</a>
           <a class="nav-link text-dark" href="/users/create/">Регистрация</a>
           <a class="nav-link text-dark" href="/users/">Пользователи</a>
+          {% else %}
+          <form action="/logout/" method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn nav-link" value="{% translate 'Выход' %}">
+          </form>
+          <a class="nav-link text-dark" href="/users/create/">Регистрация</a>
+          <a class="nav-link text-dark" href="/users/">Пользователи</a>
+          {% endif %}
         </nav>
       </div>
     </header>

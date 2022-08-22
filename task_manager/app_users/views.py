@@ -11,6 +11,7 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy, gettext
 
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib import messages
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView

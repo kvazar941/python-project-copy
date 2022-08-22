@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy
 
 
 class CheckSignInMixin(AccessMixin):
-    redirect_sign_in_name = 'sign_in'
+    redirect_sign_in_name = 'login'
     error_sign_in_message = 'Вы не авторизованы! Пожалуйста, выполните вход.'
     request = ''
 
