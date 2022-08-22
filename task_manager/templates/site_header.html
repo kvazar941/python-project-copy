@@ -3,12 +3,28 @@
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
 <!doctype html>
-<header class="masthead mb-auto bg-white sticky-top">
-  <div class="container-fluid">
-    <nav class="nav nav-masthead justify-content-end sticky-top">
-      <a class="nav-link text-dark" href="/login/">Вход</a>
-      <a class="nav-link text-dark" href="/user/create/">Регистрация</a>
-      <a class="nav-link text-dark" href="/users/">Пользователи</a>
-    </nav>
-  </div>
-</header>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% trans "Главная страница" %}</title>
+  </head>
+  <body class="h-100 text-center text-white bg-dark">
+    <header class="masthead mb-auto bg-white sticky-top">
+      <div class="container-fluid">
+        <nav class="nav nav-masthead justify-content-end sticky-top">
+          <a class="nav-link text-dark" href="/login/">Вход</a>
+          <a class="nav-link text-dark" href="/users/create/">Регистрация</a>
+          <a class="nav-link text-dark" href="/users/">Пользователи</a>
+        </nav>
+      </div>
+    </header>
+    {% block content %}
+    {% endblock %}
+    <footer class="mastfoot mt-auto">
+      <div class="inner">
+        <p>Cover template for <a href="">Bootstrap</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

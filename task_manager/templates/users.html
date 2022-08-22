@@ -1,59 +1,36 @@
+{% extends 'site_header.html' %}
 {% load i18n %}
-{% load bootstrap4 %}
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{% trans "Главная страница" %}</title>
-  </head>
-  <body class="h-100 text-center text-white bg-dark">
-    <header class="masthead mb-auto bg-white sticky-top">
-      <div class="container-fluid">
-        <nav class="nav nav-masthead justify-content-end sticky-top">
-          <a class="nav-link text-dark" href="/login/">Вход</a>
-          <a class="nav-link text-dark" href="/user/create/">Регистрация</a>
-          <a class="nav-link text-dark" href="/users/">Пользователи</a>
-        </nav>
-      </div>
-    </header>
-    <div class="cover-container d-flex w-100 h-100 p-5 mx-auto flex-column">
-      <main role="main" class="py-3">
-        <h1 class="cover-heading">Таблица пользователей</h1>
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">{% trans 'Имя' %}</th>
-              <th scope="col">{% trans 'Полное имя' %}</th>
-              <th scope="col">{% trans 'Дата создания' %}</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          {% for user in application_users %}
-        <tbody>
-          <tr>
-            <th scope="row"">{{ user.id }}</th>
-            <td>{{ user.username }}</td>
-            <td>{{ user.first_name}} {{ user.last_name }}</td>
-            <td>{{ user.date_joined|date:"d.m.Y H:i" }}</td>
-            <td>
-              <a class="text-decoration-none" href="{% url 'update_user' user.id %}">{% trans 'Изменить' %}</a>
-             <a>/</a>
-             <a class="text-decoration-none" href="{% url 'delete_user' user.id %}">{% trans 'Удалить' %}</a>
-            </td>
-          </tr>
-        </tbody>
-     {% endfor %}
+
+{% block content %}
+<div class="cover-container d-flex w-100 h-100 p-5 mx-auto flex-column">
+  <main role="main" class="py-3">
+    <h1 class="cover-heading">Таблица пользователей</h1>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">{% trans 'Имя' %}</th>
+          <th scope="col">{% trans 'Полное имя' %}</th>
+          <th scope="col">{% trans 'Дата создания' %}</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      {% for user in application_users %}
+      <tbody>
+        <tr>
+          <th scope="row"">{{ user.id }}</th>
+          <td>{{ user.username }}</td>
+          <td>{{ user.first_name}} {{ user.last_name }}</td>
+          <td>{{ user.date_joined|date:"d.m.Y H:i" }}</td>
+          <td>
+            <a class="text-decoration-none" href="{% url 'update_user' user.id %}">{% trans 'Изменить' %}</a>
+           <a>/</a>
+           <a class="text-decoration-none" href="{% url 'delete_user' user.id %}">{% trans 'Удалить' %}</a>
+          </td>
+        </tr>
+      </tbody>
+      {% endfor %}
     </table>
-      </main>
-      <footer class="mastfoot mt-auto">
-        <div class="inner">
-          <p>Cover template for <a href="">Bootstrap</a></p>
-        </div>
-      </footer>
-    </div>
-  </body>
-</html>
+  </main>
+</div>
+{% endblock %}
