@@ -22,5 +22,3 @@ migration:
 	python manage.py migrate
 	python manage.py makemigrations task_manager
 	python manage.py migrate task_manager
-	python manage.py makemigrations app_users
-	python manage.py migrate app_users
