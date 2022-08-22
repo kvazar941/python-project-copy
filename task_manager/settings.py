@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my apps
     'task_manager',
+    'task_manager.app_users',
     'bootstrap4',
 ]
 
@@ -45,6 +46,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'task_manager.urls'
 
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'task_manager/templates')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -121,6 +123,8 @@ LOCALE_PATHS = [
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+AUTH_USER_MODEL = 'app_users.ApplicationUsers'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
