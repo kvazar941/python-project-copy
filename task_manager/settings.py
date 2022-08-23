@@ -30,9 +30,9 @@ INSTALLED_APPS = [
     # my apps
     'task_manager',
     'task_manager.app_users',
-    'task_manager.app_statuses',
-    'task_manager.app_tasks',
-    'task_manager.app_labels',
+    #'task_manager.app_statuses',
+    #'task_manager.app_tasks',
+    #'task_manager.app_labels',
     'bootstrap4',
 ]
 
