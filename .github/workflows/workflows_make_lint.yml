@@ -7,5 +7,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Step 1
       run: |
+        pip install poetry
         pip install wemake-python-styleguide
         make lint
