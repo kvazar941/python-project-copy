@@ -1,0 +1,12 @@
+name: make-lint
+on: push
+jobs:
+  make-lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Step 1
+      run: |
+        pip install poetry
+        pip install wemake-python-styleguide
+        make lint

@@ -132,12 +132,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 AUTH_USER_MODEL = 'app_users.ApplicationUsers'
 
 ROLLBAR = {
-    'access_token': os.getenv('ACCESS_TOKEN'),
+    'access_token': 'e8d1f02d74da4e94a29a8216ab87618d',
     'environment': 'development' if DEBUG else 'production',
     'root': BASE_DIR,
 }
-
-#rollbar.init(**ROLLBAR)
+import rollbar
+rollbar.init(**ROLLBAR)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
