@@ -30,9 +30,9 @@ INSTALLED_APPS = [
     # my apps
     'task_manager',
     'task_manager.app_users',
-    #'task_manager.app_statuses',
-    #'task_manager.app_tasks',
-    #'task_manager.app_labels',
+    'task_manager.app_tasks',
+    'task_manager.app_statuses',
+    'task_manager.app_labels',
     'bootstrap4',
 ]
 
@@ -130,6 +130,14 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 AUTH_USER_MODEL = 'app_users.ApplicationUsers'
+
+ROLLBAR = {
+    'access_token': os.getenv('ACCESS_TOKEN'),
+    'environment': 'development' if DEBUG else 'production',
+    'root': BASE_DIR,
+}
+
+#rollbar.init(**ROLLBAR)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

@@ -1,12 +1,11 @@
 lint:
-	poetry run flake8 page_loader
-	poetry run flake8 tests
+	poetry run flake8 task_manager
 
 tests:
-	poetry run pytest
+	./manage.py test
 
 test-coverage:
-	poetry run pytest --cov=page_loader tests/ --cov-report xml
+	poetry run pytest --cov=task_manager --cov-report xml
 
 server:
 	poetry run python manage.py runserver

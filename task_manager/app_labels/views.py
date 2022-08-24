@@ -15,13 +15,13 @@ from django.views.generic import (ListView,
 
 class ListOfLabels(LoginRequiredMixin, CheckSignInMixin, ListView):
     model = Labels
-    template_name = 'labels/list_of_labels.html'
+    template_name = 'labels.html'
     context_object_name = 'labels'
 
 
 class CreateLabel(SuccessMessageMixin, CheckSignInMixin, CreateView):
     model = Labels
-    template_name = 'labels/create_label.html'
+    template_name = 'labels_create.html'
     form_class = LabelForm
     success_message = gettext_lazy('Метка успешно создана')
     success_url = reverse_lazy('list_of_labels')
@@ -30,7 +30,7 @@ class CreateLabel(SuccessMessageMixin, CheckSignInMixin, CreateView):
 class UpdateLabel(LoginRequiredMixin, CheckSignInMixin,
                   SuccessMessageMixin, UpdateView, FormView):
     model = Labels
-    template_name = 'labels/update_label.html'
+    template_name = 'labels_update.html'
     form_class = LabelForm
     success_message = gettext_lazy('Метка успешно изменена')
     success_url = reverse_lazy('list_of_labels')
@@ -39,7 +39,7 @@ class UpdateLabel(LoginRequiredMixin, CheckSignInMixin,
 class DeleteLabel(LoginRequiredMixin, CheckSignInMixin, CheckDeleteMixin,
                   SuccessMessageMixin, DeleteView, FormView):
     model = Labels
-    template_name = 'labels/delete_label.html'
+    template_name = 'labels_delete.html'
     error_delete_message = 'Невозможно удалить метку,\
                             потому что она используется'
     success_delete_message = 'Метка успешно удалена'

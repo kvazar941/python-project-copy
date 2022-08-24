@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class AppLabelsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'app_labels'
+    name = 'task_manager.app_labels'
