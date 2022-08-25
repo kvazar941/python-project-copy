@@ -16,6 +16,7 @@ jobs:
         run: |
           pip install poetry
           pip install django
+          pip install rollbar
           make install
       - name: tests
         run: |
