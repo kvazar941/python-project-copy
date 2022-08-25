@@ -1,10 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import TemplateView
-from task_manager import views
-from task_manager.views import users, users_update, users_delete, login, logout, NewView
 from django.conf.urls.i18n import i18n_patterns
-from .views import EmployeeCreate
 from task_manager.app_users.views import SignIn, SignOut
 
 

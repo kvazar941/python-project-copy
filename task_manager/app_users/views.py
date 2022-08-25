@@ -72,12 +72,12 @@ class SignIn(SuccessMessageMixin, LoginView):
     form_class = SignInForm
     next_page = reverse_lazy('home')
     success_message = gettext_lazy('Вы залогинены')
-
+    
+    
 
 class SignOut(LogoutView, SuccessMessageMixin):
-
     next_page = reverse_lazy('home')
-
+    
     def dispatch(self, request, *args, **kwargs):
         messages.add_message(request, messages.SUCCESS,
                              gettext('Вы разлогинены'))
