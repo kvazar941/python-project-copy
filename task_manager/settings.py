@@ -1,6 +1,7 @@
 import os
 
 from pathlib import Path
+import rollbar
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -136,7 +137,6 @@ ROLLBAR = {
     'environment': 'development' if DEBUG else 'production',
     'root': BASE_DIR,
 }
-import rollbar
 rollbar.init(**ROLLBAR)
 
 # Default primary key field type
