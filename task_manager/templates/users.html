@@ -4,6 +4,13 @@
 {% block content %}
 <div class="cover-container d-flex w-100 h-100 p-5 mx-auto flex-column">
   <main role="main" class="py-3">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+      {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
     <h1 class="cover-heading">Таблица пользователей</h1>
     <table class="table">
       <thead class="thead-dark">
