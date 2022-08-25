@@ -22,7 +22,9 @@
             {% csrf_token %}
             <input type="submit" class="btn nav-link" value="{% translate 'Выход' %}">
           </form>
-          <a class="nav-link text-dark" href="/users/create/">Регистрация</a>
+          <a class="nav-link text-dark" href="/statuses/">Статусы</a>
+          <a class="nav-link text-dark" href="/labels/">Метки</a>
+          <a class="nav-link text-dark" href="/tasks/">Задачи</a>
           <a class="nav-link text-dark" href="/users/">Пользователи</a>
           {% endif %}
         </nav>
