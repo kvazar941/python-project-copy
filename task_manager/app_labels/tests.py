@@ -1,17 +1,22 @@
 from django.test import TestCase
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse, reverse_lazy
 
 from task_manager.app_labels.models import Labels
 from task_manager.app_tasks.models import Tasks
 from task_manager.app_users.models import ApplicationUsers
 
+CORRECT_REQUEST = 200
+ROUTE_LABELS = '/labels/'
+
 
 class TestStatus(TestCase):
 
-    fixtures = ['application_users.yaml',
-                'tasks.yaml',
-                'labels.yaml',
-                'statuses.yaml']
+    fixtures = [
+        'application_users.yaml',
+        'tasks.yaml',
+        'labels.yaml',
+        'statuses.yaml',
+    ]
 
     def setUp(self) -> None:
         self.user = ApplicationUsers.objects.get(pk=1)
@@ -26,20 +31,24 @@ class TestStatus(TestCase):
         response = self.client.get(reverse_lazy('list_of_labels'))
         labels_list = list(response.context['labels'])
 
-        self.assertEqual(response.status_code, 200)
-        self.assertQuerysetEqual(labels_list, [self.first_label,
-                                               self.second_label])
+        self.assertEqual(response.status_code, CORRECT_REQUEST)
+        self.assertQuerysetEqual(
+            labels_list,
+            [self.first_label, self.second_label],
+        )
 
     def test_create_label(self):
 
         self.client.force_login(self.user)
         label = {'name': 'Метка'}
-        new_data = self.client.post(reverse_lazy('create_label'),
-                                    label,
-                                    follow=True)
+        new_data = self.client.post(
+            reverse_lazy('create_label'),
+            label,
+            follow=True,
+        )
         created_status = Labels.objects.get(name=label['name'])
 
-        self.assertRedirects(new_data, '/labels/')
+        self.assertRedirects(new_data, ROUTE_LABELS)
         self.assertEqual(created_status.name, 'Метка')
 
     def test_change_label(self):
@@ -49,9 +58,11 @@ class TestStatus(TestCase):
         label = {'name': 'Другое'}
         response = self.client.post(url, label, follow=True)
 
-        self.assertEqual(Labels.objects.get(pk=self.second_label.id),
-                         self.second_label)
-        self.assertRedirects(response, '/labels/')
+        self.assertEqual(
+            Labels.objects.get(pk=self.second_label.id),
+            self.second_label,
+        )
+        self.assertRedirects(response, ROUTE_LABELS)
 
     def test_delete_label(self):
 
@@ -62,7 +73,7 @@ class TestStatus(TestCase):
         with self.assertRaises(Labels.DoesNotExist):
             Labels.objects.get(pk=self.second_label.pk)
 
-        self.assertRedirects(response, '/labels/')
+        self.assertRedirects(response, ROUTE_LABELS)
 
     def test_delete_label_with_task(self):
 
@@ -71,7 +82,7 @@ class TestStatus(TestCase):
         response = self.client.post(url, follow=True)
 
         self.assertTrue(Labels.objects.filter(pk=self.first_label.id).exists())
-        self.assertRedirects(response, '/labels/')
+        self.assertRedirects(response, ROUTE_LABELS)
 
     def test_status_list_without_authorization(self):
 

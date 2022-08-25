@@ -18,6 +18,7 @@ jobs:
           pip install django
           pip install rollbar
           pip install bootstrap4
+          pip install django_filters
           make install
       - name: tests
         run: |

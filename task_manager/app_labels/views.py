@@ -1,25 +1,25 @@
-from task_manager.app_labels.forms import LabelForm
-from task_manager.app_labels.models import Labels
-from task_manager.mixins import CheckSignInMixin, CheckDeleteMixin
-
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin as Login
+from django.contrib.messages.views import SuccessMessageMixin as Success
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
-from django.views.generic import (ListView,
-                                  CreateView,
-                                  UpdateView,
-                                  DeleteView,
-                                  FormView)
+from django.views.generic import (CreateView, DeleteView, FormView, ListView,
+                                  UpdateView)
+
+from task_manager.app_labels.forms import LabelForm
+from task_manager.app_labels.models import Labels
+from task_manager.mixins import CheckDeleteMixin as Delete
+from task_manager.mixins import CheckSignInMixin as SignIn
+
+ERROR_MESSAGE_DEL = 'Невозможно удалить метку, потому что она используется'
 
 
-class ListOfLabels(LoginRequiredMixin, CheckSignInMixin, ListView):
+class ListOfLabels(Login, SignIn, ListView):
     model = Labels
     template_name = 'labels.html'
     context_object_name = 'labels'
 
 
-class CreateLabel(SuccessMessageMixin, CheckSignInMixin, CreateView):
+class CreateLabel(Success, SignIn, CreateView):
     model = Labels
     template_name = 'labels_create.html'
     form_class = LabelForm
@@ -27,8 +27,7 @@ class CreateLabel(SuccessMessageMixin, CheckSignInMixin, CreateView):
     success_url = reverse_lazy('list_of_labels')
 
 
-class UpdateLabel(LoginRequiredMixin, CheckSignInMixin,
-                  SuccessMessageMixin, UpdateView, FormView):
+class UpdateLabel(Login, SignIn, Success, UpdateView, FormView):
     model = Labels
     template_name = 'labels_update.html'
     form_class = LabelForm
@@ -36,11 +35,9 @@ class UpdateLabel(LoginRequiredMixin, CheckSignInMixin,
     success_url = reverse_lazy('list_of_labels')
 
 
-class DeleteLabel(LoginRequiredMixin, CheckSignInMixin, CheckDeleteMixin,
-                  SuccessMessageMixin, DeleteView, FormView):
+class DeleteLabel(Login, SignIn, Delete, Success, DeleteView, FormView):
     model = Labels
     template_name = 'labels_delete.html'
-    error_delete_message = 'Невозможно удалить метку,\
-                            потому что она используется'
+    error_delete_message = ERROR_MESSAGE_DEL
     success_delete_message = 'Метка успешно удалена'
     redirect_delete_url = 'list_of_labels'

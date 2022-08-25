@@ -9,5 +9,7 @@ class Labels(models.Model):
         return self.name
 
     class Meta:
+        """doc."""
+
         verbose_name = 'Label'
         verbose_name_plural = 'Labels'

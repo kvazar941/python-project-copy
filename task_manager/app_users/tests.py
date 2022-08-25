@@ -84,6 +84,6 @@ class TestApplicationUsers(TestCase):
         response = self.client.post(url, follow=True)
 
         self.assertTrue(
-            ApplicationUsers.objects.filter(pk=self.first_user.id).exists()
+            ApplicationUsers.objects.filter(pk=self.first_user.id).exists(),
         )
         self.assertRedirects(response, '/users/')
