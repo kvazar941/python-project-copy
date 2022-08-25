@@ -2,6 +2,13 @@
 {% load i18n %}
 
 {% block content %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+      {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
 <h1 class="my-4">{% trans 'Статусы' %}</h1>
    <a class="nav-link" href="{% url 'create_status' %}">{% trans 'Создать статус' %}</a>
  <table class="table">
