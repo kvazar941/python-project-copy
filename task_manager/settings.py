@@ -113,8 +113,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-gettext = lambda s: s
+def get_text(string):
+    return string
+    
+gettext = get_text
 LANGUAGES = [
     ('ru', gettext('Russia')),
     ('en', gettext('English')),
