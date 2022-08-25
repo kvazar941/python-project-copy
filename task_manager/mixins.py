@@ -1,9 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import AccessMixin
-from django.shortcuts import redirect
-from django.urls import reverse_lazy
 from django.db.models import ProtectedError
 from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
 
 
@@ -26,11 +26,15 @@ class CheckDeleteMixin(AccessMixin):
         try:
             self.object.delete()
         except ProtectedError:
-            messages.error(self.request,
-                           gettext_lazy(self.error_delete_message))
+            messages.error(
+                self.request,
+                gettext_lazy(self.error_delete_message),
+            )
         else:
-            messages.success(self.request,
-                             gettext_lazy(self.success_delete_message))
+            messages.success(
+                self.request,
+                gettext_lazy(self.success_delete_message),
+            )
         return HttpResponseRedirect(reverse_lazy(self.redirect_delete_url))
 
 
@@ -40,7 +44,9 @@ class CheckUpdateMixin(AccessMixin):
 
     def dispatch(self, request, *args, **kwargs):
         if self.request.user != self.get_object():
-            messages.error(self.request,
-                           gettext_lazy(self.error_update_message))
+            messages.error(
+                self.request,
+                gettext_lazy(self.error_update_message),
+            )
             return redirect(reverse_lazy(self.redirect_error_update))
         return super().dispatch(request, *args, **kwargs)

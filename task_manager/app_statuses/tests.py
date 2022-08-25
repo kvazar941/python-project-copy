@@ -4,6 +4,9 @@ from django.urls import reverse
 from task_manager.app_statuses.models import Statuses
 from task_manager.app_users.models import ApplicationUsers
 
+CODE_CORRECT_REQUEST = 200
+ROUTE_STATUSES = '/statuses/'
+
 
 class TestStatuses(TestCase):
 
@@ -24,7 +27,7 @@ class TestStatuses(TestCase):
         response = self.client.get(reverse('list_of_statuses'))
         list_of_statuses = list(response.context['statuses'])
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, CODE_CORRECT_REQUEST)
         self.assertQuerysetEqual(list_of_statuses, [self.first_status,
                                                     self.second_status])
 
@@ -33,11 +36,14 @@ class TestStatuses(TestCase):
         self.client.force_login(self.user)
         status = {'name': 'Отложить'}
 
-        data = self.client.post(reverse('create_status'),
-                                status, follow=True)
+        post_data = self.client.post(
+            reverse('create_status'),
+            status,
+            follow=True,
+        )
         сurrent_status = Statuses.objects.get(name=status['name'])
 
-        self.assertRedirects(data, '/statuses/')
+        self.assertRedirects(post_data, ROUTE_STATUSES)
         self.assertEqual(сurrent_status.name, 'Отложить')
 
     def test_update_status(self):
@@ -47,9 +53,11 @@ class TestStatuses(TestCase):
         status = {'name': 'В работе'}
         response = self.client.post(url, status, follow=True)
 
-        self.assertEqual(Statuses.objects.get(pk=self.first_status.id),
-                         self.first_status)
-        self.assertRedirects(response, '/statuses/')
+        self.assertEqual(
+            Statuses.objects.get(pk=self.first_status.id),
+            self.first_status,
+        )
+        self.assertRedirects(response, ROUTE_STATUSES)
 
     def test_delete_status(self):
 
@@ -60,7 +68,7 @@ class TestStatuses(TestCase):
         with self.assertRaises(Statuses.DoesNotExist):
             Statuses.objects.get(pk=self.second_status.id)
 
-        self.assertRedirects(response, '/statuses/')
+        self.assertRedirects(response, ROUTE_STATUSES)
 
     def test_delete_status_with_tasks(self):
         self.client.force_login(self.user)
@@ -68,9 +76,9 @@ class TestStatuses(TestCase):
         response = self.client.post(url, follow=True)
 
         self.assertTrue(
-            Statuses.objects.filter(pk=self.first_status.id).exists()
+            Statuses.objects.filter(pk=self.first_status.id).exists(),
         )
-        self.assertRedirects(response, '/statuses/')
+        self.assertRedirects(response, ROUTE_STATUSES)
 
     def test_unauthorized(self):
 

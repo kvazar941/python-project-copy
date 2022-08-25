@@ -1,11 +1,7 @@
 from django.urls import path
 
-from task_manager.app_statuses.views import (
-    ListOfStatuses,
-    CreateStatus,
-    UpdateStatus,
-    DeleteStatus
-)
+from task_manager.app_statuses.views import (CreateStatus, DeleteStatus,
+                                             ListOfStatuses, UpdateStatus)
 
 urlpatterns = [
     path('', ListOfStatuses.as_view(), name='list_of_statuses'),

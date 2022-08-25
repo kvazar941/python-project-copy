@@ -1,9 +1,8 @@
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import TemplateView
-from django.conf.urls.i18n import i18n_patterns
-from task_manager.app_users.views import SignIn, SignOut
 
+from task_manager.app_users.views import SignIn, SignOut
 
 appname = 'task_manager'
 urlpatterns = [
@@ -13,11 +12,11 @@ urlpatterns = [
     path('logout/', SignOut.as_view(), name='logout'),
     path('i18n/', include('django.conf.urls.i18n')),
     path('users/', include('task_manager.app_users.urls'), name='users'),
-    path('statuses/', include('task_manager.app_statuses.urls'), name='statuses'),
+    path(
+        'statuses/',
+        include('task_manager.app_statuses.urls'),
+        name='statuses',
+    ),
     path('tasks/', include('task_manager.app_tasks.urls'), name='tasks'),
     path('labels/', include('task_manager.app_labels.urls'), name='labels'),
 ]
-
-#urlpatterns += i18n_patterns(
-#    path('2/', include('task_manager.urls', #namespace='task_manager')),
-#)

@@ -6,6 +6,13 @@ from task_manager.app_statuses.models import Statuses
 from task_manager.app_tasks.models import Tasks
 from task_manager.app_users.models import ApplicationUsers
 
+CODE_CORRECT_REQUEST = 200
+ROUTE_TASKS = '/tasks/'
+STATUS = 'status'
+EXECUTOR = 'executor'
+LABELS = 'labels'
+NAME = 'name'
+
 
 class TestTask(TestCase):
 
@@ -27,7 +34,7 @@ class TestTask(TestCase):
         response = self.client.get(reverse('list_of_tasks'))
         tasks_list = list(response.context['list_Of_tasks'])
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, CODE_CORRECT_REQUEST)
         self.assertQuerysetEqual(tasks_list, [self.first_task,
                                               self.second_task])
 
@@ -40,9 +47,9 @@ class TestTask(TestCase):
                 'status': 1}
 
         response = self.client.post(reverse('create_task'), task, follow=True)
-        created_task = Tasks.objects.get(name=task['name'])
+        created_task = Tasks.objects.get(name=task[NAME])
 
-        self.assertRedirects(response, '/tasks/')
+        self.assertRedirects(response, ROUTE_TASKS)
         self.assertEqual(created_task.name, 'Написать тесты')
 
     def test_update_task(self):
@@ -53,13 +60,13 @@ class TestTask(TestCase):
             'description': 'Обновлённое описание',
             'author': 2,
             'executor': 1,
-            'status': 2
+            'status': 2,
         }
 
         response = self.client.post(url, task, follow=True)
-        created_task = Tasks.objects.get(name=task['name'])
+        created_task = Tasks.objects.get(name=task[NAME])
 
-        self.assertRedirects(response, '/tasks/')
+        self.assertRedirects(response, ROUTE_TASKS)
         self.assertEqual(created_task.name, 'Обновлённая задача')
 
     def test_delete_task(self):
@@ -67,7 +74,7 @@ class TestTask(TestCase):
         url = reverse('delete_task', args=(self.first_task.id,))
         response = self.client.post(url, follow=True)
 
-        self.assertRedirects(response, '/tasks/')
+        self.assertRedirects(response, ROUTE_TASKS)
 
     def test_delete_task_by_non_author(self):
         self.client.force_login(self.second_user)
@@ -75,25 +82,25 @@ class TestTask(TestCase):
         response = self.client.post(url, follow=True)
 
         self.assertTrue(Tasks.objects.filter(pk=self.first_task.pk).exists())
-        self.assertRedirects(response, '/tasks/')
+        self.assertRedirects(response, ROUTE_TASKS)
 
     def test_filter_status(self):
 
-        status = Tasks._meta.get_field('status')
-        result = FilterSet.filter_for_field(status, 'status')
+        status = Tasks._meta.get_field(STATUS)
+        result = FilterSet.filter_for_field(status, STATUS)
 
-        self.assertEqual(result.field_name, 'status')
+        self.assertEqual(result.field_name, STATUS)
 
     def test_filter_executor(self):
 
-        status = Tasks._meta.get_field('executor')
-        result = FilterSet.filter_for_field(status, 'executor')
+        status = Tasks._meta.get_field(EXECUTOR)
+        result = FilterSet.filter_for_field(status, EXECUTOR)
 
-        self.assertEqual(result.field_name, 'executor')
+        self.assertEqual(result.field_name, EXECUTOR)
 
     def test_filter_label(self):
 
-        status = Tasks._meta.get_field('labels')
-        result = FilterSet.filter_for_field(status, 'labels')
+        status = Tasks._meta.get_field(LABELS)
+        result = FilterSet.filter_for_field(status, LABELS)
 
-        self.assertEqual(result.field_name, 'labels')
+        self.assertEqual(result.field_name, LABELS)

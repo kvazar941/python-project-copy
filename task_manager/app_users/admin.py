@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from task_manager.app_users.models import ApplicationUsers
+
+admin.site.register(ApplicationUsers)

@@ -1,7 +1,10 @@
-from django.test import TestCase, Client
+from django.test import Client, TestCase
 from django.urls import reverse
 
 from task_manager.app_users.models import ApplicationUsers
+
+CODE_REDIRECT = 302
+CODE_CORRECT_REQUEST = 200
 
 
 class TestApplicationUsers(TestCase):
@@ -19,7 +22,7 @@ class TestApplicationUsers(TestCase):
     def test_sign_up(self):
         url = reverse('sign_up')
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, CODE_CORRECT_REQUEST)
 
         new_user = {
             'first_name': 'test',
@@ -38,7 +41,7 @@ class TestApplicationUsers(TestCase):
         url = reverse('update_user', args=(user.id, ))
 
         change_user = {
-            'first_name': "Vladimir",
+            'first_name': 'Vladimir',
             'last_name': user.last_name,
             'username': user.username,
             'password1': 'Test321!#',
@@ -68,13 +71,13 @@ class TestApplicationUsers(TestCase):
                         'password1': 'FakePass654!#'}
         response = self.client.post(url, correct_data, follow=True)
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, CODE_CORRECT_REQUEST)
 
     def test_sign_out(self):
         url = reverse('logout')
         response = self.client.post(url)
 
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, CODE_REDIRECT)
         self.assertRedirects(response, '/')
 
     def test_delete_user_with_tasks(self):

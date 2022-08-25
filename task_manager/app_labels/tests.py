@@ -5,7 +5,7 @@ from task_manager.app_labels.models import Labels
 from task_manager.app_tasks.models import Tasks
 from task_manager.app_users.models import ApplicationUsers
 
-CORRECT_REQUEST = 200
+CODE_CORRECT_REQUEST = 200
 ROUTE_LABELS = '/labels/'
 
 
@@ -31,7 +31,7 @@ class TestStatus(TestCase):
         response = self.client.get(reverse_lazy('list_of_labels'))
         labels_list = list(response.context['labels'])
 
-        self.assertEqual(response.status_code, CORRECT_REQUEST)
+        self.assertEqual(response.status_code, CODE_CORRECT_REQUEST)
         self.assertQuerysetEqual(
             labels_list,
             [self.first_label, self.second_label],
