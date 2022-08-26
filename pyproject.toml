@@ -22,7 +22,7 @@ pycodestyle = "^2.4.0"
 [tool.poetry.dev-dependencies]
 pytest = "^6.1.2"
 wemake-python-styleguide = "^0.16.0"
-flake8 ="^3.7.0"
+flake8 ="^3.8.0"
 flake8-bandit = "2.1.2"
 bandit = "1.7.2"
 coverage = "^6.4.1"
