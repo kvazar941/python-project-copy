@@ -525,7 +525,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 name = "pycodestyle"
 version = "2.7.0"
 description = "Python style guide checker"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
@@ -812,7 +812,7 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "8e7b906c2c4351cd5e9e42e25b4d7ee2ed0d3be8dedecdb8f8ac268c930b2592"
+content-hash = "34cc33a6bfe2a65b56bb556524548d860b72271570525d0cd37203c448e5f3d1"
 
 [metadata.files]
 asgiref = []
