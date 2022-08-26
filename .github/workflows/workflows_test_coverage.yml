@@ -20,6 +20,7 @@ jobs:
           pip install bootstrap4
           pip install django-filter
           pip install wheel
+          pip install whitenoise
           make install
       - name: tests
         run: |
