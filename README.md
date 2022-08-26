@@ -5,7 +5,7 @@
 
 [![Linter](https://github.com/kvazar941/python-project-lvl4/actions/workflows/workflows_make_lint.yml/badge.svg)](https://github.com/kvazar941/python-project-lvl4/actions/workflows/workflows_make_lint.yml)
 
-[![Tests](https://github.com/kvazar941/python-project-lvl4/actions/workflows/workflows_test_page_loader.yml/badge.svg)](https://github.com/kvazar941/python-project-lvl3/actions/workflows/workflows_test_page_loader.yml)
+[![Tests](https://github.com/kvazar941/python-project-lvl4/actions/workflows/workflows_tests.yml/badge.svg)](https://github.com/kvazar941/python-project-lvl4/actions/workflows/workflows_tests.yml)
 
 ### Maintainability and Test Coverage:
 
