@@ -22,6 +22,7 @@ jobs:
           pip install wheel
           pip install whitenoise
           pip install django-bootstrap4
+          pip install PyYAML
           make install
       - name: tests
         run: |
