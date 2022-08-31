@@ -15,4 +15,5 @@ jobs:
           pip install wheel
           pip install whitenoise
           pip install django-bootstrap4
+          pip install django-heroku
           make test
