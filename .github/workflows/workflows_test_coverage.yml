@@ -26,12 +26,12 @@ jobs:
           make install
       - name: tests
         run: |
-          make tests
+          make test-coverage
       - name: Coverage report
         uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: make test-coverage
+          coverageCommand: make test-report-xml
           debug: true
 

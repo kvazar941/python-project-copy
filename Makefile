@@ -4,11 +4,18 @@ install:
 lint:
 	poetry run flake8 task_manager
 
-tests:
+test:
 	./manage.py test
 
 test-coverage:
-	poetry run pytest --cov=task_manager --cov-report xml
+	#poetry run pytest --cov=task_manager --cov-report xml
+	poetry run coverage run --omit '.venv/*' --source '.' manage.py test
+
+test-report: test-coverage
+	poetry run coverage report
+
+test-report-xml:
+	poetry run coverage xml
 
 server:
 	poetry run python manage.py runserver
