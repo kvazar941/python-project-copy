@@ -8,7 +8,6 @@ test:
 	./manage.py test
 
 test-coverage:
-	#poetry run pytest --cov=task_manager --cov-report xml
 	poetry run coverage run --omit '.venv/*' --source '.' manage.py test
 
 test-report: test-coverage

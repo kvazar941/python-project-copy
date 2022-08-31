@@ -15,4 +15,4 @@ jobs:
           pip install wheel
           pip install whitenoise
           pip install django-bootstrap4
-          make tests
+          make test
