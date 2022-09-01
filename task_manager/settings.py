@@ -3,8 +3,6 @@ import os
 from pathlib import Path
 import rollbar
 
-import django_heroku
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -137,8 +135,6 @@ LOCALE_PATHS = [
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
-django_heroku.settings(locals(), staticfiles=False, databases=False)
 
 AUTH_USER_MODEL = 'app_users.ApplicationUsers'
 

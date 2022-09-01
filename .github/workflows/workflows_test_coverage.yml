@@ -23,7 +23,6 @@ jobs:
           pip install whitenoise
           pip install django-bootstrap4
           pip install PyYAML
-          pip install django-heroku
           make install
       - name: tests
         run: |
