@@ -26,7 +26,5 @@ locale-compile:
 	django-admin compilemessages --ignore="static" --ignore="env" -l en
 
 migration:
-	python manage.py makemigrations
-	python manage.py migrate
-	python manage.py makemigrations task_manager
-	python manage.py migrate task_manager
+	poetry run python manage.py makemigrations
+	poetry run python manage.py migrate
