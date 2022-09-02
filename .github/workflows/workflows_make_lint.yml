@@ -8,5 +8,6 @@ jobs:
     - name: Step 1
       run: |
         pip install poetry
+        pip install flake8
         pip install wemake-python-styleguide
         make lint
