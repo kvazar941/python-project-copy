@@ -9,7 +9,7 @@ CODE_CORRECT_REQUEST = 200
 ROUTE_LABELS = '/labels/'
 
 
-class TestStatus(TestCase):
+class TestLabels(TestCase):
 
     fixtures = [
         'application_users.yaml',
