@@ -2,17 +2,15 @@
 {% load i18n %}
 
 {% block content %}
-<div class="cover-container d-flex w-100 h-100 p-5 mx-auto flex-column">
-    {% if messages %}
+  {% if messages %}
     {% for message in messages %}
     <div class="alert alert-danger" role="alert">
       {{ message }}
     </div>
     {% endfor %}
-    {% endif %}
+  {% endif %}
   <main role="main" class="py-3">
     <h1 class="cover-heading">Добро пожаловать на наш сайт!</h1>
     <p class="lead">Вы на главной странице сайта. Незарегистрированным пользователям доступен просмотр списка пользователей. Для того, чтобы иметь возможность добавлять и редактировать информацию своего профиля, необходимо зарегистрироваться на сайте или выполнить вход, если Вы были зарегистрированы ранее.</p>
   </main>
-</div>
 {% endblock %}

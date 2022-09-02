@@ -3,23 +3,21 @@
 {% load bootstrap4 %}
 
 {% block content %}
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   <main role="main" class="inner cover">
     {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-danger" role="alert">
-      {{ message }}
-    </div>
-    {% endfor %}
+      {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+          {{ message }}
+        </div>
+      {% endfor %}
     {% endif %}
     <h1 class="my-4">{% trans 'Вход' %}</h1>
     <form method="POST">
-        {% csrf_token %}
-        <div>
-            {% bootstrap_form form %}
-        </div>
-        <input class="btn btn-primary" type="submit" value={% trans 'Войти' %}>
+      {% csrf_token %}
+      <div>
+        {% bootstrap_form form %}
+      </div>
+      <input class="btn btn-primary" type="submit" value={% trans 'Войти' %}>
     </form>
   </main>
-</div>
 {% endblock %}
