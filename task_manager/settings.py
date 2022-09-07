@@ -86,7 +86,7 @@ DATABASES = {
 
 POSTGRES_DATABASES = {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'postgres://osizmwbnkltcve:99485bb02f49fdc422d6b6146e24719da36b5040022f181559d168d92e3ff726@ec2-54-157-16-196.compute-1.amazonaws.com:5432/dcl8qgnqtdspuv',
+    'NAME': 'dcl8qgnqtdspuv',
     'USER': os.getenv('POSTGRES_USER'),
     'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
     'HOST': os.getenv('POSTGRES_HOST'),
