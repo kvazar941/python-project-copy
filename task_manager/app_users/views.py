@@ -22,14 +22,14 @@ ROUTE_USERS = 'users'
 class ListOfUsers(ListView):
 
     model = ApplicationUsers
-    template_name = 'users.html'
+    template_name = 'users/users.html'
     context_object_name = 'application_users'
 
 
 class SignUp(CreateView, Success, FormView):
 
     model = ApplicationUsers
-    template_name = 'users_create.html'
+    template_name = 'users/users_create.html'
     form_class = SignUpForm
     success_url = reverse_lazy('login')
     success_message = gettext('Пользователь успешно зарегистрирован')
@@ -38,7 +38,7 @@ class SignUp(CreateView, Success, FormView):
 class UpdateUser(Login, Update, Sign, Success, UpdateView, FormView):
 
     model = ApplicationUsers
-    template_name = 'users_update.html'
+    template_name = 'users/users_update.html'
     form_class = SignUpForm
     success_url = reverse_lazy(ROUTE_USERS)
     success_message = gettext_lazy('Пользователь успешно изменён')
@@ -49,7 +49,7 @@ class UpdateUser(Login, Update, Sign, Success, UpdateView, FormView):
 class DeleteUser(Login, Update, Sign, Delete, Success, DeleteView, FormView):
 
     model = ApplicationUsers
-    template_name = 'users_delete.html'
+    template_name = 'users/users_delete.html'
     redirect_error_update = ROUTE_USERS
     error_update_message = MESSAGE_NO_RULES
     error_delete_message = MESSAGE_NO_DEL
