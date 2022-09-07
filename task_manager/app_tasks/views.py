@@ -18,14 +18,14 @@ MESSAGE_NO_DEL_TASK = 'Задачу может удалить только её 
 
 class ListOfTasks(Login, CheckSignInMixin, Success, FilterView):
     model = Tasks
-    template_name = 'tasks.html'
+    template_name = 'tasks/tasks.html'
     context_object_name = 'list_Of_tasks'
     filterset_class = TaskFilter
 
 
 class CreateTask(Login, CheckSignInMixin, Success, CreateView):
     model = Tasks
-    template_name = 'tasks_create.html'
+    template_name = 'tasks/tasks_create.html'
     form_class = TaskForm
     success_message = gettext_lazy('Задача успешно создана')
     success_url = reverse_lazy('list_of_tasks')
@@ -38,7 +38,7 @@ class CreateTask(Login, CheckSignInMixin, Success, CreateView):
 
 class UpdateTask(Login, CheckSignInMixin, Success, UpdateView):
     model = Tasks
-    template_name = 'tasks_update.html'
+    template_name = 'tasks/tasks_update.html'
     form_class = TaskForm
     success_message = gettext_lazy('Задача успешно изменена')
     success_url = reverse_lazy('list_of_tasks')
@@ -46,7 +46,7 @@ class UpdateTask(Login, CheckSignInMixin, Success, UpdateView):
 
 class DeleteTask(Login, CheckSignInMixin, Success, DeleteView):
     model = Tasks
-    template_name = 'tasks_delete.html'
+    template_name = 'tasks/tasks_delete.html'
     success_url = reverse_lazy('list_of_tasks')
     success_message = gettext_lazy('Задача успешно удалена')
 
@@ -60,5 +60,5 @@ class DeleteTask(Login, CheckSignInMixin, Success, DeleteView):
 
 class ViewTask(Login, CheckSignInMixin, Success, DetailView):
     model = Tasks
-    template_name = 'tasks_view.html'
+    template_name = 'tasks/tasks_view.html'
     context_object_name = 'task'

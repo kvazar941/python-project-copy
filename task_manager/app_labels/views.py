@@ -15,13 +15,13 @@ ERROR_MESSAGE_DEL = 'Невозможно удалить метку, потом�
 
 class ListOfLabels(Login, SignIn, ListView):
     model = Labels
-    template_name = 'labels.html'
+    template_name = 'labels/labels.html'
     context_object_name = 'labels'
 
 
 class CreateLabel(Success, SignIn, CreateView):
     model = Labels
-    template_name = 'labels_create.html'
+    template_name = 'labels/labels_create.html'
     form_class = LabelForm
     success_message = gettext_lazy('Метка успешно создана')
     success_url = reverse_lazy('list_of_labels')
@@ -29,7 +29,7 @@ class CreateLabel(Success, SignIn, CreateView):
 
 class UpdateLabel(Login, SignIn, Success, UpdateView, FormView):
     model = Labels
-    template_name = 'labels_update.html'
+    template_name = 'labels/labels_update.html'
     form_class = LabelForm
     success_message = gettext_lazy('Метка успешно изменена')
     success_url = reverse_lazy('list_of_labels')
@@ -37,7 +37,7 @@ class UpdateLabel(Login, SignIn, Success, UpdateView, FormView):
 
 class DeleteLabel(Login, SignIn, Delete, Success, DeleteView, FormView):
     model = Labels
-    template_name = 'labels_delete.html'
+    template_name = 'labels/labels_delete.html'
     error_delete_message = ERROR_MESSAGE_DEL
     success_delete_message = 'Метка успешно удалена'
     redirect_delete_url = 'list_of_labels'

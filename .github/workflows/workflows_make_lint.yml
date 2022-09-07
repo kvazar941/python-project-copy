@@ -8,5 +8,5 @@ jobs:
     - name: Step 1
       run: |
         pip install poetry
-        poetry add flake8
+        pip install flake8==3.9.2
         make lint
