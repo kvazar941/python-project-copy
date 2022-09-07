@@ -13,21 +13,33 @@ from task_manager.app_tasks.models import Tasks
 from task_manager.app_users.models import ApplicationUsers
 from task_manager.mixins import CheckSignInMixin
 
-MESSAGE_NO_DEL_TASK = 'Задачу может удалить только её автор'
+PATHS_TO_TEMPLATES = {
+    'tasks': 'tasks/tasks.html',
+    'task_create': 'tasks/tasks_create.html',
+    'task_update': 'tasks/tasks_update.html',
+    'task_delete': 'tasks/tasks_delete.html',
+    'task_view': 'tasks/tasks_view.html',
+}
+MESSAGES = {
+    'no_del_task': 'Задачу может удалить только её автор',
+    'success_create': 'Задача успешно создана',
+    'success_update': 'Задача успешно изменена',
+    'success_delete': 'Задача успешно удалена',
+}
 
 
 class ListOfTasks(Login, CheckSignInMixin, Success, FilterView):
     model = Tasks
-    template_name = 'tasks/tasks.html'
+    template_name = PATHS_TO_TEMPLATES['tasks']
     context_object_name = 'list_Of_tasks'
     filterset_class = TaskFilter
 
 
 class CreateTask(Login, CheckSignInMixin, Success, CreateView):
     model = Tasks
-    template_name = 'tasks/tasks_create.html'
+    template_name = PATHS_TO_TEMPLATES['task_create']
     form_class = TaskForm
-    success_message = gettext_lazy('Задача успешно создана')
+    success_message = gettext_lazy(MESSAGES['success_create'])
     success_url = reverse_lazy('list_of_tasks')
 
     def form_valid(self, form):
@@ -38,21 +50,21 @@ class CreateTask(Login, CheckSignInMixin, Success, CreateView):
 
 class UpdateTask(Login, CheckSignInMixin, Success, UpdateView):
     model = Tasks
-    template_name = 'tasks/tasks_update.html'
+    template_name = PATHS_TO_TEMPLATES['task_update']
     form_class = TaskForm
-    success_message = gettext_lazy('Задача успешно изменена')
+    success_message = gettext_lazy(MESSAGES['success_update'])
     success_url = reverse_lazy('list_of_tasks')
 
 
 class DeleteTask(Login, CheckSignInMixin, Success, DeleteView):
     model = Tasks
-    template_name = 'tasks/tasks_delete.html'
+    template_name = PATHS_TO_TEMPLATES['task_delete']
     success_url = reverse_lazy('list_of_tasks')
-    success_message = gettext_lazy('Задача успешно удалена')
+    success_message = gettext_lazy(MESSAGES['success_delete'])
 
     def form_valid(self, form):
         if self.request.user != self.get_object().author:
-            messages.error(self.request, gettext_lazy(MESSAGE_NO_DEL_TASK))
+            messages.error(self.request, gettext_lazy(MESSAGES['no_del_task']))
         else:
             super().form_valid(form)
         return redirect(self.success_url)
@@ -60,5 +72,5 @@ class DeleteTask(Login, CheckSignInMixin, Success, DeleteView):
 
 class ViewTask(Login, CheckSignInMixin, Success, DetailView):
     model = Tasks
-    template_name = 'tasks/tasks_view.html'
+    template_name = PATHS_TO_TEMPLATES['task_view']
     context_object_name = 'task'

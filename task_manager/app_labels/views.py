@@ -10,34 +10,47 @@ from task_manager.app_labels.models import Labels
 from task_manager.mixins import CheckDeleteMixin as Delete
 from task_manager.mixins import CheckSignInMixin as SignIn
 
-ERROR_MESSAGE_DEL = 'Невозможно удалить метку, потому что она используется'
+PATHS_TO_TEMPLATES = {
+    'labels': 'labels/labels.html',
+    'label_create': 'users/users_create.html',
+    'label_update': 'users/users_update.html',
+    'label_delete': 'users/users_delete.html',
+}
+MESSAGES = {
+    'no_del': 'Невозможно удалить метку, потому что она используется',
+    'success_create': 'Метка успешно создана',
+    'success_update': 'Метка успешно изменена',
+    'success_delete': 'Метка успешно удалена',
+    'success_login': 'Вы залогинены',
+    'success_logout': 'Вы разлогинены',
+}
 
 
 class ListOfLabels(Login, SignIn, ListView):
     model = Labels
-    template_name = 'labels/labels.html'
+    template_name = PATHS_TO_TEMPLATES['labels']
     context_object_name = 'labels'
 
 
 class CreateLabel(Success, SignIn, CreateView):
     model = Labels
-    template_name = 'labels/labels_create.html'
+    template_name = PATHS_TO_TEMPLATES['label_create']
     form_class = LabelForm
-    success_message = gettext_lazy('Метка успешно создана')
+    success_message = gettext_lazy(MESSAGES['success_create'])
     success_url = reverse_lazy('list_of_labels')
 
 
 class UpdateLabel(Login, SignIn, Success, UpdateView, FormView):
     model = Labels
-    template_name = 'labels/labels_update.html'
+    template_name = PATHS_TO_TEMPLATES['label_update']
     form_class = LabelForm
-    success_message = gettext_lazy('Метка успешно изменена')
+    success_message = gettext_lazy(MESSAGES['success_update'])
     success_url = reverse_lazy('list_of_labels')
 
 
 class DeleteLabel(Login, SignIn, Delete, Success, DeleteView, FormView):
     model = Labels
-    template_name = 'labels/labels_delete.html'
-    error_delete_message = ERROR_MESSAGE_DEL
-    success_delete_message = 'Метка успешно удалена'
+    template_name = PATHS_TO_TEMPLATES['label_delete']
+    error_delete_message = MESSAGES['no_del']
+    success_delete_message = MESSAGES['success_delete']
     redirect_delete_url = 'list_of_labels'
