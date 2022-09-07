@@ -1,5 +1,4 @@
 {% extends 'site_header.html' %}
-
 {% load i18n %}
 {% load bootstrap4 %}
 
@@ -7,9 +6,9 @@
   <h1 class="my-4">{% trans 'Создать Метку' %}</h1>
   <form method="POST">
     {% csrf_token %}
-    <div>
-      {% bootstrap_form form %}
-    </div>
-    <input class="btn btn-primary" type="submit" value={% trans 'Создать' %}>
+      <div>
+        {% bootstrap_form form %}
+      </div>
+      <input class="btn btn-primary" type="submit" value={% trans 'Создать' %}>
   </form>
 {% endblock %}

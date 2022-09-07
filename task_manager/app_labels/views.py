@@ -12,17 +12,15 @@ from task_manager.mixins import CheckSignInMixin as SignIn
 
 PATHS_TO_TEMPLATES = {
     'labels': 'labels/labels.html',
-    'label_create': 'users/users_create.html',
-    'label_update': 'users/users_update.html',
-    'label_delete': 'users/users_delete.html',
+    'label_create': 'labels/labels_create.html',
+    'label_update': 'labels/labels_update.html',
+    'label_delete': 'labels/labels_delete.html',
 }
 MESSAGES = {
     'no_del': 'Невозможно удалить метку, потому что она используется',
     'success_create': 'Метка успешно создана',
     'success_update': 'Метка успешно изменена',
     'success_delete': 'Метка успешно удалена',
-    'success_login': 'Вы залогинены',
-    'success_logout': 'Вы разлогинены',
 }
 
 

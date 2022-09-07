@@ -143,7 +143,7 @@ ROLLBAR = {
     'environment': 'development' if DEBUG else 'production',
     'root': BASE_DIR,
 }
-rollbar.init(**ROLLBAR)
+#rollbar.init(**ROLLBAR)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
