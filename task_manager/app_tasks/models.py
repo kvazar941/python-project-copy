@@ -45,7 +45,7 @@ class Tasks(models.Model):
     class Meta:
         verbose_name = 'Task'
         verbose_name_plural = 'Tasks'
-    
+
     created_at = models.DateTimeField(auto_now_add=True)
 
 
