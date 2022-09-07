@@ -31,7 +31,6 @@ class Tasks(models.Model):
         on_delete=models.PROTECT,
         related_name='task_executor',
     )
-    created_at = models.DateTimeField(auto_now_add=True)
     labels = models.ManyToManyField(
         Labels,
         related_name='task_label',
@@ -46,6 +45,8 @@ class Tasks(models.Model):
     class Meta:
         verbose_name = 'Task'
         verbose_name_plural = 'Tasks'
+    
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class TaskLabels(models.Model):

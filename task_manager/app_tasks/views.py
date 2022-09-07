@@ -21,10 +21,10 @@ PATHS_TO_TEMPLATES = {
     'task_view': 'tasks/tasks_view.html',
 }
 MESSAGES = {
-    'no_del_task': 'Задачу может удалить только её автор',
     'success_create': 'Задача успешно создана',
     'success_update': 'Задача успешно изменена',
     'success_delete': 'Задача успешно удалена',
+    'no_del': 'Задачу может удалить только её автор',
 }
 
 
@@ -64,7 +64,7 @@ class DeleteTask(Login, CheckSignInMixin, Success, DeleteView):
 
     def form_valid(self, form):
         if self.request.user != self.get_object().author:
-            messages.error(self.request, gettext_lazy(MESSAGES['no_del_task']))
+            messages.error(self.request, gettext_lazy(MESSAGES['no_del']))
         else:
             super().form_valid(form)
         return redirect(self.success_url)

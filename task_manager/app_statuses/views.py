@@ -17,10 +17,10 @@ PATHS_TO_TEMPLATES = {
     'status_delete': 'statuses/statuses_delete.html',
 }
 MESSAGES = {
-    'no_delete': 'Невозможно удалить статус, потому что он используется',
     'success_create': 'Статус успешно создан',
     'success_update': 'Статус успешно изменён',
     'success_delete': 'Статус успешно удалён',
+    'no_del': 'Невозможно удалить статус, потому что он используется',
 }
 
 
@@ -52,6 +52,6 @@ class DeleteStatus(Login, Sign, Delete, Success, DeleteView):
 
     model = Statuses
     template_name = PATHS_TO_TEMPLATES['status_delete']
-    error_delete_message = MESSAGES['no_delete']
+    error_delete_message = MESSAGES['no_del']
     success_delete_message = MESSAGES['success_delete']
     redirect_delete_url = 'list_of_statuses'

@@ -8,7 +8,7 @@ from django.views.generic import (CreateView, DeleteView, FormView, ListView,
 from task_manager.app_labels.forms import LabelForm
 from task_manager.app_labels.models import Labels
 from task_manager.mixins import CheckDeleteMixin as Delete
-from task_manager.mixins import CheckSignInMixin as SignIn
+from task_manager.mixins import CheckSignInMixin as Sign
 
 PATHS_TO_TEMPLATES = {
     'labels': 'labels/labels.html',
@@ -17,20 +17,20 @@ PATHS_TO_TEMPLATES = {
     'label_delete': 'labels/labels_delete.html',
 }
 MESSAGES = {
-    'no_del': 'Невозможно удалить метку, потому что она используется',
     'success_create': 'Метка успешно создана',
     'success_update': 'Метка успешно изменена',
     'success_delete': 'Метка успешно удалена',
+    'no_del': 'Невозможно удалить метку, потому что она используется',
 }
 
 
-class ListOfLabels(Login, SignIn, ListView):
+class ListOfLabels(Login, Sign, ListView):
     model = Labels
     template_name = PATHS_TO_TEMPLATES['labels']
     context_object_name = 'labels'
 
 
-class CreateLabel(Success, SignIn, CreateView):
+class CreateLabel(Success, Sign, CreateView):
     model = Labels
     template_name = PATHS_TO_TEMPLATES['label_create']
     form_class = LabelForm
@@ -38,7 +38,7 @@ class CreateLabel(Success, SignIn, CreateView):
     success_url = reverse_lazy('list_of_labels')
 
 
-class UpdateLabel(Login, SignIn, Success, UpdateView, FormView):
+class UpdateLabel(Login, Sign, Success, UpdateView, FormView):
     model = Labels
     template_name = PATHS_TO_TEMPLATES['label_update']
     form_class = LabelForm
@@ -46,7 +46,7 @@ class UpdateLabel(Login, SignIn, Success, UpdateView, FormView):
     success_url = reverse_lazy('list_of_labels')
 
 
-class DeleteLabel(Login, SignIn, Delete, Success, DeleteView, FormView):
+class DeleteLabel(Login, Sign, Delete, Success, DeleteView, FormView):
     model = Labels
     template_name = PATHS_TO_TEMPLATES['label_delete']
     error_delete_message = MESSAGES['no_del']
