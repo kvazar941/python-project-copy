@@ -8,8 +8,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 load_dotenv(find_dotenv())
-#env_path = os.path.join(BASE_DIR, '.env')
-#load_dotenv(dotenv_path=env_path)
 
 
 # Quick-start development settings - unsuitable for production
@@ -90,11 +88,11 @@ DATABASES = {
 
 POSTGRES_DATABASES = {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': os.getenv('POSTGRES_NAME'),
-    'USER': os.getenv('POSTGRES_USER'),
-    'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-    'HOST': os.getenv('POSTGRES_HOST'),
-    'PORT': os.getenv('POSTGRES_PORT'),
+    'NAME': os.environ.get('POSTGRES_NAME'),
+    'USER': os.environ.get('POSTGRES_USER'),
+    'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+    'HOST': os.environ.get('POSTGRES_HOST'),
+    'PORT': os.environ.get('POSTGRES_PORT'),
 }
 
 
@@ -155,7 +153,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 AUTH_USER_MODEL = 'app_users.ApplicationUsers'
 
 ROLLBAR = {
-    'access_token': os.getenv('ACCESS_TOKEN'),
+    'access_token': os.environ.get('ACCESS_TOKEN'),
     'environment': 'development' if DEBUG else 'production',
     'root': BASE_DIR,
 }
