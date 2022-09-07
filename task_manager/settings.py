@@ -1,7 +1,11 @@
 import os
 
+from dotenv import load_dotenv
 from pathlib import Path
 
+load_dotenv()
+env_path = Path('..') / '.env'
+load_dotenv(dotenv_path=env_path)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -11,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-y%k3=kz97jnx7zut8u^uf&kc)%s*zgh508l5ii&ie#8e4i0(e^'
+SECRET_KEY = os.getenv('SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -150,7 +154,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 AUTH_USER_MODEL = 'app_users.ApplicationUsers'
 
 ROLLBAR = {
-    'access_token': 'e8d1f02d74da4e94a29a8216ab87618d',
+    'access_token': os.getenv('ACCESS_TOKEN'),
     'environment': 'development' if DEBUG else 'production',
     'root': BASE_DIR,
 }
