@@ -1,6 +1,6 @@
 import os
 
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -86,11 +86,11 @@ DATABASES = {
 
 POSTGRES_DATABASES = {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': os.environ.get('POSTGRES_NAME'),
-    'USER': os.environ.get('POSTGRES_USER'),
-    'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-    'HOST': os.environ.get('POSTGRES_HOST'),
-    'PORT': os.environ.get('POSTGRES_PORT'),
+    'NAME': 'heroku pg:psql postgresql-tapered-55976 --app task-manager-5289',
+    'USER': os.getenv('POSTGRES_USER'),
+    'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+    'HOST': os.getenv('POSTGRES_HOST'),
+    'PORT': os.getenv('POSTGRES_PORT'),
 }
 
 
@@ -151,7 +151,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 AUTH_USER_MODEL = 'app_users.ApplicationUsers'
 
 ROLLBAR = {
-    'access_token': os.environ.get('ACCESS_TOKEN'),
+    'access_token': os.getenv('ACCESS_TOKEN'),
     'environment': 'development' if DEBUG else 'production',
     'root': BASE_DIR,
 }
