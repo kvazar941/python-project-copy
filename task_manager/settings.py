@@ -85,6 +85,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     },
 }
+
 POSTGRES_DATABASES = {
     'ENGINE': 'django.db.backends.postgresql',
     'NAME': os.environ.get('POSTGRES_NAME'),
