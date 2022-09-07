@@ -23,6 +23,7 @@ jobs:
           pip install whitenoise
           pip install django-bootstrap4
           pip install PyYAML
+          pip install python-dotenv
           make install
       - name: tests
         run: |
