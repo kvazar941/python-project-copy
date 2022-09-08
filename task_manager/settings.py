@@ -10,8 +10,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 dotenv_path = join(dirname(__file__), '.env')
 if exists(dotenv_path):
     load_dotenv(dotenv_path)
-else:
-    raise Exeptions('No .env file')
 config = dotenv_values("task_manager/.env")
 
 # Quick-start development settings - unsuitable for production
