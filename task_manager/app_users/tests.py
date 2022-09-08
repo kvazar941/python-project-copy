@@ -1,5 +1,5 @@
 from django.test import Client, TestCase
-from django.urls import reverse
+from django.urls import reverse_lazy
 
 from task_manager.app_users.models import ApplicationUsers
 
@@ -20,7 +20,7 @@ class TestApplicationUsers(TestCase):
         self.client: Client = Client()
 
     def test_sign_up(self):
-        url = reverse('sign_up')
+        url = reverse_lazy('sign_up')
         response = self.client.get(url)
         self.assertEqual(response.status_code, CODE_CORRECT_REQUEST)
 
@@ -38,7 +38,7 @@ class TestApplicationUsers(TestCase):
     def test_update(self):
         user = self.first_user
         self.client.force_login(user)
-        url = reverse('update_user', args=(user.id, ))
+        url = reverse_lazy('update_user', args=(user.id, ))
 
         change_user = {
             'first_name': 'Vladimir',
@@ -57,7 +57,7 @@ class TestApplicationUsers(TestCase):
     def test_delete_user(self):
         user = self.second_user
         self.client.force_login(user)
-        url = reverse('delete_user', args=(user.id,))
+        url = reverse_lazy('delete_user', args=(user.id,))
         response = self.client.post(url, follow=True)
 
         with self.assertRaises(ApplicationUsers.DoesNotExist):
@@ -66,7 +66,7 @@ class TestApplicationUsers(TestCase):
         self.assertRedirects(response, '/users/')
 
     def test_sign_in(self):
-        url = reverse('login')
+        url = reverse_lazy('login')
         correct_data = {'username': 'yeltsin',
                         'password1': 'FakePass654!#'}
         response = self.client.post(url, correct_data, follow=True)
@@ -74,7 +74,7 @@ class TestApplicationUsers(TestCase):
         self.assertEqual(response.status_code, CODE_CORRECT_REQUEST)
 
     def test_sign_out(self):
-        url = reverse('logout')
+        url = reverse_lazy('logout')
         response = self.client.post(url)
 
         self.assertEqual(response.status_code, CODE_REDIRECT)
@@ -83,7 +83,7 @@ class TestApplicationUsers(TestCase):
     def test_delete_user_with_tasks(self):
         user = self.first_user
         self.client.force_login(user)
-        url = reverse('delete_user', args=(user.pk,))
+        url = reverse_lazy('delete_user', args=(user.pk,))
         response = self.client.post(url, follow=True)
 
         self.assertTrue(

@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.urls import reverse
+from django.urls import reverse_lazy
 from django_filters import FilterSet
 
 from task_manager.app_statuses.models import Statuses
@@ -31,7 +31,7 @@ class TestTask(TestCase):
 
     def test_list_of_tasks(self):
         self.client.force_login(self.first_user)
-        response = self.client.get(reverse('list_of_tasks'))
+        response = self.client.get(reverse_lazy('list_of_tasks'))
         tasks_list = list(response.context['list_Of_tasks'])
 
         self.assertEqual(response.status_code, CODE_CORRECT_REQUEST)
@@ -46,7 +46,7 @@ class TestTask(TestCase):
                 'executor': 2,
                 'status': 1}
 
-        response = self.client.post(reverse('create_task'), task, follow=True)
+        response = self.client.post(reverse_lazy('create_task'), task, follow=True)
         created_task = Tasks.objects.get(name=task[NAME])
 
         self.assertRedirects(response, ROUTE_TASKS)
@@ -54,7 +54,7 @@ class TestTask(TestCase):
 
     def test_update_task(self):
         self.client.force_login(self.first_user)
-        url = reverse('update_task', args=(self.first_task.pk,))
+        url = reverse_lazy('update_task', args=(self.first_task.pk,))
         task = {
             'name': 'Обновлённая задача',
             'description': 'Обновлённое описание',
@@ -71,14 +71,14 @@ class TestTask(TestCase):
 
     def test_delete_task(self):
         self.client.force_login(self.first_user)
-        url = reverse('delete_task', args=(self.first_task.id,))
+        url = reverse_lazy('delete_task', args=(self.first_task.id,))
         response = self.client.post(url, follow=True)
 
         self.assertRedirects(response, ROUTE_TASKS)
 
     def test_delete_task_by_non_author(self):
         self.client.force_login(self.second_user)
-        url = reverse('delete_task', args=(self.first_task.pk,))
+        url = reverse_lazy('delete_task', args=(self.first_task.pk,))
         response = self.client.post(url, follow=True)
 
         self.assertTrue(Tasks.objects.filter(pk=self.first_task.pk).exists())

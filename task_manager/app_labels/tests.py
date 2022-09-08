@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 
 from task_manager.app_labels.models import Labels
 from task_manager.app_tasks.models import Tasks
@@ -54,7 +54,7 @@ class TestLabels(TestCase):
     def test_change_label(self):
 
         self.client.force_login(self.user)
-        url = reverse('update_label', args=(self.second_label.pk,))
+        url = reverse_lazy('update_label', args=(self.second_label.pk,))
         label = {'name': 'Другое'}
         response = self.client.post(url, label, follow=True)
 

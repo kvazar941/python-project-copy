@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.urls import reverse
+from django.urls import reverse_lazy
 
 from task_manager.app_statuses.models import Statuses
 from task_manager.app_users.models import ApplicationUsers
@@ -24,7 +24,7 @@ class TestStatuses(TestCase):
     def test_list_of_statuses(self):
 
         self.client.force_login(self.user)
-        response = self.client.get(reverse('list_of_statuses'))
+        response = self.client.get(reverse_lazy('list_of_statuses'))
         list_of_statuses = list(response.context['statuses'])
 
         self.assertEqual(response.status_code, CODE_CORRECT_REQUEST)
@@ -37,7 +37,7 @@ class TestStatuses(TestCase):
         status = {'name': 'Отложить'}
 
         post_data = self.client.post(
-            reverse('create_status'),
+            reverse_lazy('create_status'),
             status,
             follow=True,
         )
@@ -49,7 +49,7 @@ class TestStatuses(TestCase):
     def test_update_status(self):
 
         self.client.force_login(self.user)
-        url = reverse('update_status', args=(self.first_status.pk,))
+        url = reverse_lazy('update_status', args=(self.first_status.pk,))
         status = {'name': 'В работе'}
         response = self.client.post(url, status, follow=True)
 
@@ -62,7 +62,7 @@ class TestStatuses(TestCase):
     def test_delete_status(self):
 
         self.client.force_login(self.user)
-        url = reverse('delete_status', args=(self.second_status.pk,))
+        url = reverse_lazy('delete_status', args=(self.second_status.pk,))
         response = self.client.post(url, follow=True)
 
         with self.assertRaises(Statuses.DoesNotExist):
@@ -72,7 +72,7 @@ class TestStatuses(TestCase):
 
     def test_delete_status_with_tasks(self):
         self.client.force_login(self.user)
-        url = reverse('delete_status', args=(self.first_status.pk,))
+        url = reverse_lazy('delete_status', args=(self.first_status.pk,))
         response = self.client.post(url, follow=True)
 
         self.assertTrue(
@@ -82,6 +82,6 @@ class TestStatuses(TestCase):
 
     def test_unauthorized(self):
 
-        response = self.client.get(reverse('list_of_statuses'))
+        response = self.client.get(reverse_lazy('list_of_statuses'))
 
         self.assertRedirects(response, '/login/')
