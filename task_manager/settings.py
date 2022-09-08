@@ -10,13 +10,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 dotenv_path = join(dirname(__file__), '.env')
 if exists(dotenv_path):
     load_dotenv(dotenv_path)
-config = dotenv_values("task_manager/.env")
+#config = dotenv_values("task_manager/.env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config['SECRET_KEY']
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -90,11 +90,11 @@ DATABASES = {
 
 POSTGRES_DATABASES = {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': config['POSTGRES_NAME'],
-    'USER': config['POSTGRES_USER'],
-    'PASSWORD': config['POSTGRES_PASSWORD'],
-    'HOST': config['POSTGRES_HOST'],
-    'PORT': config['POSTGRES_PORT'],
+    'NAME': os.getenv('POSTGRES_NAME'),
+    'USER': os.getenv('POSTGRES_USER'),
+    'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+    'HOST': os.getenv('POSTGRES_HOST'),
+    'PORT': os.getenv('POSTGRES_PORT'),
 }
 
 
@@ -155,7 +155,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 AUTH_USER_MODEL = 'app_users.ApplicationUsers'
 
 ROLLBAR = {
-    'access_token': config['ACCESS_TOKEN'],
+    'access_token': os.getenv('ACCESS_TOKEN'),
     'environment': 'development' if DEBUG else 'production',
     'root': BASE_DIR,
 }
