@@ -17,3 +17,5 @@ jobs:
           pip install django-bootstrap4
           pip install python-dotenv
           make test
+    env:
+        SECRET_KEY: ${{ secret.SECRET_KEY }}
