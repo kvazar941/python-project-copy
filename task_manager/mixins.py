@@ -23,18 +23,7 @@ class CheckDeleteMixin(AccessMixin):
     redirect_delete_url = ''
 
     def form_valid(self, form):
-        try:
-            self.object.delete()
-        except ProtectedError:
-            messages.error(
-                self.request,
-                gettext_lazy(self.error_delete_message),
-            )
-        else:
-            messages.success(
-                self.request,
-                gettext_lazy(self.success_delete_message),
-            )
+        self.object.delete()
         return HttpResponseRedirect(reverse_lazy(self.redirect_delete_url))
 
 

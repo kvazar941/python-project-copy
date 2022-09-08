@@ -46,7 +46,11 @@ class TestTask(TestCase):
                 'executor': 2,
                 'status': 1}
 
-        response = self.client.post(reverse_lazy('create_task'), task, follow=True)
+        response = self.client.post(
+            reverse_lazy('create_task'),
+            task,
+            follow=True,
+        )
         created_task = Tasks.objects.get(name=task[NAME])
 
         self.assertRedirects(response, ROUTE_TASKS)
