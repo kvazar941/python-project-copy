@@ -5,8 +5,8 @@
 {% block content %}
   <h1 class="my-4">{% trans 'Удаление статуса' %}</h1>
     <p>{% trans 'Вы уверены, что хотите удалить'%} {{ statuses.name }}?</p>
-      <form method="POST" class="pb-4 pt-2">
-        {% csrf_token %}
-          <input class="btn btn-danger" type="submit" value="{% trans 'Да, удалить' %}">
-      </form>
+    <form method="POST" class="pb-4 pt-2">
+      {% csrf_token %}
+        <input class="btn btn-danger" type="submit" value="{% trans 'Да, удалить' %}">
+    </form>
 {% endblock %}

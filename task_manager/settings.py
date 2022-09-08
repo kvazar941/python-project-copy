@@ -3,6 +3,7 @@ import os
 from os.path import join, dirname, exists
 from dotenv import load_dotenv
 from pathlib import Path
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -131,14 +132,9 @@ USE_I18N = True
 USE_TZ = True
 
 
-def get_text(string):
-    return string
-
-
-gettext = get_text
 LANGUAGES = [
-    ('ru', gettext('Russia')),
-    ('en', gettext('English')),
+    ('ru', _('Russia')),
+    ('en', _('English')),
 ]
 
 LOCALE_PATHS = [
