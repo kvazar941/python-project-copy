@@ -1,7 +1,7 @@
 import os
 
 from os.path import join, dirname, exists
-from dotenv import load_dotenv, dotenv_values
+from dotenv import load_dotenv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
