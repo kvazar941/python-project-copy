@@ -1,20 +1,24 @@
 import os
 
-from os.path import join, dirname
-from dotenv import load_dotenv
+from os.path import join, dirname, exists
+from dotenv import load_dotenv, dotenv_values
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
+if exists(dotenv_path):
+    load_dotenv(dotenv_path)
+else:
+    raise Exeptions('No .env file')
+config = dotenv_values("task_manager/.env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-y%k3=kz97jnx7zut8u^uf&kc)%s*zgh508l5ii&ie#8e4i0(e^'
+SECRET_KEY = config['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -153,7 +157,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 AUTH_USER_MODEL = 'app_users.ApplicationUsers'
 
 ROLLBAR = {
-    'access_token': os.getenv('ACCESS_TOKEN'),
+    'access_token': config['ACCESS_TOKEN'],
     'environment': 'development' if DEBUG else 'production',
     'root': BASE_DIR,
 }
