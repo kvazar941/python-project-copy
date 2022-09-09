@@ -11,25 +11,8 @@
   </head>
   <body class="h-100 text-center text-white bg-dark">
     <header class="masthead mb-auto bg-white sticky-top">
-    <div class="container-fluid">
-      <form action="{% url 'set_language' %}" method="post">
-          {% csrf_token %}
-          <input name="next" type="hidden" value="{{ redirect_to }}">
-          <select name="language">
-            {% get_current_language as LANGUAGE_CODE %}
-            {% get_available_languages as LANGUAGES %}
-            {% get_language_info_list for LANGUAGES as languages %}
-            {% for language in languages %}
-              <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                {{ language.name_local }} ({{ language.code }})
-              </option>
-            {% endfor %}
-          </select>
-          <input type="submit" value="Go">
-        </form>
-      </div>
       <div class="container-fluid">
-        <nav class="nav nav-masthead justify-content-end sticky-top">
+        <nav class="nav nav-masthead justify-content-end sticky-center">
           {% if not user.is_authenticated %}
           <a class="nav-link text-dark" href="/login/">{% trans 'Вход' %}</a>
           <a class="nav-link text-dark" href="/users/create/">{% trans 'Регистрация' %}</a>
@@ -43,6 +26,21 @@
           <a class="nav-link text-dark" href="/tasks/">{% trans 'Задачи' %}</a>
           {% endif %}
           <a class="nav-link text-dark" href="/users/">{% trans 'Пользователи' %}</a>
+          <form action="{% url 'set_language' %}" method="post" style="justify-content-center">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}">
+            <select name="language">
+              {% get_current_language as LANGUAGE_CODE %}
+              {% get_available_languages as LANGUAGES %}
+              {% get_language_info_list for LANGUAGES as languages %}
+              {% for language in languages %}
+                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                  {{ language.name_local }} ({{ language.code }})
+                </option>
+              {% endfor %}
+            </select>
+            <input type="submit" value="Go">
+          </form>
         </nav>
       </div>
     </header>
