@@ -13,7 +13,10 @@ class CheckSignInMixin(AccessMixin):
     request = ''
 
     def handle_no_permission(self):
-        messages.error(self.request, gettext_lazy(self.error_sign_in_message))
+        messages.error(
+            self.request,
+            gettext_lazy(self.error_sign_in_message),
+        )
         return redirect(reverse_lazy(self.redirect_sign_in_name))
 
 

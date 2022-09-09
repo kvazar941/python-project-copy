@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-08 21:55+0300\n"
+"POT-Creation-Date: 2022-09-09 06:41+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,10 +53,10 @@ msgstr "Description"
 
 #: task_manager/app_tasks/forms.py:16
 #: task_manager/templates/labels/labels.html:12
-#: task_manager/templates/site_header.html:43
+#: task_manager/templates/site_header.html:42
 #: task_manager/templates/tasks/tasks_view.html:33
 msgid "Метки"
-msgstr "Tags"
+msgstr "Labels"
 
 #: task_manager/settings.py:136
 msgid "Russia"
@@ -77,10 +77,10 @@ msgid ""
 "редактировать информацию своего профиля, необходимо зарегистрироваться на "
 "сайте или выполнить вход, если Вы были зарегистрированы ранее."
 msgstr ""
-"You are on the main page of the site. Unregistered users can "
-"viewing the list of users. In order to be able to add and"
-"edit your profile information, you need to register on"
-"on the website or log in if you were registered earlie."
+"You are on the main page of the site. Unregistered users can viewing the "
+"list of users. In order to be able to add andedit your profile information, "
+"you need to register onon the website or log in if you were registered "
+"earlie."
 
 #: task_manager/templates/labels/labels.html:13
 msgid "Создать метку"
@@ -163,26 +163,23 @@ msgstr "Main page"
 msgid "Регистрация"
 msgstr "Registration"
 
-#: task_manager/templates/site_header.html:36
-#: task_manager/templates/site_header.html:45
-#, fuzzy
-#| msgid "Удаление пользователя"
-msgid "Пользователи"
-msgstr "Users"
-
-#: task_manager/templates/site_header.html:40
+#: task_manager/templates/site_header.html:39
 msgid "Выход"
 msgstr "LogOut"
 
-#: task_manager/templates/site_header.html:42
+#: task_manager/templates/site_header.html:41
 #: task_manager/templates/statuses/statuses.html:12
 msgid "Статусы"
 msgstr "Statuses"
 
-#: task_manager/templates/site_header.html:44
+#: task_manager/templates/site_header.html:43
 #: task_manager/templates/tasks/tasks.html:13
 msgid "Задачи"
 msgstr "Tasks"
+
+#: task_manager/templates/site_header.html:45
+msgid "Пользователи"
+msgstr "Users"
 
 #: task_manager/templates/statuses/statuses.html:13
 #: task_manager/templates/statuses/statuses_create.html:6
@@ -232,8 +229,6 @@ msgid "дата создания"
 msgstr "Date of creation"
 
 #: task_manager/templates/users/users.html:13
-#, fuzzy
-#| msgid "Удаление пользователя"
 msgid "Таблица пользователей"
 msgstr "Table users"
 
@@ -254,16 +249,22 @@ msgid "Изменение пользователя"
 msgstr "User change"
 
 msgid "Метка успешно создана"
-msgstr "Tag created successfully"
+msgstr "Label created successfully"
 
 msgid "Метка успешно изменена"
-msgstr "Tag changed successfully"
+msgstr "Label changed successfully"
+
+msgid "Метка успешно удалена"
+msgstr "Label deleted successfully"
 
 msgid "Статус успешно создан"
 msgstr "Status created successfully"
 
 msgid "Статус успешно изменён"
 msgstr "Status changed successfully"
+
+msgid "Статус успешно удален"
+msgstr "Status deleted successfully"
 
 msgid "Задача успешно создана"
 msgstr "Task created successfully"
@@ -280,8 +281,14 @@ msgstr "User successfully registered"
 msgid "Пользователь успешно изменён"
 msgstr "User changed successfully"
 
+msgid "Пользователь успешно удален"
+msgstr "User deleted successfully"
+
 msgid "Вы залогинены"
 msgstr "You are logged in"
 
 msgid "Вы разлогинены"
 msgstr "You are logged out"
+
+msgid "Вы не авторизованы! Пожалуйста, выполните вход."
+msgstr "You are not logged in! Please log in."
