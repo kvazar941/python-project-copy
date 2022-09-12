@@ -7,9 +7,10 @@ from django.utils.translation import gettext_lazy
 
 
 class CheckSignInMixin(LoginRequiredMixin):
+
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            return self.handle_no_permission()
+            return HttpResponseRedirect(reverse_lazy('login'))
         return super().dispatch(request, *args, **kwargs)
 
 

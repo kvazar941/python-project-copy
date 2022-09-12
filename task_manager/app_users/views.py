@@ -3,8 +3,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin as Success
 from django.urls import reverse_lazy
 from django.utils.translation import gettext, gettext_lazy
-from django.views.generic.edit import (CreateView, DeleteView, FormView,
-                                       UpdateView)
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
 from task_manager.app_users.forms import SignInForm, SignUpForm

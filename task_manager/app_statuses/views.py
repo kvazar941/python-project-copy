@@ -1,8 +1,7 @@
 from django.contrib.messages.views import SuccessMessageMixin as Success
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
-from django.views.generic import (CreateView, DeleteView, FormView, ListView,
-                                  UpdateView)
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from task_manager.app_statuses.forms import StatusesForm
 from task_manager.app_statuses.models import Statuses
@@ -16,7 +15,7 @@ class ListOfStatuses(Sign, ListView):
     context_object_name = 'statuses'
 
 
-class CreateStatus(Sign, Success, CreateView, FormView):
+class CreateStatus(Sign, Success, CreateView):
 
     model = Statuses
     template_name = 'statuses/statuses_create.html'
