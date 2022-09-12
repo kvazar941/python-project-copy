@@ -14,55 +14,70 @@ from task_manager.mixins import CheckDeleteMixin as Delete
 from task_manager.mixins import CheckSignInMixin as Sign
 from task_manager.mixins import CheckUpdateMixin as Update
 
-
+PATHS_TO_TEMPLATES = {
+    'users': 'users/users.html',
+    'user_create': 'users/users_create.html',
+    'user_update': 'users/users_update.html',
+    'user_delete': 'users/users_delete.html',
+    'login': 'login.html',
+}
+MESSAGES = {
+    'success_registration': 'Пользователь успешно зарегистрирован',
+    'success_update': 'Пользователь успешно изменён',
+    'success_delete': 'Пользователь успешно удалён',
+    'success_login': 'Вы залогинены',
+    'success_logout': 'Вы разлогинены',
+    'no_rules': 'У вас нет прав для изменения другого пользователя.',
+    'no_del': 'Невозможно удалить пользователя, потому что он используется',
+}
 ROUTE_USERS = 'users'
 
 
 class ListOfUsers(ListView):
 
     model = ApplicationUsers
-    template_name = 'users/users.html'
+    template_name = PATHS_TO_TEMPLATES['users']
     context_object_name = 'application_users'
 
 
 class SignUp(CreateView, Success, FormView):
 
     model = ApplicationUsers
-    template_name = 'users/users_create.html'
+    template_name = PATHS_TO_TEMPLATES['user_create']
     form_class = SignUpForm
     success_url = reverse_lazy('login')
-    success_message = gettext('User successfully registered')
+    success_message = gettext(MESSAGES['success_registration'])
 
 
 class UpdateUser(Login, Update, Sign, Success, UpdateView, FormView):
 
     model = ApplicationUsers
-    template_name = 'users/users_update.html'
+    template_name = PATHS_TO_TEMPLATES['user_update']
     form_class = SignUpForm
     success_url = reverse_lazy(ROUTE_USERS)
-    success_message = gettext_lazy('User changed successfully')
+    success_message = gettext_lazy(MESSAGES['success_update'])
     redirect_error_update = ROUTE_USERS
-    error_update_message = 'You do not have permission to change another user'
+    error_update_message = MESSAGES['no_rules']
 
 
 class DeleteUser(Login, Update, Sign, Delete, Success, DeleteView, FormView):
 
     model = ApplicationUsers
-    template_name = 'users/users_delete.html'
+    template_name = PATHS_TO_TEMPLATES['user_delete']
     redirect_error_update = ROUTE_USERS
-    error_update_message = 'You do not have permission to change another user'
-    error_delete_message = 'Cannot delete user because it is in use'
-    success_delete_message = 'User deleted successfully'
+    error_update_message = MESSAGES['no_rules']
+    error_delete_message = MESSAGES['no_del']
+    success_delete_message = MESSAGES['success_delete']
     redirect_delete_url = ROUTE_USERS
 
 
 class SignIn(Success, LoginView):
 
     model = ApplicationUsers
-    template_name = 'login.html'
+    template_name = PATHS_TO_TEMPLATES['login']
     form_class = SignInForm
     next_page = reverse_lazy('home')
-    success_message = gettext_lazy('You are logged in')
+    success_message = gettext_lazy(MESSAGES['success_login'])
 
 
 class SignOut(LogoutView, Success):
@@ -72,6 +87,6 @@ class SignOut(LogoutView, Success):
         messages.add_message(
             request,
             messages.SUCCESS,
-            gettext('You are logged out'),
+            gettext(MESSAGES['success_logout']),
         )
         return super().dispatch(request, *args, **kwargs)

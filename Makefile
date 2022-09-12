@@ -30,9 +30,9 @@ migration:
 	poetry run python manage.py migrate
 
 push:
-	poetry export -f requirements.txt --output requirements.txt
-	poetry run python manage.py collectstatic
-	heroku run python manage.py makemigrations -a task-manager-5289
-	heroku run python manage.py migrate -a task-manager-5289
+	#poetry export -f requirements.txt --output requirements.txt
+	#poetry run python manage.py collectstatic
+	#heroku run python manage.py makemigrations -a task-manager-5289
+	#heroku run python manage.py migrate -a task-manager-5289
 	git push heroku main
 	git push
