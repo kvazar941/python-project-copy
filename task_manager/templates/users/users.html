@@ -10,14 +10,14 @@
         </div>
       {% endfor %}
     {% endif %}
-    <h1 class="cover-heading">{% trans 'Таблица пользователей' %}</h1>
+    <h1 class="cover-heading">{% trans 'User table' %}</h1>
     <table class="table thead-dark text-white">
       <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">{% trans 'Имя' %}</th>
-          <th scope="col">{% trans 'Полное имя' %}</th>
-          <th scope="col">{% trans 'Дата создания' %}</th>
+          <th scope="col">{% trans 'Name' %}</th>
+          <th scope="col">{% trans 'Full name' %}</th>
+          <th scope="col">{% trans 'Date of creation' %}</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -29,9 +29,9 @@
             <td>{{ user.first_name}} {{ user.last_name }}</td>
             <td>{{ user.date_joined|date:"d.m.Y H:i" }}</td>
             <td>
-              <a class="text-decoration-none" href="{% url 'update_user' user.id %}">{% trans 'Изменить' %}</a>
+              <a class="text-decoration-none" href="{% url 'update_user' user.id %}">{% trans 'Change' %}</a>
               <a>/</a>
-              <a class="text-decoration-none" href="{% url 'delete_user' user.id %}">{% trans 'Удалить' %}</a>
+              <a class="text-decoration-none" href="{% url 'delete_user' user.id %}">{% trans 'Delete' %}</a>
             </td>
           </tr>
         </tbody>

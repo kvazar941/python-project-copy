@@ -3,7 +3,7 @@
 {% load bootstrap4 %}
 
 {% block content %}
-  <h1 class="my-4">{% trans 'Просмотр задачи' %}</h1>
+  <h1 class="my-4">{% trans 'Task view' %}</h1>
   <div class="card">
     <div class="card-header bg-secondary text-white">
       <h2>{{ task.name }}</h2>
@@ -13,24 +13,24 @@
       <hr>
         <div class="container">
           <div class="row p-1">
-            <div class="col">{% trans 'Автор' %}</div>
+            <div class="col">{% trans 'Author' %}</div>
             <div class="col">{{ task.author }}</div>
           </div>
           <div class="row p-1">
-            <div class="col">{% trans 'Исполнитель' %}</div>
+            <div class="col">{% trans 'Executor' %}</div>
             <div class="col">{{ task.executor }}</div>
           </div>
           <div class="row p-1">
-            <div class="col">{% trans 'Статус' %}</div>
+            <div class="col">{% trans 'Status' %}</div>
             <div class="col">{{ task.status }}</div>
           </div>
           <div class="row p-1">
-            <div class="col">{% trans 'дата создания' %}</div>
+            <div class="col">{% trans 'Date of creation' %}</div>
             <div class="col">{{ task.created_at|date:"d.m.Y H:i" }}</div>
           </div>
           <div class="row p-1">
             <div class="col">
-              <h6>{% trans 'Метки' %}</h6>
+              <h6>{% trans 'Labels' %}</h6>
                 <ul>
                   {% for label in task.labels.all %}
                     <li>{{ label }}</li>
@@ -40,9 +40,9 @@
           </div>
           <div class="row p-1">
             <div class="col">
-              <a class="text-decoration-none" href="{% url 'update_task' task.id %}">{% trans 'Изменить' %}</a>
+              <a class="text-decoration-none" href="{% url 'update_task' task.id %}">{% trans 'Change' %}</a>
               <br>
-              <a class="text-decoration-none" href="{% url 'delete_task' task.id %}">{% trans 'Удалить' %}</a>
+              <a class="text-decoration-none" href="{% url 'delete_task' task.id %}">{% trans 'Delete' %}</a>
             </div>
           </div>
         </div>

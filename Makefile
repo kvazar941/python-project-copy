@@ -20,10 +20,10 @@ server:
 	poetry run python manage.py runserver
 
 locale:
-	django-admin makemessages --ignore="static" --ignore="env" -l en
+	django-admin makemessages --ignore="static" --ignore="env" -l ru
 
 locale-compile:
-	django-admin compilemessages --ignore="static" --ignore="env" -l en
+	django-admin compilemessages --ignore="static" --ignore="env" -l ru
 
 migration:
 	poetry run python manage.py makemigrations

@@ -9,14 +9,14 @@
       </div>
     {% endfor %}
   {% endif %}
-  <h1 class="my-4">{% trans 'Статусы' %}</h1>
-  <a class="nav-link" href="{% url 'create_status' %}">{% trans 'Создать статус' %}</a>
+  <h1 class="my-4">{% trans 'Statuses' %}</h1>
+  <a class="nav-link" href="{% url 'create_status' %}">{% trans 'Create status' %}</a>
   <table class="table thead-dark text-white">
     <thead>
       <tr>
         <th scope="col">ID</th>
-        <th scope="col">{% trans 'Имя' %}</th>
-        <th scope="col">{% trans 'Дата создания' %}</th>
+        <th scope="col">{% trans 'Name' %}</th>
+        <th scope="col">{% trans 'Date of creation' %}</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -27,9 +27,9 @@
             <td>{{ status.name }}</td>
             <td>{{ status.created_at|date:"d.m.Y H:i" }}</td>
             <td>
-              <a class="text-decoration-none" href="{% url 'update_status' status.id %}">{% trans 'Изменить' %}</a>
+              <a class="text-decoration-none" href="{% url 'update_status' status.id %}">{% trans 'Change' %}</a>
               <a>/</a>
-              <a class="text-decoration-none" href="{% url 'delete_status' status.id %}">{% trans 'Удалить' %}</a>
+              <a class="text-decoration-none" href="{% url 'delete_status' status.id %}">{% trans 'Delete' %}</a>
             </td>
         </tr>
       </tbody>

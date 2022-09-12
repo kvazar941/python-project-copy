@@ -9,9 +9,9 @@ class TaskForm(ModelForm):
         model = Tasks
         fields = ('name', 'description', 'status', 'executor', 'labels')
         labels = {
-            'name': gettext_lazy('Имя'),
-            'description': gettext_lazy('Описание'),
-            'status': gettext_lazy('Статус'),
-            'executor': gettext_lazy('Исполнитель'),
-            'labels': gettext_lazy('Метки'),
+            'name': gettext_lazy('Name'),
+            'description': gettext_lazy('Description'),
+            'status': gettext_lazy('Status'),
+            'executor': gettext_lazy('Executor'),
+            'labels': gettext_lazy('Labels'),
         }

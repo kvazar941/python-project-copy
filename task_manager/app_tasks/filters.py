@@ -13,7 +13,7 @@ from task_manager.app_users.models import ApplicationUsers
 class TaskFilter(django_filters.FilterSet):
     statuses = Statuses.objects.values_list('id', 'name', named=True).all()
     status = django_filters.ChoiceFilter(
-        label=gettext_lazy('Статус'),
+        label=gettext_lazy('Status'),
         choices=statuses,
     )
 
@@ -23,19 +23,19 @@ class TaskFilter(django_filters.FilterSet):
         named=True).all()
 
     executor = django_filters.ChoiceFilter(
-        label=gettext_lazy('Исполнитель'),
+        label=gettext_lazy('Executor'),
         choices=executors,
     )
 
     all_labels = Labels.objects.values_list('id', 'name', named=True).all()
 
     labels = django_filters.ChoiceFilter(
-        label=gettext_lazy('Метка'),
+        label=gettext_lazy('Label'),
         choices=all_labels,
     )
 
     my_tasks = django_filters.BooleanFilter(
-        label=gettext_lazy('Только свои задачи'),
+        label=gettext_lazy('Only your task'),
         widget=forms.CheckboxInput(),
         method='only_my_tasks',
         field_name='my_tasks',

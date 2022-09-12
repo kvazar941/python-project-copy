@@ -9,4 +9,4 @@ class LabelForm(ModelForm):
     class Meta:
         model = Labels
         fields = ('name', )
-        labels = {'name': gettext_lazy('Имя')}
+        labels = {'name': gettext_lazy('Name')}

@@ -10,48 +10,35 @@ from task_manager.app_statuses.models import Statuses
 from task_manager.mixins import CheckDeleteMixin as Delete
 from task_manager.mixins import CheckSignInMixin as Sign
 
-PATHS_TO_TEMPLATES = {
-    'statuses': 'statuses/statuses.html',
-    'status_create': 'statuses/statuses_create.html',
-    'status_update': 'statuses/statuses_update.html',
-    'status_delete': 'statuses/statuses_delete.html',
-}
-MESSAGES = {
-    'success_create': 'Статус успешно создан',
-    'success_update': 'Статус успешно изменён',
-    'success_delete': 'Статус успешно удалён',
-    'no_del': 'Невозможно удалить статус, потому что он используется',
-}
-
 
 class ListOfStatuses(Login, Sign, ListView):
     model = Statuses
-    template_name = PATHS_TO_TEMPLATES['statuses']
+    template_name = 'statuses/statuses.html'
     context_object_name = 'statuses'
 
 
 class CreateStatus(Login, Sign, Success, CreateView, FormView):
 
     model = Statuses
-    template_name = PATHS_TO_TEMPLATES['status_create']
+    template_name = 'statuses/statuses_create.html'
     form_class = StatusesForm
-    success_message = gettext_lazy(MESSAGES['success_create'])
+    success_message = gettext_lazy('Status created successfully')
     success_url = reverse_lazy('list_of_statuses')
 
 
 class UpdateStatus(Login, Sign, Success, UpdateView):
 
     model = Statuses
-    template_name = PATHS_TO_TEMPLATES['status_update']
+    template_name = 'statuses/statuses_update.html'
     form_class = StatusesForm
     success_url = reverse_lazy('list_of_statuses')
-    success_message = gettext_lazy(MESSAGES['success_update'])
+    success_message = gettext_lazy('Status changed successfully')
 
 
 class DeleteStatus(Login, Sign, Delete, Success, DeleteView):
 
     model = Statuses
-    template_name = PATHS_TO_TEMPLATES['status_delete']
-    error_delete_message = MESSAGES['no_del']
-    success_delete_message = MESSAGES['success_delete']
+    template_name = 'statuses/statuses_delete.html'
+    error_delete_message = "Can't delete status because it's in use"
+    success_delete_message = 'Status deleted successfully'
     redirect_delete_url = 'list_of_statuses'

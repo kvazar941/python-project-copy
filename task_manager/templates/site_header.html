@@ -7,25 +7,25 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{% trans 'Главная страница' %}</title>
+    <title>{% trans 'Task manager' %}</title>
   </head>
   <body class="h-100 text-center text-white bg-dark">
     <header class="masthead mb-auto bg-white sticky-top">
       <div class="container-fluid">
         <nav class="nav nav-masthead justify-content-end sticky-center">
           {% if not user.is_authenticated %}
-          <a class="nav-link text-dark" href="/login/">{% trans 'Вход' %}</a>
-          <a class="nav-link text-dark" href="/users/create/">{% trans 'Регистрация' %}</a>
+          <a class="nav-link text-dark" href="/login/">{% trans 'LogIn' %}</a>
+          <a class="nav-link text-dark" href="/users/create/">{% trans 'Registration' %}</a>
           {% else %}
           <form action="/logout/" method="post">
             {% csrf_token %}
-            <input type="submit" class="btn nav-link" value="{% translate 'Выход' %}">
+            <input type="submit" class="btn nav-link" value="{% translate 'LogOut' %}">
           </form>
-          <a class="nav-link text-dark" href="/statuses/">{% trans 'Статусы' %}</a>
-          <a class="nav-link text-dark" href="/labels/">{% trans 'Метки' %}</a>
-          <a class="nav-link text-dark" href="/tasks/">{% trans 'Задачи' %}</a>
+          <a class="nav-link text-dark" href="/statuses/">{% trans 'Statuses' %}</a>
+          <a class="nav-link text-dark" href="/labels/">{% trans 'Labels' %}</a>
+          <a class="nav-link text-dark" href="/tasks/">{% trans 'Tasks' %}</a>
           {% endif %}
-          <a class="nav-link text-dark" href="/users/">{% trans 'Пользователи' %}</a>
+          <a class="nav-link text-dark" href="/users/">{% trans 'Users' %}</a>
           <form action="{% url 'set_language' %}" method="post" style="justify-content-center">
             {% csrf_token %}
             <input name="next" type="hidden" value="{{ redirect_to }}">

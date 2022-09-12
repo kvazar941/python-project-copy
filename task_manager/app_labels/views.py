@@ -26,29 +26,29 @@ MESSAGES = {
 
 class ListOfLabels(Login, Sign, ListView):
     model = Labels
-    template_name = PATHS_TO_TEMPLATES['labels']
+    template_name = 'labels/labels.html'
     context_object_name = 'labels'
 
 
 class CreateLabel(Success, Sign, CreateView):
     model = Labels
-    template_name = PATHS_TO_TEMPLATES['label_create']
+    template_name = 'labels/labels_create.html'
     form_class = LabelForm
-    success_message = gettext_lazy(MESSAGES['success_create'])
+    success_message = gettext_lazy('Label created successfully')
     success_url = reverse_lazy('list_of_labels')
 
 
 class UpdateLabel(Login, Sign, Success, UpdateView, FormView):
     model = Labels
-    template_name = PATHS_TO_TEMPLATES['label_update']
+    template_name = 'labels/labels_update.html'
     form_class = LabelForm
-    success_message = gettext_lazy(MESSAGES['success_update'])
+    success_message = gettext_lazy('Label changed successfully')
     success_url = reverse_lazy('list_of_labels')
 
 
 class DeleteLabel(Login, Sign, Delete, Success, DeleteView, FormView):
     model = Labels
-    template_name = PATHS_TO_TEMPLATES['label_delete']
-    error_delete_message = MESSAGES['no_del']
-    success_delete_message = MESSAGES['success_delete']
+    template_name = 'labels/labels_delete.html'
+    error_delete_message = "Can't delete label because it's in use"
+    success_delete_message = 'Label deleted successfully'
     redirect_delete_url = 'list_of_labels'

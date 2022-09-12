@@ -4,12 +4,12 @@
 {% load bootstrap4 %}
 
 {% block content %}
-  <h1 class="my-4">{% trans 'Изменение метки' %}</h1>
+  <h1 class="my-4">{% trans 'Label change' %}</h1>
   <form method="POST">
     {% csrf_token %}
     <div>
       {% bootstrap_form form %}
     </div>
-    <input class="btn btn-primary" type="submit" value="{% trans 'Изменить' %}">
+    <input class="btn btn-primary" type="submit" value="{% trans 'Change' %}">
   </form>
 {% endblock %}
