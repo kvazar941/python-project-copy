@@ -37,11 +37,11 @@ class TaskFilter(django_filters.FilterSet):
     my_tasks = django_filters.BooleanFilter(
         label=gettext_lazy('Only your task'),
         widget=forms.CheckboxInput(),
-        method='only_my_tasks',
+        method='filter_self_tasks',
         field_name='my_tasks',
     )
 
-    def only_my_tasks(self, queryset, name, value):
+    def filter_self_tasks(self, queryset, name, value):
         if value:
             queryset = queryset.filter(author=self.request.user)
         return queryset

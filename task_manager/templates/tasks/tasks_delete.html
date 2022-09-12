@@ -4,7 +4,7 @@
 
 {% block content %}
   <h1 class="my-4">{% trans 'Deleting a task' %}</h1>
-    <p>{% trans 'Are you sure you want to delete'%} {{ tasks.name  }}?</p>
+    <p>{% trans 'Are you sure you want to delete' %} {{ tasks.name }}?</p>
     <form method="POST" class="pb-4 pt-2">
       {% csrf_token %}
       <input class="btn btn-danger" type="submit" value="{% trans 'Yes, delete' %}">

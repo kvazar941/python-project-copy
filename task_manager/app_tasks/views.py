@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.messages.views import SuccessMessageMixin as Success
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
@@ -13,14 +13,14 @@ from task_manager.app_users.models import ApplicationUsers
 from task_manager.mixins import CheckSignInMixin
 
 
-class ListOfTasks(CheckSignInMixin, Success, FilterView):
+class ListOfTasks(CheckSignInMixin, SuccessMessageMixin, FilterView):
     model = Tasks
     template_name = 'tasks/tasks.html'
     context_object_name = 'list_Of_tasks'
     filterset_class = TaskFilter
 
 
-class CreateTask(CheckSignInMixin, Success, CreateView):
+class CreateTask(CheckSignInMixin, SuccessMessageMixin, CreateView):
     model = Tasks
     template_name = 'tasks/tasks_create.html'
     form_class = TaskForm
@@ -33,7 +33,7 @@ class CreateTask(CheckSignInMixin, Success, CreateView):
         return super().form_valid(form)
 
 
-class UpdateTask(CheckSignInMixin, Success, UpdateView):
+class UpdateTask(CheckSignInMixin, SuccessMessageMixin, UpdateView):
     model = Tasks
     template_name = 'tasks/tasks_update.html'
     form_class = TaskForm
@@ -41,7 +41,7 @@ class UpdateTask(CheckSignInMixin, Success, UpdateView):
     success_url = reverse_lazy('list_of_tasks')
 
 
-class DeleteTask(CheckSignInMixin, Success, DeleteView):
+class DeleteTask(CheckSignInMixin, SuccessMessageMixin, DeleteView):
     model = Tasks
     template_name = 'tasks/tasks_delete.html'
     success_url = reverse_lazy('list_of_tasks')
@@ -58,7 +58,7 @@ class DeleteTask(CheckSignInMixin, Success, DeleteView):
         return redirect(self.success_url)
 
 
-class ViewTask(CheckSignInMixin, Success, DetailView):
+class ViewTask(CheckSignInMixin, SuccessMessageMixin, DetailView):
     model = Tasks
     template_name = 'tasks/tasks_view.html'
     context_object_name = 'task'

@@ -1,16 +1,15 @@
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.messages.views import SuccessMessageMixin as Success
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext, gettext_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
 from task_manager.app_users.forms import SignInForm, SignUpForm
-from task_manager.app_users.mixins_user import CheckUpdateMixin as Update
+from task_manager.app_users.mixins_user import CheckUpdateMixin
 from task_manager.app_users.models import ApplicationUsers
-from task_manager.mixins import CheckDeleteMixin as Delete
-from task_manager.mixins import CheckSignInMixin as Sign
+from task_manager.mixins import CheckDeleteMixin, CheckSignInMixin
 
 ROUTE_USERS = 'users'
 
@@ -22,7 +21,7 @@ class ListOfUsers(ListView):
     context_object_name = 'application_users'
 
 
-class SignUp(CreateView, Success):
+class SignUp(CreateView, SuccessMessageMixin):
 
     model = ApplicationUsers
     template_name = 'users/users_create.html'
@@ -31,7 +30,10 @@ class SignUp(CreateView, Success):
     success_message = gettext('User successfully registered')
 
 
-class UpdateUser(Update, Sign, Success, UpdateView):
+class UpdateUser(CheckUpdateMixin,
+                 CheckSignInMixin,
+                 SuccessMessageMixin,
+                 UpdateView):
 
     model = ApplicationUsers
     template_name = 'users/users_update.html'
@@ -42,7 +44,11 @@ class UpdateUser(Update, Sign, Success, UpdateView):
     error_update_message = 'You do not have permission to change another user'
 
 
-class DeleteUser(Update, Sign, Delete, Success, DeleteView):
+class DeleteUser(CheckUpdateMixin,
+                 CheckSignInMixin,
+                 CheckDeleteMixin,
+                 SuccessMessageMixin,
+                 DeleteView):
 
     model = ApplicationUsers
     template_name = 'users/users_delete.html'
@@ -53,7 +59,7 @@ class DeleteUser(Update, Sign, Delete, Success, DeleteView):
     redirect_delete_url = ROUTE_USERS
 
 
-class SignIn(Success, LoginView):
+class SignIn(SuccessMessageMixin, LoginView):
 
     model = ApplicationUsers
     template_name = 'login.html'
@@ -62,7 +68,7 @@ class SignIn(Success, LoginView):
     success_message = gettext_lazy('You are logged in')
 
 
-class SignOut(LogoutView, Success):
+class SignOut(LogoutView, SuccessMessageMixin):
     next_page = reverse_lazy('home')
 
     def dispatch(self, request, *args, **kwargs):

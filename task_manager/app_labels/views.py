@@ -1,21 +1,20 @@
-from django.contrib.messages.views import SuccessMessageMixin as Success
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from task_manager.app_labels.forms import LabelForm
 from task_manager.app_labels.models import Labels
-from task_manager.mixins import CheckDeleteMixin as Delete
-from task_manager.mixins import CheckSignInMixin as Sign
+from task_manager.mixins import CheckDeleteMixin, CheckSignInMixin
 
 
-class ListOfLabels(Sign, ListView):
+class ListOfLabels(CheckSignInMixin, ListView):
     model = Labels
     template_name = 'labels/labels.html'
     context_object_name = 'labels'
 
 
-class CreateLabel(Success, Sign, CreateView):
+class CreateLabel(SuccessMessageMixin, CheckSignInMixin, CreateView):
     model = Labels
     template_name = 'labels/labels_create.html'
     form_class = LabelForm
@@ -23,7 +22,7 @@ class CreateLabel(Success, Sign, CreateView):
     success_url = reverse_lazy('list_of_labels')
 
 
-class UpdateLabel(Sign, Success, UpdateView):
+class UpdateLabel(CheckSignInMixin, SuccessMessageMixin, UpdateView):
     model = Labels
     template_name = 'labels/labels_update.html'
     form_class = LabelForm
@@ -31,7 +30,10 @@ class UpdateLabel(Sign, Success, UpdateView):
     success_url = reverse_lazy('list_of_labels')
 
 
-class DeleteLabel(Sign, Delete, Success, DeleteView):
+class DeleteLabel(CheckSignInMixin,
+                  CheckDeleteMixin,
+                  SuccessMessageMixin,
+                  DeleteView):
     model = Labels
     template_name = 'labels/labels_delete.html'
     error_delete_message = "Can't delete label because it's in use"

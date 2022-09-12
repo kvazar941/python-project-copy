@@ -42,10 +42,6 @@ class Tasks(models.Model):
     def __str__(self):
         return self.name
 
-    class Meta:
-        verbose_name = 'Task'
-        verbose_name_plural = 'Tasks'
-
     created_at = models.DateTimeField(auto_now_add=True)
 
 

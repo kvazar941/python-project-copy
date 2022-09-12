@@ -1,21 +1,20 @@
-from django.contrib.messages.views import SuccessMessageMixin as Success
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from task_manager.app_statuses.forms import StatusesForm
 from task_manager.app_statuses.models import Statuses
-from task_manager.mixins import CheckDeleteMixin as Delete
-from task_manager.mixins import CheckSignInMixin as Sign
+from task_manager.mixins import CheckDeleteMixin, CheckSignInMixin
 
 
-class ListOfStatuses(Sign, ListView):
+class ListOfStatuses(CheckSignInMixin, ListView):
     model = Statuses
     template_name = 'statuses/statuses.html'
     context_object_name = 'statuses'
 
 
-class CreateStatus(Sign, Success, CreateView):
+class CreateStatus(CheckSignInMixin, SuccessMessageMixin, CreateView):
 
     model = Statuses
     template_name = 'statuses/statuses_create.html'
@@ -24,7 +23,7 @@ class CreateStatus(Sign, Success, CreateView):
     success_url = reverse_lazy('list_of_statuses')
 
 
-class UpdateStatus(Sign, Success, UpdateView):
+class UpdateStatus(CheckSignInMixin, SuccessMessageMixin, UpdateView):
 
     model = Statuses
     template_name = 'statuses/statuses_update.html'
@@ -33,7 +32,10 @@ class UpdateStatus(Sign, Success, UpdateView):
     success_message = gettext_lazy('Status changed successfully')
 
 
-class DeleteStatus(Sign, Delete, Success, DeleteView):
+class DeleteStatus(CheckSignInMixin,
+                   CheckDeleteMixin,
+                   SuccessMessageMixin,
+                   DeleteView):
 
     model = Statuses
     template_name = 'statuses/statuses_delete.html'
