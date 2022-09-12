@@ -1,4 +1,3 @@
-from django.contrib.auth.mixins import LoginRequiredMixin as Login
 from django.contrib.messages.views import SuccessMessageMixin as Success
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
@@ -24,7 +23,7 @@ MESSAGES = {
 }
 
 
-class ListOfLabels(Login, Sign, ListView):
+class ListOfLabels(Sign, ListView):
     model = Labels
     template_name = 'labels/labels.html'
     context_object_name = 'labels'
@@ -38,7 +37,7 @@ class CreateLabel(Success, Sign, CreateView):
     success_url = reverse_lazy('list_of_labels')
 
 
-class UpdateLabel(Login, Sign, Success, UpdateView, FormView):
+class UpdateLabel(Sign, Success, UpdateView, FormView):
     model = Labels
     template_name = 'labels/labels_update.html'
     form_class = LabelForm
@@ -46,7 +45,7 @@ class UpdateLabel(Login, Sign, Success, UpdateView, FormView):
     success_url = reverse_lazy('list_of_labels')
 
 
-class DeleteLabel(Login, Sign, Delete, Success, DeleteView, FormView):
+class DeleteLabel(Sign, Delete, Success, DeleteView, FormView):
     model = Labels
     template_name = 'labels/labels_delete.html'
     error_delete_message = "Can't delete label because it's in use"

@@ -1,23 +1,16 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import AccessMixin
+from django.contrib.auth.mixins import AccessMixin, LoginRequiredMixin
 from django.db.models import ProtectedError
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
 
 
-class CheckSignInMixin(AccessMixin):
-    redirect_sign_in_name = 'login'
-    error_sign_in_message = 'You are not authorized! Please log in.'
-    request = ''
-
-    def handle_no_permission(self):
-        messages.error(
-            self.request,
-            gettext_lazy(self.error_sign_in_message),
-        )
-        return redirect(reverse_lazy(self.redirect_sign_in_name))
+class CheckSignInMixin(LoginRequiredMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
 
 
 class CheckDeleteMixin(AccessMixin):
@@ -39,17 +32,3 @@ class CheckDeleteMixin(AccessMixin):
                 gettext_lazy(self.success_delete_message),
             )
         return HttpResponseRedirect(reverse_lazy(self.redirect_delete_url))
-
-
-class CheckUpdateMixin(AccessMixin):
-    redirect_error_update = ''
-    error_update_message = ''
-
-    def dispatch(self, request, *args, **kwargs):
-        if self.request.user != self.get_object():
-            messages.error(
-                self.request,
-                gettext_lazy(self.error_update_message),
-            )
-            return redirect(reverse_lazy(self.redirect_error_update))
-        return super().dispatch(request, *args, **kwargs)

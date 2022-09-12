@@ -1,5 +1,4 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin as Login
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin as Success
 from django.urls import reverse_lazy
@@ -9,11 +8,10 @@ from django.views.generic.edit import (CreateView, DeleteView, FormView,
 from django.views.generic.list import ListView
 
 from task_manager.app_users.forms import SignInForm, SignUpForm
+from task_manager.app_users.mixins_user import CheckUpdateMixin as Update
 from task_manager.app_users.models import ApplicationUsers
 from task_manager.mixins import CheckDeleteMixin as Delete
 from task_manager.mixins import CheckSignInMixin as Sign
-from task_manager.mixins import CheckUpdateMixin as Update
-
 
 ROUTE_USERS = 'users'
 
@@ -25,7 +23,7 @@ class ListOfUsers(ListView):
     context_object_name = 'application_users'
 
 
-class SignUp(CreateView, Success, FormView):
+class SignUp(CreateView, Success):
 
     model = ApplicationUsers
     template_name = 'users/users_create.html'
@@ -34,7 +32,7 @@ class SignUp(CreateView, Success, FormView):
     success_message = gettext('User successfully registered')
 
 
-class UpdateUser(Login, Update, Sign, Success, UpdateView, FormView):
+class UpdateUser(Update, Sign, Success, UpdateView):
 
     model = ApplicationUsers
     template_name = 'users/users_update.html'
@@ -45,7 +43,7 @@ class UpdateUser(Login, Update, Sign, Success, UpdateView, FormView):
     error_update_message = 'You do not have permission to change another user'
 
 
-class DeleteUser(Login, Update, Sign, Delete, Success, DeleteView, FormView):
+class DeleteUser(Update, Sign, Delete, Success, DeleteView):
 
     model = ApplicationUsers
     template_name = 'users/users_delete.html'

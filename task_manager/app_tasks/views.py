@@ -1,5 +1,4 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin as Login
 from django.contrib.messages.views import SuccessMessageMixin as Success
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -14,14 +13,14 @@ from task_manager.app_users.models import ApplicationUsers
 from task_manager.mixins import CheckSignInMixin
 
 
-class ListOfTasks(Login, CheckSignInMixin, Success, FilterView):
+class ListOfTasks(CheckSignInMixin, Success, FilterView):
     model = Tasks
     template_name = 'tasks/tasks.html'
     context_object_name = 'list_Of_tasks'
     filterset_class = TaskFilter
 
 
-class CreateTask(Login, CheckSignInMixin, Success, CreateView):
+class CreateTask(CheckSignInMixin, Success, CreateView):
     model = Tasks
     template_name = 'tasks/tasks_create.html'
     form_class = TaskForm
@@ -34,7 +33,7 @@ class CreateTask(Login, CheckSignInMixin, Success, CreateView):
         return super().form_valid(form)
 
 
-class UpdateTask(Login, CheckSignInMixin, Success, UpdateView):
+class UpdateTask(CheckSignInMixin, Success, UpdateView):
     model = Tasks
     template_name = 'tasks/tasks_update.html'
     form_class = TaskForm
@@ -42,7 +41,7 @@ class UpdateTask(Login, CheckSignInMixin, Success, UpdateView):
     success_url = reverse_lazy('list_of_tasks')
 
 
-class DeleteTask(Login, CheckSignInMixin, Success, DeleteView):
+class DeleteTask(CheckSignInMixin, Success, DeleteView):
     model = Tasks
     template_name = 'tasks/tasks_delete.html'
     success_url = reverse_lazy('list_of_tasks')
@@ -52,14 +51,14 @@ class DeleteTask(Login, CheckSignInMixin, Success, DeleteView):
         if self.request.user != self.get_object().author:
             messages.error(
                 self.request,
-                gettext_lazy('Only its author can delete a task')
+                gettext_lazy('Only its author can delete a task'),
             )
         else:
             super().form_valid(form)
         return redirect(self.success_url)
 
 
-class ViewTask(Login, CheckSignInMixin, Success, DetailView):
+class ViewTask(CheckSignInMixin, Success, DetailView):
     model = Tasks
     template_name = 'tasks/tasks_view.html'
     context_object_name = 'task'

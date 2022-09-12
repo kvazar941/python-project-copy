@@ -1,4 +1,3 @@
-from django.contrib.auth.mixins import LoginRequiredMixin as Login
 from django.contrib.messages.views import SuccessMessageMixin as Success
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
@@ -11,13 +10,13 @@ from task_manager.mixins import CheckDeleteMixin as Delete
 from task_manager.mixins import CheckSignInMixin as Sign
 
 
-class ListOfStatuses(Login, Sign, ListView):
+class ListOfStatuses(Sign, ListView):
     model = Statuses
     template_name = 'statuses/statuses.html'
     context_object_name = 'statuses'
 
 
-class CreateStatus(Login, Sign, Success, CreateView, FormView):
+class CreateStatus(Sign, Success, CreateView, FormView):
 
     model = Statuses
     template_name = 'statuses/statuses_create.html'
@@ -26,7 +25,7 @@ class CreateStatus(Login, Sign, Success, CreateView, FormView):
     success_url = reverse_lazy('list_of_statuses')
 
 
-class UpdateStatus(Login, Sign, Success, UpdateView):
+class UpdateStatus(Sign, Success, UpdateView):
 
     model = Statuses
     template_name = 'statuses/statuses_update.html'
@@ -35,7 +34,7 @@ class UpdateStatus(Login, Sign, Success, UpdateView):
     success_message = gettext_lazy('Status changed successfully')
 
 
-class DeleteStatus(Login, Sign, Delete, Success, DeleteView):
+class DeleteStatus(Sign, Delete, Success, DeleteView):
 
     model = Statuses
     template_name = 'statuses/statuses_delete.html'
