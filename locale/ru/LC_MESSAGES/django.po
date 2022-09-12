@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-12 09:36+0300\n"
+"POT-Creation-Date: 2022-09-12 10:06+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,10 +126,11 @@ msgid ""
 "of users. In order to be able to add and edit your profile information, you "
 "must register on the site or log in if you have previously registered."
 msgstr ""
-"Вы находитесь на главной странице сайта. Незарегистрированные пользователи могут просматривать список "
-"пользователей. Для того, чтобы иметь возможность добавлять и редактировать информацию вашего профиля, вы "
-"необходимо зарегистрироваться на сайте или авторизоваться, если вы уже регистрировались ранее."
-
+"Вы находитесь на главной странице сайта. Незарегистрированные пользователи "
+"могут просматривать список пользователей. Для того, чтобы иметь возможность "
+"добавлять и редактировать информацию вашего профиля, вы необходимо "
+"зарегистрироваться на сайте или авторизоваться, если вы уже регистрировались "
+"ранее."
 
 #: task_manager/templates/labels/labels.html:13
 #: task_manager/templates/labels/labels_create.html:6
@@ -192,10 +193,14 @@ msgstr "Да, удалить"
 msgid "Label change"
 msgstr "Изменение метки"
 
-#: task_manager/templates/login.html:14 task_manager/templates/login.html:20
+#: task_manager/templates/login.html:14
+msgid "Login"
+msgstr "Войти"
+
+#: task_manager/templates/login.html:20
 #: task_manager/templates/site_header.html:17
 msgid "LogIn"
-msgstr "Войти"
+msgstr "Вход"
 
 #: task_manager/templates/site_header.html:10
 msgid "Task manager"
