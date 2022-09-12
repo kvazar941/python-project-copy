@@ -74,7 +74,7 @@ msgstr "Описание"
 #: task_manager/templates/site_header.html:25
 #: task_manager/templates/tasks/tasks_view.html:33
 msgid "Labels"
-msgstr "Меткм"
+msgstr "Метки"
 
 #: task_manager/app_tasks/views.py:28
 msgid "Task successfully created"
@@ -195,7 +195,7 @@ msgstr "Изменение метки"
 #: task_manager/templates/login.html:14 task_manager/templates/login.html:20
 #: task_manager/templates/site_header.html:17
 msgid "LogIn"
-msgstr "Вход"
+msgstr "Войти"
 
 #: task_manager/templates/site_header.html:10
 msgid "Task manager"
