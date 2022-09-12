@@ -30,7 +30,7 @@ class SignUp(CreateView, Success, FormView):
     model = ApplicationUsers
     template_name = 'users/users_create.html'
     form_class = SignUpForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('login')
     success_message = gettext('User successfully registered')
 
 
