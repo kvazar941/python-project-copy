@@ -34,7 +34,8 @@ class SignUp(CreateView, SuccessMessageMixin, FormView):
 class UpdateUser(CheckUpdateMixin,
                  CheckSignInMixin,
                  SuccessMessageMixin,
-                 UpdateView):
+                 UpdateView,
+                 FormView):
 
     model = ApplicationUsers
     template_name = 'users/users_update.html'
@@ -49,7 +50,8 @@ class DeleteUser(CheckUpdateMixin,
                  CheckSignInMixin,
                  CheckDeleteMixin,
                  SuccessMessageMixin,
-                 DeleteView):
+                 DeleteView,
+                 FormView):
 
     model = ApplicationUsers
     template_name = 'users/users_delete.html'
