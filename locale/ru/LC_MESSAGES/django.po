@@ -43,7 +43,7 @@ msgstr "Статус успешно создан"
 
 #: task_manager/app_statuses/views.py:32
 msgid "Status changed successfully"
-msgstr "Статус успешно изменен"
+msgstr "Статус успешно изменён"
 
 #: task_manager/app_tasks/filters.py:16 task_manager/app_tasks/forms.py:14
 #: task_manager/templates/tasks/tasks.html:29
@@ -102,7 +102,7 @@ msgstr "Пользователь успешно зарегистрирован"
 
 #: task_manager/app_users/views.py:42
 msgid "User changed successfully"
-msgstr "Пользователь успешно изменен"
+msgstr "Пользователь успешно изменён"
 
 #: task_manager/app_users/views.py:68
 msgid "You are logged in"
