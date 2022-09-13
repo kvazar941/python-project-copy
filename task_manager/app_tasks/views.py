@@ -51,7 +51,7 @@ class DeleteTask(CheckSignInMixin, SuccessMessageMixin, DeleteView):
         if self.request.user != self.get_object().author:
             messages.error(
                 self.request,
-                gettext_lazy('Only its author can delete a task'),
+                gettext_lazy("Only it's author can delete a task"),
             )
         else:
             super().form_valid(form)

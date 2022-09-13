@@ -195,12 +195,12 @@ msgstr "Изменение метки"
 
 #: task_manager/templates/login.html:14
 msgid "Login"
-msgstr "Войти"
+msgstr "Вход"
 
 #: task_manager/templates/login.html:20
 #: task_manager/templates/site_header.html:17
 msgid "LogIn"
-msgstr "Вход"
+msgstr "Войти"
 
 #: task_manager/templates/site_header.html:10
 msgid "Task manager"
