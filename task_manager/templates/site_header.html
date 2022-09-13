@@ -14,7 +14,7 @@
       <div class="container-fluid">
         <nav class="nav nav-masthead justify-content-end sticky-center">
           {% if not user.is_authenticated %}
-          <a class="nav-link text-dark" href="/login/">{% trans 'LogIn' %}</a>
+          <a class="nav-link text-dark" href="/login/">{% trans 'Login' %}</a>
           <a class="nav-link text-dark" href="/users/create/">{% trans 'Registration' %}</a>
           {% else %}
           <form action="/logout/" method="post">

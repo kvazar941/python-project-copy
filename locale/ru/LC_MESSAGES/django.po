@@ -194,11 +194,11 @@ msgid "Label change"
 msgstr "Изменение метки"
 
 #: task_manager/templates/login.html:14
+#: task_manager/templates/site_header.html:17
 msgid "Login"
 msgstr "Вход"
 
 #: task_manager/templates/login.html:20
-#: task_manager/templates/site_header.html:17
 msgid "LogIn"
 msgstr "Войти"
 
