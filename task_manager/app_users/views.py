@@ -56,9 +56,9 @@ class DeleteUser(CheckUpdateMixin,
     model = ApplicationUsers
     template_name = 'users/users_delete.html'
     redirect_error_update = ROUTE_USERS
-    error_update_message = 'You do not have permission to change another user'
-    error_delete_message = 'Cannot delete user because it is in use'
-    success_delete_message = 'User deleted successfully'
+    error_update_message = gettext_lazy('You do not have permission to change another user')
+    error_delete_message = gettext_lazy('Cannot delete user because it is in use')
+    success_delete_message = gettext_lazy('User deleted successfully')
     redirect_delete_url = ROUTE_USERS
 
 
