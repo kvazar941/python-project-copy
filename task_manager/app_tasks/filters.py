@@ -11,29 +11,24 @@ from task_manager.app_users.models import ApplicationUsers
 
 
 class TaskFilter(django_filters.FilterSet):
-    statuses = Statuses.objects.values_list('id', 'name', named=True).all()
-    status = django_filters.ChoiceFilter(
+    status = django_filters.ModelChoiceFilter(
+        queryset=Statuses.objects.values_list(
+            'id', 'name', named=True
+        ).all(),
         label=gettext_lazy('Status'),
-        choices=statuses,
     )
-
-    executors = ApplicationUsers.objects.values_list(
-        'id',
-        Concat('first_name', Value(' '), 'last_name'),
-        named=True).all()
-
-    executor = django_filters.ChoiceFilter(
+    executor = django_filters.ModelChoiceFilter(
+        queryset=ApplicationUsers.objects.values_list(
+            'id',
+            Concat('first_name', Value(' '), 'last_name'),
+            named=True
+        ).all(),
         label=gettext_lazy('Executor'),
-        choices=executors,
     )
-
-    all_labels = Labels.objects.values_list('id', 'name', named=True).all()
-
-    labels = django_filters.ChoiceFilter(
+    labels = django_filters.ModelChoiceFilter(
+        queryset=Labels.objects.values_list('id', 'name', named=True).all(),
         label=gettext_lazy('Label'),
-        choices=all_labels,
     )
-
     my_tasks = django_filters.BooleanFilter(
         label=gettext_lazy('Only your task'),
         widget=forms.CheckboxInput(),
@@ -42,9 +37,7 @@ class TaskFilter(django_filters.FilterSet):
     )
 
     def filter_self_tasks(self, queryset, name, value):
-        if value:
-            queryset = queryset.filter(author=self.request.user)
-        return queryset
+        return queryset.filter(author=self.request.user) if value else queryset
 
     class Meta:
         model = Tasks
