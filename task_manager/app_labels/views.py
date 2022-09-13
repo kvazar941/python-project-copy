@@ -36,6 +36,6 @@ class DeleteLabel(CheckSignInMixin,
                   DeleteView):
     model = Labels
     template_name = 'labels/labels_delete.html'
-    error_delete_message = "Can't delete label because it's in use"
-    success_delete_message = 'Label deleted successfully'
+    error_delete_message = gettext_lazy("Can't delete label because it's in use")
+    success_delete_message = gettext_lazy('Label deleted successfully')
     redirect_delete_url = 'list_of_labels'

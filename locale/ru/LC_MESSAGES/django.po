@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-13 11:24+0300\n"
+"POT-Creation-Date: 2022-09-13 11:32+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,6 +36,14 @@ msgstr "Метка успешно создана"
 #: task_manager/app_labels/views.py:29
 msgid "Label changed successfully"
 msgstr "Метка успешно изменена"
+
+#: task_manager/app_labels/views.py:39
+msgid "Can't delete label because it's in use"
+msgstr "Невозможно удалить метку, так как она используется"
+
+#: task_manager/app_labels/views.py:40
+msgid "Label deleted successfully"
+msgstr "Метка успешно удалена"
 
 #: task_manager/app_statuses/views.py:22
 msgid "Status created successfully"
