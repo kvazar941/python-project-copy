@@ -62,7 +62,6 @@ msgid "Status deleted successfully"
 msgstr "Статус успешно удалён"
 
 #: task_manager/app_tasks/filters.py:18 task_manager/app_tasks/forms.py:14
-#: task_manager/templates/tasks/tasks.html:29
 #: task_manager/templates/tasks/tasks_view.html:24
 msgid "Status"
 msgstr "Статус"
@@ -249,6 +248,7 @@ msgstr "Выход"
 
 #: task_manager/templates/site_header.html:24
 #: task_manager/templates/statuses/statuses.html:12
+#: task_manager/templates/tasks/tasks.html:29
 msgid "Statuses"
 msgstr "Статусы"
 
