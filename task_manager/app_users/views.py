@@ -43,7 +43,7 @@ class UpdateUser(CheckUpdateMixin,
     success_url = reverse_lazy(ROUTE_USERS)
     success_message = gettext_lazy('User changed successfully')
     redirect_error_update = ROUTE_USERS
-    error_update_message = 'You do not have permission to change another user'
+    error_update_message = gettext_lazy('You do not have permission to change another user')
 
 
 class DeleteUser(CheckUpdateMixin,
