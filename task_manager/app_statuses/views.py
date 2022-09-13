@@ -39,6 +39,10 @@ class DeleteStatus(CheckSignInMixin,
 
     model = Statuses
     template_name = 'statuses/statuses_delete.html'
-    error_delete_message = gettext_lazy("Can't delete status because it's in use")
-    success_delete_message = gettext_lazy('Status deleted successfully')
+    error_delete_message = gettext_lazy(
+        "Can't delete status because it's in use",
+    )
+    success_delete_message = gettext_lazy(
+        'Status deleted successfully',
+    )
     redirect_delete_url = 'list_of_statuses'

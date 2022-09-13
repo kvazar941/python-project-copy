@@ -3,7 +3,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext, gettext_lazy
-from django.views.generic.edit import (CreateView, DeleteView, FormView, 
+from django.views.generic.edit import (CreateView, DeleteView, FormView,
                                        UpdateView)
 from django.views.generic.list import ListView
 
@@ -43,7 +43,9 @@ class UpdateUser(CheckUpdateMixin,
     success_url = reverse_lazy(ROUTE_USERS)
     success_message = gettext_lazy('User changed successfully')
     redirect_error_update = ROUTE_USERS
-    error_update_message = gettext_lazy('You do not have permission to change another user')
+    error_update_message = gettext_lazy(
+        'You do not have permission to change another user',
+    )
 
 
 class DeleteUser(CheckUpdateMixin,
@@ -56,9 +58,15 @@ class DeleteUser(CheckUpdateMixin,
     model = ApplicationUsers
     template_name = 'users/users_delete.html'
     redirect_error_update = ROUTE_USERS
-    error_update_message = gettext_lazy('You do not have permission to change another user')
-    error_delete_message = gettext_lazy('Cannot delete user because it is in use')
-    success_delete_message = gettext_lazy('User deleted successfully')
+    error_update_message = gettext_lazy(
+        'You do not have permission to change another user',
+    )
+    error_delete_message = gettext_lazy(
+        'Cannot delete user because it is in use',
+    )
+    success_delete_message = gettext_lazy(
+        'User deleted successfully',
+    )
     redirect_delete_url = ROUTE_USERS
 
 
