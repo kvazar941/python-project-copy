@@ -11,6 +11,8 @@ from task_manager.app_users.forms import SignInForm, SignUpForm
 from task_manager.app_users.mixins_user import CheckUpdateMixin
 from task_manager.app_users.models import ApplicationUsers
 from task_manager.mixins import CheckDeleteMixin, CheckSignInMixin
+from task_manager.app_tasks.models import Tasks
+from django.http import HttpResponseRedirect
 
 ROUTE_USERS = 'users'
 
@@ -50,7 +52,7 @@ class UpdateUser(CheckUpdateMixin,
 
 class DeleteUser(CheckUpdateMixin,
                  CheckSignInMixin,
-                 CheckDeleteMixin,
+                 #CheckDeleteMixin,
                  SuccessMessageMixin,
                  DeleteView,
                  FormView):
@@ -68,6 +70,22 @@ class DeleteUser(CheckUpdateMixin,
         'User deleted successfully',
     )
     redirect_delete_url = ROUTE_USERS
+    def form_valid(self, form):
+        if Tasks.objects.filter(author=self.request.user.pk) \
+                or Tasks.objects.filter(executor=self.request.user.pk):
+            messages.error(
+                self.request,
+                gettext_lazy(self.error_delete_message),
+            )
+        else:
+            self.object.delete()
+            messages.success(
+                self.request,
+                gettext_lazy(self.success_delete_message),
+            )
+        return HttpResponseRedirect(
+            reverse_lazy(self.redirect_delete_url)
+        )
 
 
 class SignIn(SuccessMessageMixin, LoginView):

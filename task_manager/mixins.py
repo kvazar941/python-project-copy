@@ -4,6 +4,7 @@ from django.db.models import ProtectedError
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
+from task_manager.app_tasks.models import Tasks
 
 
 class CheckSignInMixin(LoginRequiredMixin):
@@ -20,16 +21,18 @@ class CheckDeleteMixin(AccessMixin):
     redirect_delete_url = ''
 
     def form_valid(self, form):
-        try:
-            self.object.delete()
-        except ProtectedError:
+        obj=self.get_object()
+        if Tasks.objects.filter(status=obj.pk):
             messages.error(
                 self.request,
                 gettext_lazy(self.error_delete_message),
             )
         else:
+            self.object.delete()
             messages.success(
                 self.request,
                 gettext_lazy(self.success_delete_message),
             )
-        return HttpResponseRedirect(reverse_lazy(self.redirect_delete_url))
+        return HttpResponseRedirect(
+            reverse_lazy(self.redirect_delete_url)
+        )
