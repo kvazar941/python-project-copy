@@ -102,11 +102,11 @@ msgstr "Пользователь успешно изменен"
 
 #: task_manager/app_users/views.py:65
 msgid "You are logged in"
-msgstr "Вы вошли в систему"
+msgstr "Вы залогинены"
 
 #: task_manager/app_users/views.py:75
 msgid "You are logged out"
-msgstr "Вы вышли из системы"
+msgstr "Вы разлогинены"
 
 #: task_manager/settings.py:136
 msgid "Russia"
