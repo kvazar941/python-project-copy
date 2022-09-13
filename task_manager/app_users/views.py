@@ -3,7 +3,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext, gettext_lazy
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.edit import (CreateView, DeleteView, FormView, 
+                                       UpdateView)
 from django.views.generic.list import ListView
 
 from task_manager.app_users.forms import SignInForm, SignUpForm
@@ -21,7 +22,7 @@ class ListOfUsers(ListView):
     context_object_name = 'application_users'
 
 
-class SignUp(CreateView, SuccessMessageMixin):
+class SignUp(CreateView, SuccessMessageMixin, FormView):
 
     model = ApplicationUsers
     template_name = 'users/users_create.html'
