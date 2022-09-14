@@ -1,14 +1,13 @@
 from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext, gettext_lazy
 from django.views.generic.edit import (CreateView, DeleteView, FormView,
                                        UpdateView)
 from django.views.generic.list import ListView
-
 
 from task_manager.app_tasks.models import Tasks
 from task_manager.app_users.forms import SignUpForm
@@ -85,11 +84,10 @@ class DeleteUser(CheckUpdateMixin,
             gettext_lazy(self.success_delete_message),
         )
         return super().delete(request, *args, **kwargs)
-        
 
 
 class SignIn(SuccessMessageMixin, LoginView):
-    
+
     form_class = AuthenticationForm
     template_name = 'login.html'
     success_url = reverse_lazy('home')
@@ -103,7 +101,7 @@ class SignOut(SuccessMessageMixin, LogoutView):
 
     next_page = reverse_lazy('home')
     success_message = gettext_lazy('You are logged out')
-    
+
     def dispatch(self, request, *args, **kwargs):
         messages.add_message(request, messages.SUCCESS, self.success_message)
         return super().dispatch(request, *args, **kwargs)

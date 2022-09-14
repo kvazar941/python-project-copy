@@ -12,11 +12,13 @@ from task_manager.app_tasks.models import Tasks
 from task_manager.app_users.models import ApplicationUsers
 from task_manager.mixins import CheckSignInMixin
 
+CONTEXT_NAME = 'list_of_tasks'
+
 
 class ListOfTasks(CheckSignInMixin, SuccessMessageMixin, FilterView):
     model = Tasks
     template_name = 'tasks/tasks.html'
-    context_object_name = 'list_of_tasks'
+    context_object_name = CONTEXT_NAME
     filterset_class = TaskFilter
 
 
@@ -25,7 +27,7 @@ class CreateTask(CheckSignInMixin, SuccessMessageMixin, CreateView):
     template_name = 'tasks/tasks_create.html'
     form_class = TaskForm
     success_message = gettext_lazy('Task successfully created')
-    success_url = reverse_lazy('list_of_tasks')
+    success_url = reverse_lazy(CONTEXT_NAME)
 
     def form_valid(self, form):
         author = ApplicationUsers.objects.get(pk=self.request.user.pk)
@@ -38,13 +40,13 @@ class UpdateTask(CheckSignInMixin, SuccessMessageMixin, UpdateView):
     template_name = 'tasks/tasks_update.html'
     form_class = TaskForm
     success_message = gettext_lazy('Task changed successfully')
-    success_url = reverse_lazy('list_of_tasks')
+    success_url = reverse_lazy(CONTEXT_NAME)
 
 
 class DeleteTask(CheckSignInMixin, SuccessMessageMixin, DeleteView):
     model = Tasks
     template_name = 'tasks/tasks_delete.html'
-    success_url = reverse_lazy('list_of_tasks')
+    success_url = reverse_lazy(CONTEXT_NAME)
     success_message = gettext_lazy('Task deleted successfully')
 
     def form_valid(self, form):

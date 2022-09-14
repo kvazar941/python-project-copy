@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-14 23:00+0300\n"
+"POT-Creation-Date: 2022-09-15 00:15+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,19 +92,19 @@ msgstr "Описание"
 msgid "Labels"
 msgstr "Метки"
 
-#: task_manager/app_tasks/views.py:27
+#: task_manager/app_tasks/views.py:29
 msgid "Task successfully created"
 msgstr "Задача успешно создана"
 
-#: task_manager/app_tasks/views.py:40
+#: task_manager/app_tasks/views.py:42
 msgid "Task changed successfully"
 msgstr "Задача успешно изменена"
 
-#: task_manager/app_tasks/views.py:48
+#: task_manager/app_tasks/views.py:50
 msgid "Task deleted successfully"
 msgstr "Задача успешно удалена"
 
-#: task_manager/app_tasks/views.py:54
+#: task_manager/app_tasks/views.py:56
 msgid "Only it's author can delete a task"
 msgstr "Удалить задачу может только ее автор"
 
@@ -112,31 +112,31 @@ msgstr "Удалить задачу может только ее автор"
 msgid "Last Name"
 msgstr "Фамилия"
 
-#: task_manager/app_users/views.py:35
+#: task_manager/app_users/views.py:34
 msgid "User successfully registered"
 msgstr "Пользователь успешно зарегистрирован"
 
-#: task_manager/app_users/views.py:47
+#: task_manager/app_users/views.py:46
 msgid "User changed successfully"
 msgstr "Пользователь успешно изменён"
 
-#: task_manager/app_users/views.py:50 task_manager/app_users/views.py:64
+#: task_manager/app_users/views.py:49 task_manager/app_users/views.py:63
 msgid "You do not have permission to change another user"
 msgstr "У вас нет разрешения на изменение другого пользователя"
 
-#: task_manager/app_users/views.py:67
+#: task_manager/app_users/views.py:66
 msgid "Cannot delete user because it is in use"
 msgstr "Невозможно удалить пользователя, так как он используется"
 
-#: task_manager/app_users/views.py:70
+#: task_manager/app_users/views.py:69
 msgid "User deleted successfully"
 msgstr "Пользователь успешно удалён"
 
-#: task_manager/app_users/views.py:96
+#: task_manager/app_users/views.py:94
 msgid "You are logged in"
 msgstr "Вы залогинены"
 
-#: task_manager/app_users/views.py:105
+#: task_manager/app_users/views.py:103
 msgid "You are logged out"
 msgstr "Вы разлогинены"
 
