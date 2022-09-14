@@ -9,7 +9,7 @@ from django.views.generic.edit import (CreateView, DeleteView, FormView,
 from django.views.generic.list import ListView
 
 from task_manager.app_tasks.models import Tasks
-from task_manager.app_users.forms import SignInForm, SignUpForm
+from task_manager.app_users.forms import SignUpForm
 from task_manager.app_users.mixins_user import CheckUpdateMixin
 from task_manager.app_users.models import ApplicationUsers
 from task_manager.mixins import CheckSignInMixin
@@ -91,14 +91,19 @@ class DeleteUser(CheckUpdateMixin,
 
 class SignIn(SuccessMessageMixin, LoginView):
 
-    model = ApplicationUsers
     template_name = 'login.html'
-    form_class = SignInForm
-    next_page = reverse_lazy('home')
-    success_message = gettext_lazy('You are logged in')
+    redirect_authenticated_user = True
+    success_url = reverse_lazy('home')
+
+    def get_success_url(self):
+        messages.success(
+            request=self.request,
+            message=gettext_lazy('You are logged in'),
+        )
+        return self.success_url
 
 
-class SignOut(LogoutView, SuccessMessageMixin):
+class SignOut(SuccessMessageMixin, LogoutView):
     next_page = reverse_lazy('home')
 
     def dispatch(self, request, *args, **kwargs):

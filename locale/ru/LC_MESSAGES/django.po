@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-14 09:02+0300\n"
+"POT-Creation-Date: 2022-09-14 09:39+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,11 +132,11 @@ msgstr "Невозможно удалить пользователя, так к�
 msgid "User deleted successfully"
 msgstr "Пользователь успешно удалён"
 
-#: task_manager/app_users/views.py:98
+#: task_manager/app_users/views.py:101
 msgid "You are logged in"
 msgstr "Вы залогинены"
 
-#: task_manager/app_users/views.py:108
+#: task_manager/app_users/views.py:113
 msgid "You are logged out"
 msgstr "Вы разлогинены"
 

@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy
 
 from task_manager.app_users.models import ApplicationUsers
@@ -28,9 +28,3 @@ class SignUpForm(UserCreationForm):
             'password1',
             'password2',
         ]
-
-
-class SignInForm(AuthenticationForm):
-    username = ApplicationUsers.username
-    password = ApplicationUsers.password
-    fields = ['username', 'password1']
