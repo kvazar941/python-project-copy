@@ -71,7 +71,7 @@ class DeleteUser(CheckUpdateMixin,
     )
     redirect_delete_url = reverse_lazy(ROUTE_USERS)
 
-    def form_valid(self, request):
+    def form_valid(self, request, *args, **kwargs):
         author = Tasks.objects.filter(author=self.request.user.pk)
         executor = Tasks.objects.filter(executor=self.request.user.pk)
         if author or executor:
@@ -84,7 +84,7 @@ class DeleteUser(CheckUpdateMixin,
             self.request,
             gettext_lazy(self.success_delete_message),
         )
-        return super().delete(request)
+        return super().delete(request, *args, **kwargs)
         
 
 
