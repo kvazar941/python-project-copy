@@ -16,18 +16,23 @@ class TaskFilter(django_filters.FilterSet):
         label=gettext_lazy('Status'),
         choices=statuses,
     )
-    executor = django_filters.ModelChoiceFilter(
-        queryset=ApplicationUsers.objects.values_list(
-            'id',
-            Concat('first_name', Value(' '), 'last_name'),
-            named=True
-        ).all(),
+    executors = ApplicationUsers.objects.values_list(
+        'id',
+        Concat('first_name', Value(' '), 'last_name'),
+        named=True).all()
+
+    executor = django_filters.ChoiceFilter(
         label=gettext_lazy('Executor'),
+        choices=executors,
     )
-    labels = django_filters.ModelChoiceFilter(
-        queryset=Labels.objects.values_list('id', 'name', named=True).all(),
+
+    all_labels = Labels.objects.values_list('id', 'name', named=True).all()
+
+    labels = django_filters.ChoiceFilter(
         label=gettext_lazy('Label'),
+        choices=all_labels,
     )
+
     my_tasks = django_filters.BooleanFilter(
         label=gettext_lazy('Only your task'),
         widget=forms.CheckboxInput(),
