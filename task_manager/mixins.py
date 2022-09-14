@@ -28,9 +28,7 @@ class CheckDeleteMixin(AccessMixin, DeleteView):
                 self.request,
                 gettext_lazy(self.error_delete_message),
             )
-            return HttpResponseRedirect(
-                reverse_lazy(self.redirect_delete_url),
-            )
+            return HttpResponseRedirect(self.redirect_delete_url)
         messages.success(
             self.request,
             gettext_lazy(self.success_delete_message),

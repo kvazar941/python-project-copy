@@ -42,5 +42,5 @@ class DeleteStatus(CheckSignInMixin, CheckDeleteMixin, SuccessMessageMixin):
     success_delete_message = gettext_lazy(
         'Status deleted successfully',
     )
-    redirect_delete_url = 'list_of_statuses'
-    success_url = reverse_lazy(redirect_delete_url)
+    redirect_delete_url = reverse_lazy('list_of_statuses')
+    success_url = redirect_delete_url

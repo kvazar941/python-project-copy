@@ -37,5 +37,5 @@ class DeleteLabel(CheckSignInMixin, CheckDeleteMixin, SuccessMessageMixin):
         "Can't delete label because it's in use",
     )
     success_delete_message = gettext_lazy('Label deleted successfully')
-    redirect_delete_url = 'list_of_labels'
-    success_url = reverse_lazy(redirect_delete_url)
+    redirect_delete_url = reverse_lazy('list_of_labels')
+    success_url = redirect_delete_url
