@@ -61,7 +61,9 @@ msgstr "Невозможно удалить статус, так как он и�
 msgid "Status deleted successfully"
 msgstr "Статус успешно удалён"
 
-#: task_manager/app_tasks/filters.py:19 task_manager/app_tasks/forms.py:14
+#: task_manager/app_tasks/filters.py:19 
+#: task_manager/app_tasks/forms.py:14
+#: task_manager/templates/tasks/tasks_view.html:24
 msgid "Status"
 msgstr "Статус"
 
@@ -307,7 +309,6 @@ msgstr "Автор"
 msgid "executor"
 msgstr "Исполнитель"
 
-#: task_manager/templates/tasks/tasks_view.html:24
 #: task_manager/templates/tasks/tasks.html:29
 msgid "status"
 msgstr "статус"
