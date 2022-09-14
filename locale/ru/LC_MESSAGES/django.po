@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-14 02:42+0300\n"
+"POT-Creation-Date: 2022-09-14 08:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,23 +61,23 @@ msgstr "Невозможно удалить статус, так как он и�
 msgid "Status deleted successfully"
 msgstr "Статус успешно удалён"
 
-#: task_manager/app_tasks/filters.py:18 task_manager/app_tasks/forms.py:14
+#: task_manager/app_tasks/filters.py:16 task_manager/app_tasks/forms.py:14
 #: task_manager/templates/tasks/tasks.html:29
 #: task_manager/templates/tasks/tasks_view.html:24
 msgid "Status"
 msgstr "Статус"
 
-#: task_manager/app_tasks/filters.py:26 task_manager/app_tasks/forms.py:15
+#: task_manager/app_tasks/filters.py:25 task_manager/app_tasks/forms.py:15
 #: task_manager/templates/tasks/tasks.html:31
 #: task_manager/templates/tasks/tasks_view.html:20
 msgid "Executor"
 msgstr "Исполнитель"
 
-#: task_manager/app_tasks/filters.py:30
+#: task_manager/app_tasks/filters.py:29
 msgid "Label"
 msgstr "Метка"
 
-#: task_manager/app_tasks/filters.py:33
+#: task_manager/app_tasks/filters.py:32
 msgid "Only your task"
 msgstr "Только свои задачи"
 
