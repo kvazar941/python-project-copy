@@ -41,3 +41,4 @@ class DeleteLabel(CheckSignInMixin,
     )
     success_delete_message = gettext_lazy('Label deleted successfully')
     redirect_delete_url = 'list_of_labels'
+    success_url = reverse_lazy(redirect_delete_url)

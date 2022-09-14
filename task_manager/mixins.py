@@ -19,19 +19,19 @@ class CheckDeleteMixin(AccessMixin):
     error_delete_message = ''
     success_delete_message = ''
     redirect_delete_url = ''
+    success_url = ''
 
-    def form_valid(self, form):
+    def form_valid(self, request, *args, **kwargs):
         if Tasks.objects.filter(status=self.get_object().pk):
             messages.error(
                 self.request,
                 gettext_lazy(self.error_delete_message),
             )
-        else:
-            self.object.delete()
-            messages.success(
-                self.request,
-                gettext_lazy(self.success_delete_message),
+            return HttpResponseRedirect(
+                reverse_lazy(self.redirect_delete_url),
             )
-        return HttpResponseRedirect(
-            reverse_lazy(self.redirect_delete_url),
+        messages.success(
+            self.request,
+            gettext_lazy(self.success_delete_message),
         )
+        return super().delete(request, *args, **kwargs)
