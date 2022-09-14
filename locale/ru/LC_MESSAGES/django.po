@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-14 08:46+0300\n"
+"POT-Creation-Date: 2022-09-14 09:02+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,23 +120,23 @@ msgstr "Пользователь успешно зарегистрирован"
 msgid "User changed successfully"
 msgstr "Пользователь успешно изменён"
 
-#: task_manager/app_users/views.py:49 task_manager/app_users/views.py:64
+#: task_manager/app_users/views.py:49 task_manager/app_users/views.py:63
 msgid "You do not have permission to change another user"
 msgstr "У вас нет разрешения на изменение другого пользователя"
 
-#: task_manager/app_users/views.py:67
+#: task_manager/app_users/views.py:66
 msgid "Cannot delete user because it is in use"
 msgstr "Невозможно удалить пользователя, так как он используется"
 
-#: task_manager/app_users/views.py:70
+#: task_manager/app_users/views.py:69
 msgid "User deleted successfully"
 msgstr "Пользователь успешно удалён"
 
-#: task_manager/app_users/views.py:97
+#: task_manager/app_users/views.py:98
 msgid "You are logged in"
 msgstr "Вы залогинены"
 
-#: task_manager/app_users/views.py:107
+#: task_manager/app_users/views.py:108
 msgid "You are logged out"
 msgstr "Вы разлогинены"
 

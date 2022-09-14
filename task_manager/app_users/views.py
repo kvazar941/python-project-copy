@@ -1,18 +1,18 @@
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext, gettext_lazy
 from django.views.generic.edit import (CreateView, DeleteView, FormView,
                                        UpdateView)
 from django.views.generic.list import ListView
 
+from task_manager.app_tasks.models import Tasks
 from task_manager.app_users.forms import SignInForm, SignUpForm
 from task_manager.app_users.mixins_user import CheckUpdateMixin
 from task_manager.app_users.models import ApplicationUsers
-from task_manager.mixins import CheckDeleteMixin, CheckSignInMixin
-from task_manager.app_tasks.models import Tasks
-from django.http import HttpResponseRedirect
+from task_manager.mixins import CheckSignInMixin
 
 ROUTE_USERS = 'users'
 
@@ -52,7 +52,6 @@ class UpdateUser(CheckUpdateMixin,
 
 class DeleteUser(CheckUpdateMixin,
                  CheckSignInMixin,
-                 #CheckDeleteMixin,
                  SuccessMessageMixin,
                  DeleteView,
                  FormView):
@@ -70,9 +69,11 @@ class DeleteUser(CheckUpdateMixin,
         'User deleted successfully',
     )
     redirect_delete_url = ROUTE_USERS
+
     def form_valid(self, form):
-        if Tasks.objects.filter(author=self.request.user.pk) \
-                or Tasks.objects.filter(executor=self.request.user.pk):
+        author = Tasks.objects.filter(author=self.request.user.pk)
+        executor = Tasks.objects.filter(executor=self.request.user.pk)
+        if author or executor:
             messages.error(
                 self.request,
                 gettext_lazy(self.error_delete_message),
@@ -84,7 +85,7 @@ class DeleteUser(CheckUpdateMixin,
                 gettext_lazy(self.success_delete_message),
             )
         return HttpResponseRedirect(
-            reverse_lazy(self.redirect_delete_url)
+            reverse_lazy(self.redirect_delete_url),
         )
 
 
