@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-15 00:15+0300\n"
+"POT-Creation-Date: 2022-09-15 01:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,11 +37,11 @@ msgstr "Метка успешно создана"
 msgid "Label changed successfully"
 msgstr "Метка успешно изменена"
 
-#: task_manager/app_labels/views.py:40
+#: task_manager/app_labels/views.py:37
 msgid "Can't delete label because it's in use"
 msgstr "Невозможно удалить метку, так как она используется"
 
-#: task_manager/app_labels/views.py:42
+#: task_manager/app_labels/views.py:39
 msgid "Label deleted successfully"
 msgstr "Метка успешно удалена"
 
@@ -53,37 +53,37 @@ msgstr "Статус успешно создан"
 msgid "Status changed successfully"
 msgstr "Статус успешно изменён"
 
-#: task_manager/app_statuses/views.py:43
+#: task_manager/app_statuses/views.py:40
 msgid "Can't delete status because it's in use"
 msgstr "Невозможно удалить статус, так как он используется"
 
-#: task_manager/app_statuses/views.py:46
+#: task_manager/app_statuses/views.py:43
 msgid "Status deleted successfully"
 msgstr "Статус успешно удалён"
 
-#: task_manager/app_tasks/filters.py:16 task_manager/app_tasks/forms.py:14
-#: task_manager/templates/tasks/tasks.html:29
-#: task_manager/templates/tasks/tasks_view.html:24
-msgid "Status"
-msgstr "Статус"
-
-#: task_manager/app_tasks/filters.py:25 task_manager/app_tasks/forms.py:15
+#: task_manager/app_tasks/filters.py:26 task_manager/app_tasks/forms.py:15
 #: task_manager/templates/tasks/tasks.html:31
 #: task_manager/templates/tasks/tasks_view.html:20
 msgid "Executor"
 msgstr "Исполнитель"
 
-#: task_manager/app_tasks/filters.py:32
+#: task_manager/app_tasks/filters.py:33
 msgid "Label"
 msgstr "Метка"
 
-#: task_manager/app_tasks/filters.py:37
+#: task_manager/app_tasks/filters.py:38
 msgid "Only your task"
 msgstr "Только свои задачи"
 
 #: task_manager/app_tasks/forms.py:13
 msgid "Description"
 msgstr "Описание"
+
+#: task_manager/app_tasks/forms.py:14
+#: task_manager/templates/tasks/tasks.html:29
+#: task_manager/templates/tasks/tasks_view.html:24
+msgid "Status"
+msgstr "Статус"
 
 #: task_manager/app_tasks/forms.py:16
 #: task_manager/templates/labels/labels.html:12
