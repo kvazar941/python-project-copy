@@ -1,12 +1,14 @@
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext, gettext_lazy
 from django.views.generic.edit import (CreateView, DeleteView, FormView,
                                        UpdateView)
 from django.views.generic.list import ListView
+
 
 from task_manager.app_tasks.models import Tasks
 from task_manager.app_users.forms import SignUpForm
@@ -36,8 +38,7 @@ class SignUp(CreateView, SuccessMessageMixin, FormView):
 class UpdateUser(CheckUpdateMixin,
                  CheckSignInMixin,
                  SuccessMessageMixin,
-                 UpdateView,
-                 FormView):
+                 UpdateView):
 
     model = ApplicationUsers
     template_name = 'users/users_update.html'
@@ -53,12 +54,12 @@ class UpdateUser(CheckUpdateMixin,
 class DeleteUser(CheckUpdateMixin,
                  CheckSignInMixin,
                  SuccessMessageMixin,
-                 DeleteView,
-                 FormView):
+                 DeleteView):
 
     model = ApplicationUsers
     template_name = 'users/users_delete.html'
     redirect_error_update = ROUTE_USERS
+    success_url = reverse_lazy(ROUTE_USERS)
     error_update_message = gettext_lazy(
         'You do not have permission to change another user',
     )
@@ -68,9 +69,9 @@ class DeleteUser(CheckUpdateMixin,
     success_delete_message = gettext_lazy(
         'User deleted successfully',
     )
-    redirect_delete_url = ROUTE_USERS
+    redirect_delete_url = reverse_lazy(ROUTE_USERS)
 
-    def form_valid(self, form):
+    def form_valid(self, request):
         author = Tasks.objects.filter(author=self.request.user.pk)
         executor = Tasks.objects.filter(executor=self.request.user.pk)
         if author or executor:
@@ -78,38 +79,31 @@ class DeleteUser(CheckUpdateMixin,
                 self.request,
                 gettext_lazy(self.error_delete_message),
             )
-        else:
-            self.object.delete()
-            messages.success(
-                self.request,
-                gettext_lazy(self.success_delete_message),
-            )
-        return HttpResponseRedirect(
-            reverse_lazy(self.redirect_delete_url),
+            return HttpResponseRedirect(self.redirect_delete_url)
+        messages.success(
+            self.request,
+            gettext_lazy(self.success_delete_message),
         )
+        return super().delete(request)
+        
 
 
 class SignIn(SuccessMessageMixin, LoginView):
-
+    
+    form_class = AuthenticationForm
     template_name = 'login.html'
-    redirect_authenticated_user = True
     success_url = reverse_lazy('home')
+    success_message = gettext_lazy('You are logged in')
 
     def get_success_url(self):
-        messages.success(
-            request=self.request,
-            message=gettext_lazy('You are logged in'),
-        )
         return self.success_url
 
 
 class SignOut(SuccessMessageMixin, LogoutView):
-    next_page = reverse_lazy('home')
 
+    next_page = reverse_lazy('home')
+    success_message = gettext_lazy('You are logged out')
+    
     def dispatch(self, request, *args, **kwargs):
-        messages.add_message(
-            request,
-            messages.SUCCESS,
-            gettext('You are logged out'),
-        )
+        messages.add_message(request, messages.SUCCESS, self.success_message)
         return super().dispatch(request, *args, **kwargs)

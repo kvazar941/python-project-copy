@@ -16,7 +16,7 @@ from task_manager.mixins import CheckSignInMixin
 class ListOfTasks(CheckSignInMixin, SuccessMessageMixin, FilterView):
     model = Tasks
     template_name = 'tasks/tasks.html'
-    context_object_name = 'list_Of_tasks'
+    context_object_name = 'list_of_tasks'
     filterset_class = TaskFilter
 
 
