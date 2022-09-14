@@ -1,7 +1,7 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
-from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from django.views.generic import CreateView, ListView, UpdateView
 
 from task_manager.app_statuses.forms import StatusesForm
 from task_manager.app_statuses.models import Statuses
@@ -32,10 +32,7 @@ class UpdateStatus(CheckSignInMixin, SuccessMessageMixin, UpdateView):
     success_message = gettext_lazy('Status changed successfully')
 
 
-class DeleteStatus(CheckSignInMixin,
-                   CheckDeleteMixin,
-                   SuccessMessageMixin,
-                   DeleteView):
+class DeleteStatus(CheckSignInMixin, CheckDeleteMixin, SuccessMessageMixin):
 
     model = Statuses
     template_name = 'statuses/statuses_delete.html'

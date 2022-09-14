@@ -1,7 +1,7 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
-from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from django.views.generic import CreateView, ListView, UpdateView
 
 from task_manager.app_labels.forms import LabelForm
 from task_manager.app_labels.models import Labels
@@ -30,10 +30,7 @@ class UpdateLabel(CheckSignInMixin, SuccessMessageMixin, UpdateView):
     success_url = reverse_lazy('list_of_labels')
 
 
-class DeleteLabel(CheckSignInMixin,
-                  CheckDeleteMixin,
-                  SuccessMessageMixin,
-                  DeleteView):
+class DeleteLabel(CheckSignInMixin, CheckDeleteMixin, SuccessMessageMixin):
     model = Labels
     template_name = 'labels/labels_delete.html'
     error_delete_message = gettext_lazy(

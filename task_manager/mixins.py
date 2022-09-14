@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import AccessMixin, LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
+from django.views.generic import DeleteView
 
 from task_manager.app_tasks.models import Tasks
 
@@ -15,7 +16,7 @@ class CheckSignInMixin(LoginRequiredMixin):
         return super().dispatch(request, *args, **kwargs)
 
 
-class CheckDeleteMixin(AccessMixin):
+class CheckDeleteMixin(AccessMixin, DeleteView):
     error_delete_message = ''
     success_delete_message = ''
     redirect_delete_url = ''
