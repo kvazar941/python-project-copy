@@ -309,8 +309,6 @@ msgid "executor"
 msgstr "Исполнитель"
 
 #: task_manager/templates/tasks/tasks_view.html:24
-#, fuzzy
-#| msgid "Status"
 msgid "status"
 msgstr "Статус"
 
