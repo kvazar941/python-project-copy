@@ -68,7 +68,7 @@ msgstr "Статус"
 #: task_manager/app_tasks/filters.py:26 task_manager/app_tasks/forms.py:15
 #: task_manager/templates/tasks/tasks.html:31
 msgid "Executor"
-msgstr "исполнитель"
+msgstr "Исполнитель"
 
 #: task_manager/app_tasks/filters.py:33
 msgid "Label"
