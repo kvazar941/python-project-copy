@@ -16,7 +16,7 @@ from task_manager.mixins import CheckSignInMixin
 class ListOfTasks(CheckSignInMixin, SuccessMessageMixin, FilterView):
     model = Tasks
     template_name = 'tasks/tasks.html'
-    context_object_name = 'list_Of_tasks'
+    context_object_name = 'list_of_tasks'
     filterset_class = TaskFilter
 
 
@@ -25,7 +25,7 @@ class CreateTask(CheckSignInMixin, SuccessMessageMixin, CreateView):
     template_name = 'tasks/tasks_create.html'
     form_class = TaskForm
     success_message = gettext_lazy('Task successfully created')
-    success_url = reverse_lazy('list_Of_tasks')
+    success_url = reverse_lazy('list_of_tasks')
 
     def form_valid(self, form):
         author = ApplicationUsers.objects.get(pk=self.request.user.pk)
