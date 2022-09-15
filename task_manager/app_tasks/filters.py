@@ -1,8 +1,8 @@
-from django_filters import FilterSet, ChoiceFilter, BooleanFilter
 from django import forms
 from django.db.models import Value
 from django.db.models.functions import Concat
 from django.utils.translation import gettext_lazy as _
+from django_filters import BooleanFilter, ChoiceFilter, FilterSet
 
 from task_manager.app_labels.models import Label
 from task_manager.app_statuses.models import Status
