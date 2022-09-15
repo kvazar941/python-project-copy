@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-15 09:06+0300\n"
+"POT-Creation-Date: 2022-09-15 14:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,7 +87,7 @@ msgstr "Описание"
 
 #: task_manager/app_tasks/forms.py:16
 #: task_manager/templates/labels/labels.html:12
-#: task_manager/templates/site_header.html:25
+#: task_manager/templates/site_header.html:26
 #: task_manager/templates/tasks/tasks_view.html:33
 msgid "Labels"
 msgstr "Метки"
@@ -120,9 +120,13 @@ msgstr "Пользователь успешно зарегистрирован"
 msgid "User changed successfully"
 msgstr "Пользователь успешно изменён"
 
-#: task_manager/app_users/views.py:49 task_manager/app_users/views.py:63
+#: task_manager/app_users/views.py:49
 msgid "You do not have permission to change another user"
 msgstr "У вас нет разрешения на изменение другого пользователя"
+
+#: task_manager/app_users/views.py:63
+msgid "You do not have permission to delete another user"
+msgstr "У вас нет разрешения на удаление другого пользователя"
 
 #: task_manager/app_users/views.py:66
 msgid "Cannot delete user because it is in use"
@@ -140,11 +144,11 @@ msgstr "Вы залогинены"
 msgid "You are logged out"
 msgstr "Вы разлогинены"
 
-#: task_manager/settings.py:136
+#: task_manager/settings.py:137
 msgid "Russia"
 msgstr "Русский"
 
-#: task_manager/settings.py:137
+#: task_manager/settings.py:138
 msgid "English"
 msgstr "Английский"
 
@@ -226,7 +230,7 @@ msgid "Label change"
 msgstr "Изменение метки"
 
 #: task_manager/templates/login.html:14
-#: task_manager/templates/site_header.html:17
+#: task_manager/templates/site_header.html:18
 msgid "Login"
 msgstr "Вход"
 
@@ -238,26 +242,30 @@ msgstr "Войти"
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/site_header.html:18
+#: task_manager/templates/site_header.html:16
+msgid "Main"
+msgstr "Главная"
+
+#: task_manager/templates/site_header.html:19
 #: task_manager/templates/users/users_create.html:8
 msgid "Registration"
 msgstr "Регистрация"
 
-#: task_manager/templates/site_header.html:22
+#: task_manager/templates/site_header.html:23
 msgid "LogOut"
 msgstr "Выход"
 
-#: task_manager/templates/site_header.html:24
+#: task_manager/templates/site_header.html:25
 #: task_manager/templates/statuses/statuses.html:12
 msgid "Statuses"
 msgstr "Статусы"
 
-#: task_manager/templates/site_header.html:26
+#: task_manager/templates/site_header.html:27
 #: task_manager/templates/tasks/tasks.html:13
 msgid "Tasks"
 msgstr "Задачи"
 
-#: task_manager/templates/site_header.html:28
+#: task_manager/templates/site_header.html:29
 msgid "Users"
 msgstr "Пользователи"
 

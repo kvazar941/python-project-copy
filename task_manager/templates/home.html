@@ -4,9 +4,9 @@
 {% block content %}
   {% if messages %}
     {% for message in messages %}
-    <div class="alert alert-success" role="alert">
-      {{ message }}
-    </div>
+      <div class="alert alert-{{ message.tags }}" role="alert">
+        {{ message }}
+      </div>
     {% endfor %}
   {% endif %}
   <main role="main" class="py-3">

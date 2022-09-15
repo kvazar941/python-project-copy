@@ -11,7 +11,7 @@ class CheckUpdateMixin(AccessMixin):
 
     def dispatch(self, request, *args, **kwargs):
         if self.request.user != self.get_object():
-            messages.error(
+            messages.warning(
                 self.request,
                 gettext_lazy(self.error_update_message),
             )

@@ -10,9 +10,10 @@
     <title>{% trans 'Task manager' %}</title>
   </head>
   <body class="h-100 text-center text-white bg-dark">
-    <header class="masthead mb-auto bg-white sticky-top">
+    <header class="masthead mb-auto bg-white sticky-top" style="with: 180px">
       <div class="container-fluid">
         <nav class="nav nav-masthead justify-content-end sticky-center">
+        <a class="nav-link text-dark" href="/">{% trans 'Main' %}</a>
           {% if not user.is_authenticated %}
           <a class="nav-link text-dark" href="/login/">{% trans 'Login' %}</a>
           <a class="nav-link text-dark" href="/users/create/">{% trans 'Registration' %}</a>
@@ -26,7 +27,8 @@
           <a class="nav-link text-dark" href="/tasks/">{% trans 'Tasks' %}</a>
           {% endif %}
           <a class="nav-link text-dark" href="/users/">{% trans 'Users' %}</a>
-          <form action="{% url 'set_language' %}" method="post" style="justify-content-center">
+          <div class="row justify-content-center align-items-center sticky-center" style="width: 200px; height: 55px">
+          <form  action="{% url 'set_language' %}" method="post">
             {% csrf_token %}
             <input name="next" type="hidden" value="{{ redirect_to }}">
             <select name="language">
@@ -41,6 +43,7 @@
             </select>
             <input type="submit" value="Go">
           </form>
+          </div>
         </nav>
       </div>
     </header>

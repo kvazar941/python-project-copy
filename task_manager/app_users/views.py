@@ -60,7 +60,7 @@ class DeleteUser(CheckUpdateMixin,
     redirect_error_update = ROUTE_USERS
     success_url = reverse_lazy(ROUTE_USERS)
     error_update_message = gettext_lazy(
-        'You do not have permission to change another user',
+        'You do not have permission to delete another user',
     )
     error_delete_message = gettext_lazy(
         'Cannot delete user because it is in use',
@@ -74,7 +74,7 @@ class DeleteUser(CheckUpdateMixin,
         author = Task.objects.filter(author=self.request.user.pk)
         executor = Task.objects.filter(executor=self.request.user.pk)
         if author or executor:
-            messages.error(
+            messages.warning(
                 self.request,
                 gettext_lazy(self.error_delete_message),
             )
