@@ -13,11 +13,11 @@
       <hr>
         <div class="container">
           <div class="row p-1">
-            <div class="col">{% trans 'author' %}</div>
+            <div class="col">{% trans 'Author' %}</div>
             <div class="col">{{ task.author }}</div>
           </div>
           <div class="row p-1">
-            <div class="col">{% trans 'executor' %}</div>
+            <div class="col">{% trans 'Executor' %}</div>
             <div class="col">{{ task.executor }}</div>
           </div>
           <div class="row p-1">
@@ -25,7 +25,7 @@
             <div class="col">{{ task.status }}</div>
           </div>
           <div class="row p-1">
-            <div class="col">{% trans 'date of creation' %}</div>
+            <div class="col">{% trans 'Date of creation' %}</div>
             <div class="col">{{ task.created_at|date:"d.m.Y H:i" }}</div>
           </div>
           <div class="row p-1">

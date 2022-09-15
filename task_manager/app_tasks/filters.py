@@ -16,7 +16,10 @@ class TaskFilter(django_filters.FilterSet):
     #    label=gettext_lazy('Status'),
     #    choices=statuses,
     #)
-    status = django_filters.filters.ModelChoiceFilter(queryset=statuses, label=gettext_lazy('Status'))
+    status = django_filters.filters.ModelChoiceFilter(
+        label=gettext_lazy('Status'),
+        queryset=statuses,
+    )
     executors = ApplicationUsers.objects.values_list(
         'id',
         Concat('first_name', Value(' '), 'last_name'),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-15 01:55+0300\n"
+"POT-Creation-Date: 2022-09-15 08:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,22 +61,23 @@ msgstr "Невозможно удалить статус, так как он и�
 msgid "Status deleted successfully"
 msgstr "Статус успешно удалён"
 
-#: task_manager/app_tasks/filters.py:19 
-#: task_manager/app_tasks/forms.py:14
+#: task_manager/app_tasks/filters.py:20 task_manager/app_tasks/forms.py:14
+#: task_manager/templates/tasks/tasks.html:29
 #: task_manager/templates/tasks/tasks_view.html:24
 msgid "Status"
 msgstr "Статус"
 
-#: task_manager/app_tasks/filters.py:26 task_manager/app_tasks/forms.py:15
+#: task_manager/app_tasks/filters.py:29 task_manager/app_tasks/forms.py:15
 #: task_manager/templates/tasks/tasks.html:31
+#: task_manager/templates/tasks/tasks_view.html:20
 msgid "Executor"
 msgstr "Исполнитель"
 
-#: task_manager/app_tasks/filters.py:33
+#: task_manager/app_tasks/filters.py:36
 msgid "Label"
 msgstr "метка"
 
-#: task_manager/app_tasks/filters.py:38
+#: task_manager/app_tasks/filters.py:41
 msgid "Only your task"
 msgstr "Только свои задачи"
 
@@ -171,6 +172,7 @@ msgstr "Создать метку"
 #: task_manager/templates/labels/labels.html:19
 #: task_manager/templates/statuses/statuses.html:19
 #: task_manager/templates/tasks/tasks.html:32
+#: task_manager/templates/tasks/tasks_view.html:28
 #: task_manager/templates/users/users.html:20
 msgid "Date of creation"
 msgstr "Дата создания"
@@ -282,6 +284,7 @@ msgid "Show"
 msgstr "Показать"
 
 #: task_manager/templates/tasks/tasks.html:30
+#: task_manager/templates/tasks/tasks_view.html:16
 msgid "Author"
 msgstr "Автор"
 
@@ -296,28 +299,6 @@ msgstr "Изменение задачи"
 #: task_manager/templates/tasks/tasks_view.html:6
 msgid "Task view"
 msgstr "Просмотр задач"
-
-#: task_manager/templates/tasks/tasks_view.html:16
-#, fuzzy
-#| msgid "Author"
-msgid "author"
-msgstr "Автор"
-
-#: task_manager/templates/tasks/tasks_view.html:20
-#, fuzzy
-#| msgid "Executor"
-msgid "executor"
-msgstr "Исполнитель"
-
-#: task_manager/templates/tasks/tasks.html:29
-msgid "status"
-msgstr "статус"
-
-#: task_manager/templates/tasks/tasks_view.html:28
-#, fuzzy
-#| msgid "Date of creation"
-msgid "date of creation"
-msgstr "Дата создания"
 
 #: task_manager/templates/users/users.html:13
 msgid "User table"
