@@ -75,7 +75,7 @@ msgstr "Исполнитель"
 
 #: task_manager/app_tasks/filters.py:36
 msgid "Label"
-msgstr "метка"
+msgstr "Метка"
 
 #: task_manager/app_tasks/filters.py:41
 msgid "Only your task"
