@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-15 08:36+0300\n"
+"POT-Creation-Date: 2022-09-15 09:06+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,17 +67,17 @@ msgstr "Статус успешно удалён"
 msgid "Status"
 msgstr "Статус"
 
-#: task_manager/app_tasks/filters.py:29 task_manager/app_tasks/forms.py:15
+#: task_manager/app_tasks/filters.py:25 task_manager/app_tasks/forms.py:15
 #: task_manager/templates/tasks/tasks.html:31
 #: task_manager/templates/tasks/tasks_view.html:20
 msgid "Executor"
 msgstr "Исполнитель"
 
-#: task_manager/app_tasks/filters.py:36
+#: task_manager/app_tasks/filters.py:32
 msgid "Label"
 msgstr "Метка"
 
-#: task_manager/app_tasks/filters.py:41
+#: task_manager/app_tasks/filters.py:37
 msgid "Only your task"
 msgstr "Только свои задачи"
 
