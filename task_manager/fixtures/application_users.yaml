@@ -1,4 +1,4 @@
--   model: app_users.applicationusers
+-   model: app_users.applicationuser
     pk: 1
     fields:
         password: FakePass654!#
@@ -13,7 +13,7 @@
         date_joined: 1991-07-10 16:55:29.560867+00:00
         groups: []
         user_permissions: []
--   model: app_users.applicationusers
+-   model: app_users.applicationuser
     pk: 2
     fields:
         password: FakePass789!#
@@ -28,7 +28,7 @@
         date_joined: 2001-01-20 13:38:44.494467+00:00
         groups: []
         user_permissions: []
--   model: app_users.applicationusers
+-   model: app_users.applicationuser
     pk: 3
     fields:
         password: FakePass098!#

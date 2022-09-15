@@ -19,7 +19,7 @@ if exists(dotenv_path):
 SECRET_KEY = os.getenv('SECRET_KEY', "not_empty_key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'webserver', 'task-manager-5289.herokuapp.com']
 
@@ -87,6 +87,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     },
 }
+AUTH_USER_MODEL = 'app_users.ApplicationUser'
 
 POSTGRES_DATABASES = {
     'ENGINE': 'django.db.backends.postgresql',
@@ -146,8 +147,6 @@ LOCALE_PATHS = [
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
-AUTH_USER_MODEL = 'app_users.ApplicationUsers'
 
 ROLLBAR = {
     'access_token': os.getenv('ACCESS_TOKEN'),

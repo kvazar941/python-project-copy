@@ -1,8 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse_lazy
 
-from task_manager.app_statuses.models import Statuses
-from task_manager.app_users.models import ApplicationUsers
+from task_manager.app_statuses.models import Status
+from task_manager.app_users.models import ApplicationUser
 
 CODE_CORRECT_REQUEST = 200
 ROUTE_STATUSES = '/statuses/'
@@ -17,9 +17,9 @@ class TestStatuses(TestCase):
 
     def setUp(self):
 
-        self.user = ApplicationUsers.objects.get(pk=1)
-        self.first_status = Statuses.objects.get(pk=1)
-        self.second_status = Statuses.objects.get(pk=2)
+        self.user = ApplicationUser.objects.get(pk=1)
+        self.first_status = Status.objects.get(pk=1)
+        self.second_status = Status.objects.get(pk=2)
 
     def test_list_of_statuses(self):
 
@@ -41,7 +41,7 @@ class TestStatuses(TestCase):
             status,
             follow=True,
         )
-        сurrent_status = Statuses.objects.get(name=status['name'])
+        сurrent_status = Status.objects.get(name=status['name'])
 
         self.assertRedirects(post_data, ROUTE_STATUSES)
         self.assertEqual(сurrent_status.name, 'Отложить')
@@ -54,7 +54,7 @@ class TestStatuses(TestCase):
         response = self.client.post(url, status, follow=True)
 
         self.assertEqual(
-            Statuses.objects.get(pk=self.first_status.id),
+            Status.objects.get(pk=self.first_status.id),
             self.first_status,
         )
         self.assertRedirects(response, ROUTE_STATUSES)
@@ -65,8 +65,8 @@ class TestStatuses(TestCase):
         url = reverse_lazy('delete_status', args=(self.second_status.pk,))
         response = self.client.post(url, follow=True)
 
-        with self.assertRaises(Statuses.DoesNotExist):
-            Statuses.objects.get(pk=self.second_status.id)
+        with self.assertRaises(Status.DoesNotExist):
+            Status.objects.get(pk=self.second_status.id)
 
         self.assertRedirects(response, ROUTE_STATUSES)
 
@@ -76,7 +76,7 @@ class TestStatuses(TestCase):
         response = self.client.post(url, follow=True)
 
         self.assertTrue(
-            Statuses.objects.filter(pk=self.first_status.id).exists(),
+            Status.objects.filter(pk=self.first_status.id).exists(),
         )
         self.assertRedirects(response, ROUTE_STATUSES)
 

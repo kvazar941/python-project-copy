@@ -9,10 +9,10 @@ from django.views.generic.edit import (CreateView, DeleteView, FormView,
                                        UpdateView)
 from django.views.generic.list import ListView
 
-from task_manager.app_tasks.models import Tasks
+from task_manager.app_tasks.models import Task
 from task_manager.app_users.forms import SignUpForm
 from task_manager.app_users.mixins_user import CheckUpdateMixin
-from task_manager.app_users.models import ApplicationUsers
+from task_manager.app_users.models import ApplicationUser
 from task_manager.mixins import CheckSignInMixin
 
 ROUTE_USERS = 'users'
@@ -20,14 +20,14 @@ ROUTE_USERS = 'users'
 
 class ListOfUsers(ListView):
 
-    model = ApplicationUsers
+    model = ApplicationUser
     template_name = 'users/users.html'
     context_object_name = 'application_users'
 
 
 class SignUp(CreateView, SuccessMessageMixin, FormView):
 
-    model = ApplicationUsers
+    model = ApplicationUser
     template_name = 'users/users_create.html'
     form_class = SignUpForm
     success_url = reverse_lazy('login')
@@ -39,7 +39,7 @@ class UpdateUser(CheckUpdateMixin,
                  SuccessMessageMixin,
                  UpdateView):
 
-    model = ApplicationUsers
+    model = ApplicationUser
     template_name = 'users/users_update.html'
     form_class = SignUpForm
     success_url = reverse_lazy(ROUTE_USERS)
@@ -55,7 +55,7 @@ class DeleteUser(CheckUpdateMixin,
                  SuccessMessageMixin,
                  DeleteView):
 
-    model = ApplicationUsers
+    model = ApplicationUser
     template_name = 'users/users_delete.html'
     redirect_error_update = ROUTE_USERS
     success_url = reverse_lazy(ROUTE_USERS)
@@ -71,8 +71,8 @@ class DeleteUser(CheckUpdateMixin,
     redirect_delete_url = reverse_lazy(ROUTE_USERS)
 
     def form_valid(self, request, *args, **kwargs):
-        author = Tasks.objects.filter(author=self.request.user.pk)
-        executor = Tasks.objects.filter(executor=self.request.user.pk)
+        author = Task.objects.filter(author=self.request.user.pk)
+        executor = Task.objects.filter(executor=self.request.user.pk)
         if author or executor:
             messages.error(
                 self.request,

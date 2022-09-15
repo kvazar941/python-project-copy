@@ -1,12 +1,12 @@
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy
 
-from task_manager.app_tasks.models import Tasks
+from task_manager.app_tasks.models import Task
 
 
 class TaskForm(ModelForm):
     class Meta:
-        model = Tasks
+        model = Task
         fields = ('name', 'description', 'status', 'executor', 'labels')
         labels = {
             'name': gettext_lazy('Name'),

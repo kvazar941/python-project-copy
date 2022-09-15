@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
 from django.views.generic import DeleteView
 
-from task_manager.app_tasks.models import Tasks
+from task_manager.app_tasks.models import Task
 
 
 class CheckSignInMixin(LoginRequiredMixin):
@@ -23,7 +23,7 @@ class CheckDeleteMixin(AccessMixin, DeleteView):
     success_url = ''
 
     def form_valid(self, request, *args, **kwargs):
-        if Tasks.objects.filter(status=self.get_object().pk):
+        if Task.objects.filter(status=self.get_object().pk):
             messages.error(
                 self.request,
                 gettext_lazy(self.error_delete_message),

@@ -1,13 +1,13 @@
 from django.test import Client, TestCase
 from django.urls import reverse_lazy
 
-from task_manager.app_users.models import ApplicationUsers
+from task_manager.app_users.models import ApplicationUser
 
 CODE_REDIRECT = 302
 CODE_CORRECT_REQUEST = 200
 
 
-class TestApplicationUsers(TestCase):
+class TestApplicationUser(TestCase):
 
     fixtures = ['application_users.yaml',
                 'tasks.yaml',
@@ -15,8 +15,8 @@ class TestApplicationUsers(TestCase):
                 'statuses.yaml']
 
     def setUp(self):
-        self.first_user = ApplicationUsers.objects.get(pk=1)
-        self.second_user = ApplicationUsers.objects.get(pk=2)
+        self.first_user = ApplicationUser.objects.get(pk=1)
+        self.second_user = ApplicationUser.objects.get(pk=2)
         self.client: Client = Client()
 
     def test_sign_up(self):
@@ -49,7 +49,7 @@ class TestApplicationUsers(TestCase):
         }
 
         response = self.client.post(url, change_user, follow=True)
-        changed_user = ApplicationUsers.objects.get(username=user.username)
+        changed_user = ApplicationUser.objects.get(username=user.username)
 
         self.assertRedirects(response, '/users/')
         self.assertTrue(changed_user.check_password('Test321!#'))
@@ -60,8 +60,8 @@ class TestApplicationUsers(TestCase):
         url = reverse_lazy('delete_user', args=(user.id,))
         response = self.client.post(url, follow=True)
 
-        with self.assertRaises(ApplicationUsers.DoesNotExist):
-            ApplicationUsers.objects.get(pk=user.id)
+        with self.assertRaises(ApplicationUser.DoesNotExist):
+            ApplicationUser.objects.get(pk=user.id)
 
         self.assertRedirects(response, '/users/')
 
@@ -87,6 +87,6 @@ class TestApplicationUsers(TestCase):
         response = self.client.post(url, follow=True)
 
         self.assertTrue(
-            ApplicationUsers.objects.filter(pk=self.first_user.id).exists(),
+            ApplicationUser.objects.filter(pk=self.first_user.id).exists(),
         )
         self.assertRedirects(response, '/users/')

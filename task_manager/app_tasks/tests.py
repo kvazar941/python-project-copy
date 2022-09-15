@@ -2,9 +2,9 @@ from django.test import TestCase
 from django.urls import reverse_lazy
 from django_filters import FilterSet
 
-from task_manager.app_statuses.models import Statuses
-from task_manager.app_tasks.models import Tasks
-from task_manager.app_users.models import ApplicationUsers
+from task_manager.app_statuses.models import Status
+from task_manager.app_tasks.models import Task
+from task_manager.app_users.models import ApplicationUser
 
 CODE_CORRECT_REQUEST = 200
 ROUTE_TASKS = '/tasks/'
@@ -22,12 +22,12 @@ class TestTask(TestCase):
                 'statuses.yaml']
 
     def setUp(self) -> None:
-        self.first_user = ApplicationUsers.objects.get(pk=1)
-        self.second_user = ApplicationUsers.objects.get(pk=2)
-        self.first_status = Statuses.objects.get(pk=1)
-        self.second_status = Statuses.objects.get(pk=2)
-        self.first_task = Tasks.objects.get(pk=1)
-        self.second_task = Tasks.objects.get(pk=2)
+        self.first_user = ApplicationUser.objects.get(pk=1)
+        self.second_user = ApplicationUser.objects.get(pk=2)
+        self.first_status = Status.objects.get(pk=1)
+        self.second_status = Status.objects.get(pk=2)
+        self.first_task = Task.objects.get(pk=1)
+        self.second_task = Task.objects.get(pk=2)
 
     def test_list_of_tasks(self):
         self.client.force_login(self.first_user)
@@ -51,7 +51,7 @@ class TestTask(TestCase):
             task,
             follow=True,
         )
-        created_task = Tasks.objects.get(name=task[NAME])
+        created_task = Task.objects.get(name=task[NAME])
 
         self.assertRedirects(response, ROUTE_TASKS)
         self.assertEqual(created_task.name, 'Написать тесты')
@@ -68,7 +68,7 @@ class TestTask(TestCase):
         }
 
         response = self.client.post(url, task, follow=True)
-        created_task = Tasks.objects.get(name=task[NAME])
+        created_task = Task.objects.get(name=task[NAME])
 
         self.assertRedirects(response, ROUTE_TASKS)
         self.assertEqual(created_task.name, 'Обновлённая задача')
@@ -85,26 +85,26 @@ class TestTask(TestCase):
         url = reverse_lazy('delete_task', args=(self.first_task.pk,))
         response = self.client.post(url, follow=True)
 
-        self.assertTrue(Tasks.objects.filter(pk=self.first_task.pk).exists())
+        self.assertTrue(Task.objects.filter(pk=self.first_task.pk).exists())
         self.assertRedirects(response, ROUTE_TASKS)
 
     def test_filter_status(self):
 
-        status = Tasks._meta.get_field(STATUS)
+        status = Task._meta.get_field(STATUS)
         result = FilterSet.filter_for_field(status, STATUS)
 
         self.assertEqual(result.field_name, STATUS)
 
     def test_filter_executor(self):
 
-        status = Tasks._meta.get_field(EXECUTOR)
+        status = Task._meta.get_field(EXECUTOR)
         result = FilterSet.filter_for_field(status, EXECUTOR)
 
         self.assertEqual(result.field_name, EXECUTOR)
 
     def test_filter_label(self):
 
-        status = Tasks._meta.get_field(LABELS)
+        status = Task._meta.get_field(LABELS)
         result = FilterSet.filter_for_field(status, LABELS)
 
         self.assertEqual(result.field_name, LABELS)

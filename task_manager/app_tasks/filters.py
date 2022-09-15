@@ -4,19 +4,19 @@ from django.db.models import Value
 from django.db.models.functions import Concat
 from django.utils.translation import gettext_lazy
 
-from task_manager.app_labels.models import Labels
-from task_manager.app_statuses.models import Statuses
-from task_manager.app_tasks.models import Tasks
-from task_manager.app_users.models import ApplicationUsers
+from task_manager.app_labels.models import Label
+from task_manager.app_statuses.models import Status
+from task_manager.app_tasks.models import Task
+from task_manager.app_users.models import ApplicationUser
 
 
 class TaskFilter(django_filters.FilterSet):
-    statuses = Statuses.objects.values_list('id', 'name', named=True).all()
+    statuses = Status.objects.values_list('id', 'name', named=True).all()
     status = django_filters.ChoiceFilter(
         label=gettext_lazy('Status'),
         choices=statuses,
     )
-    executors = ApplicationUsers.objects.values_list(
+    executors = ApplicationUser.objects.values_list(
         'id',
         Concat('first_name', Value(' '), 'last_name'),
         named=True).all()
@@ -26,7 +26,7 @@ class TaskFilter(django_filters.FilterSet):
         choices=executors,
     )
 
-    all_labels = Labels.objects.values_list('id', 'name', named=True).all()
+    all_labels = Label.objects.values_list('id', 'name', named=True).all()
 
     labels = django_filters.ChoiceFilter(
         label=gettext_lazy('Label'),
@@ -44,5 +44,5 @@ class TaskFilter(django_filters.FilterSet):
         return queryset.filter(author=self.request.user) if value else queryset
 
     class Meta:
-        model = Tasks
+        model = Task
         fields = ['status', 'executor', 'labels']

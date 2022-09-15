@@ -8,35 +8,35 @@ from django_filters.views import FilterView
 
 from task_manager.app_tasks.filters import TaskFilter
 from task_manager.app_tasks.forms import TaskForm
-from task_manager.app_tasks.models import Tasks
-from task_manager.app_users.models import ApplicationUsers
+from task_manager.app_tasks.models import Task
+from task_manager.app_users.models import ApplicationUser
 from task_manager.mixins import CheckSignInMixin
 
 CONTEXT_NAME = 'list_of_tasks'
 
 
 class ListOfTasks(CheckSignInMixin, SuccessMessageMixin, FilterView):
-    model = Tasks
+    model = Task
     template_name = 'tasks/tasks.html'
     context_object_name = CONTEXT_NAME
     filterset_class = TaskFilter
 
 
 class CreateTask(CheckSignInMixin, SuccessMessageMixin, CreateView):
-    model = Tasks
+    model = Task
     template_name = 'tasks/tasks_create.html'
     form_class = TaskForm
     success_message = gettext_lazy('Task successfully created')
     success_url = reverse_lazy(CONTEXT_NAME)
 
     def form_valid(self, form):
-        author = ApplicationUsers.objects.get(pk=self.request.user.pk)
+        author = ApplicationUser.objects.get(pk=self.request.user.pk)
         form.instance.author = author
         return super().form_valid(form)
 
 
 class UpdateTask(CheckSignInMixin, SuccessMessageMixin, UpdateView):
-    model = Tasks
+    model = Task
     template_name = 'tasks/tasks_update.html'
     form_class = TaskForm
     success_message = gettext_lazy('Task changed successfully')
@@ -44,7 +44,7 @@ class UpdateTask(CheckSignInMixin, SuccessMessageMixin, UpdateView):
 
 
 class DeleteTask(CheckSignInMixin, SuccessMessageMixin, DeleteView):
-    model = Tasks
+    model = Task
     template_name = 'tasks/tasks_delete.html'
     success_url = reverse_lazy(CONTEXT_NAME)
     success_message = gettext_lazy('Task deleted successfully')
@@ -61,6 +61,6 @@ class DeleteTask(CheckSignInMixin, SuccessMessageMixin, DeleteView):
 
 
 class ViewTask(CheckSignInMixin, SuccessMessageMixin, DetailView):
-    model = Tasks
+    model = Task
     template_name = 'tasks/tasks_view.html'
     context_object_name = 'task'

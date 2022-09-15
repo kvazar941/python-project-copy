@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Labels(models.Model):
+class Label(models.Model):
     name = models.CharField(max_length=100, null=False, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

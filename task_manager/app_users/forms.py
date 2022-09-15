@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy
 
-from task_manager.app_users.models import ApplicationUsers
+from task_manager.app_users.models import ApplicationUser
 
 MAX_LENGTH = 100
 
@@ -20,7 +20,7 @@ class SignUpForm(UserCreationForm):
     )
 
     class Meta:
-        model = ApplicationUsers
+        model = ApplicationUser
         fields = [
             'first_name',
             'last_name',

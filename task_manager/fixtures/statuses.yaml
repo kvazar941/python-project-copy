@@ -1,9 +1,9 @@
--   model: app_statuses.statuses
+-   model: app_statuses.status
     pk: 1
     fields:
         name: Бэклог
         created_at: 1999-09-15 18:25:26.481923+00:00
--   model: app_statuses.statuses
+-   model: app_statuses.status
     pk: 2
     fields:
         name: Готово
