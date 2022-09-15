@@ -42,12 +42,12 @@ class UpdateLabel(CheckSignInMixin, SuccessMessageMixin, UpdateView):
     no_author_message = _("Only it's author can update a label")
     redirect_update_url = reverse_lazy(LABELS_PAGE)
 
-    def form_valid(self, request, *args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         if self.request.user != self.get_object().author:
             messages.warning(self.request, self.no_author_message)
             return HttpResponseRedirect(self.redirect_update_url)
         messages.success(self.request, self.success_message)
-        return HttpResponseRedirect(self.redirect_update_url)
+        return super().dispatch(request, *args, **kwargs)
 
 
 class DeleteLabel(CheckSignInMixin, SuccessMessageMixin, DeleteView):
