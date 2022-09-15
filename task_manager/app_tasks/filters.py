@@ -12,14 +12,14 @@ from task_manager.app_users.models import ApplicationUsers
 
 class TaskFilter(django_filters.FilterSet):
     statuses = Statuses.objects.values_list('id', 'name', named=True).all()
-    #status = django_filters.ChoiceFilter(
-    #    label=gettext_lazy('Status'),
-    #    choices=statuses,
-    #)
-    status = django_filters.filters.ModelChoiceFilter(
+    status = django_filters.ChoiceFilter(
         label=gettext_lazy('Status'),
-        queryset=statuses,
+        choices=statuses,
     )
+    #status = django_filters.filters.ModelChoiceFilter(
+    #    label=gettext_lazy('Status'),
+    #    queryset=statuses,
+    #)
     executors = ApplicationUsers.objects.values_list(
         'id',
         Concat('first_name', Value(' '), 'last_name'),
