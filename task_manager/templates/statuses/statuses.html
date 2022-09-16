@@ -17,6 +17,7 @@
         <th scope="col">ID</th>
         <th scope="col">{% trans 'Name' %}</th>
         <th scope="col">{% trans 'Date of creation' %}</th>
+        <th scope="col">{% trans 'Author' %}</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -26,6 +27,7 @@
           <th scope="row"">{{ status.id }}</th>
             <td>{{ status.name }}</td>
             <td>{{ status.created_at|date:"d.m.Y H:i" }}</td>
+            <td>{{ status.author }}</td>
             <td>
               <a class="text-decoration-none" href="{% url 'update_status' status.id %}">{% trans 'Change' %}</a>
               <a>/</a>
