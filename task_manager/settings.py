@@ -19,7 +19,7 @@ if exists(dotenv_path):
 SECRET_KEY = os.getenv('SECRET_KEY', "not_empty_key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'true').lower() in ['true']
+DEBUG = os.getenv('DEBUG', 'false').lower() in ['true']
 
 ALLOWED_HOSTS = ['127.0.0.1', 'webserver', 'task-manager-5289.herokuapp.com']
 
