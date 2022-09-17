@@ -42,12 +42,12 @@ class UpdateStatus(CheckSignInMixin, SuccessMessageMixin, UpdateView):
     no_author_message = _("Only it's author can update a status")
     redirect_update_url = reverse_lazy(STATUS_PAGE)
 
-    def dispatch(self, request, *args, **kwargs):
+    def form_valid(self, request, *args, **kwargs):
         if self.request.user != self.get_object().author:
             messages.warning(self.request, self.no_author_message)
             return HttpResponseRedirect(self.redirect_update_url)
         messages.success(self.request, self.success_message)
-        return super().dispatch(request, *args, **kwargs)
+        return HttpResponseRedirect(self.redirect_update_url)
 
 
 class DeleteStatus(CheckSignInMixin, SuccessMessageMixin, DeleteView):
