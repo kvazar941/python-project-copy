@@ -13,28 +13,30 @@
       <hr>
         <div class="container">
           <div class="row p-1">
-            <div class="col">{% trans 'Author' %}</div>
-            <div class="col">{{ task.author }}</div>
+            <div class="col" align="left">{% trans 'Author' %}</div>
+            <div class="col" align="left">{{ task.author }}</div>
           </div>
           <div class="row p-1">
-            <div class="col">{% trans 'Executor' %}</div>
-            <div class="col">{{ task.executor }}</div>
+            <div class="col" align="left">{% trans 'Executor' %}</div>
+            <div class="col" align="left">{{ task.executor }}</div>
           </div>
           <div class="row p-1">
-            <div class="col">{% trans 'Status' %}</div>
-            <div class="col">{{ task.status }}</div>
+            <div class="col" align="left">{% trans 'Status' %}</div>
+            <div class="col" align="left">{{ task.status }}</div>
           </div>
           <div class="row p-1">
-            <div class="col">{% trans 'Date of creation' %}</div>
-            <div class="col">{{ task.created_at|date:"d.m.Y H:i" }}</div>
+            <div class="col" align="left">{% trans 'Date of creation' %}</div>
+            <div class="col" align="left">{{ task.created_at|date:"d.m.Y H:i" }}</div>
           </div>
           <div class="row p-1">
             <div class="col">
               <h6>{% trans 'Labels' %}</h6>
                 <ul>
-                  {% for label in task.labels.all %}
-                    <li>{{ label }}</li>
-                  {% endfor %}
+                  <div class="col" align="left">
+                    {% for label in task.labels.all %}
+                      <li>{{ label }}</li>
+                    {% endfor %}
+                  </div>
                 </ul>
             </div>
           </div>

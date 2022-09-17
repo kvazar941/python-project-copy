@@ -27,26 +27,26 @@
           <a class="nav-link text-dark" href="/tasks/">{% trans 'Tasks' %}</a>
           {% endif %}
           <a class="nav-link text-dark" href="/users/">{% trans 'Users' %}</a>
-          <div class="row justify-content-center align-items-center sticky-center" style="width: 200px; height: 55px">
-          <form  action="{% url 'set_language' %}" method="post">
-            {% csrf_token %}
-            <input name="next" type="hidden" value="{{ redirect_to }}">
-            <select name="language">
-              {% get_current_language as LANGUAGE_CODE %}
-              {% get_available_languages as LANGUAGES %}
-              {% get_language_info_list for LANGUAGES as languages %}
-              {% for language in languages %}
-                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                  {{ language.name_local }} ({{ language.code }})
-                </option>
-              {% endfor %}
-            </select>
-            <input type="submit" value="Go">
-          </form>
-          </div>
         </nav>
       </div>
     </header>
+    <div class="row justify-content-center align-items-center" style="height: 55px">
+      <form  action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ redirect_to }}">
+        <select name="language">
+          {% get_current_language as LANGUAGE_CODE %}
+          {% get_available_languages as LANGUAGES %}
+          {% get_language_info_list for LANGUAGES as languages %}
+          {% for language in languages %}
+            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+              {{ language.name_local }} ({{ language.code }})
+            </option>
+          {% endfor %}
+        </select>
+        <input type="submit" value="Go">
+      </form>
+    </div>
     <div class="cover-container d-flex w-70 h-100 p-5 mx-auto flex-column text-white">
       {% block content %}
       {% endblock %}
