@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-16 01:35+0300\n"
+"POT-Creation-Date: 2022-09-15 14:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,71 +29,55 @@ msgstr ""
 msgid "Name"
 msgstr "Имя"
 
-#: task_manager/app_labels/views.py:27
+#: task_manager/app_labels/views.py:21
 msgid "Label created successfully"
 msgstr "Метка успешно создана"
 
-#: task_manager/app_labels/views.py:40
+#: task_manager/app_labels/views.py:29
 msgid "Label changed successfully"
 msgstr "Метка успешно изменена"
 
-#: task_manager/app_labels/views.py:42
-msgid "Only it's author can update a label"
-msgstr "Изменить метку может только ее автор"
-
-#: task_manager/app_labels/views.py:56
+#: task_manager/app_labels/views.py:37
 msgid "Can't delete label because it's in use"
 msgstr "Невозможно удалить метку, так как она используется"
 
-#: task_manager/app_labels/views.py:57
+#: task_manager/app_labels/views.py:39
 msgid "Label deleted successfully"
 msgstr "Метка успешно удалена"
 
-#: task_manager/app_labels/views.py:60
-msgid "Only it's author can delete a label"
-msgstr "Удалить метку может только ее автор"
-
-#: task_manager/app_statuses/views.py:27
+#: task_manager/app_statuses/views.py:22
 msgid "Status created successfully"
 msgstr "Статус успешно создан"
 
-#: task_manager/app_statuses/views.py:41
+#: task_manager/app_statuses/views.py:32
 msgid "Status changed successfully"
 msgstr "Статус успешно изменён"
 
-#: task_manager/app_statuses/views.py:42
-msgid "Only it's author can update a status"
-msgstr "Изменить статус может только его автор"
-
-#: task_manager/app_statuses/views.py:56
+#: task_manager/app_statuses/views.py:40
 msgid "Can't delete status because it's in use"
 msgstr "Невозможно удалить статус, так как он используется"
 
-#: task_manager/app_statuses/views.py:57
+#: task_manager/app_statuses/views.py:43
 msgid "Status deleted successfully"
 msgstr "Статус успешно удалён"
 
-#: task_manager/app_statuses/views.py:60
-msgid "Only it's author can delete a status"
-msgstr "Удалить статус может только ее автор"
-
-#: task_manager/app_tasks/filters.py:15 task_manager/app_tasks/forms.py:14
+#: task_manager/app_tasks/filters.py:16 task_manager/app_tasks/forms.py:14
 #: task_manager/templates/tasks/tasks.html:29
 #: task_manager/templates/tasks/tasks_view.html:24
 msgid "Status"
 msgstr "Статус"
 
-#: task_manager/app_tasks/filters.py:20 task_manager/app_tasks/forms.py:15
+#: task_manager/app_tasks/filters.py:25 task_manager/app_tasks/forms.py:15
 #: task_manager/templates/tasks/tasks.html:31
 #: task_manager/templates/tasks/tasks_view.html:20
 msgid "Executor"
 msgstr "Исполнитель"
 
-#: task_manager/app_tasks/filters.py:22
+#: task_manager/app_tasks/filters.py:32
 msgid "Label"
 msgstr "Метка"
 
-#: task_manager/app_tasks/filters.py:24
+#: task_manager/app_tasks/filters.py:37
 msgid "Only your task"
 msgstr "Только свои задачи"
 
@@ -120,7 +104,7 @@ msgstr "Задача успешно изменена"
 msgid "Task deleted successfully"
 msgstr "Задача успешно удалена"
 
-#: task_manager/app_tasks/views.py:51
+#: task_manager/app_tasks/views.py:56
 msgid "Only it's author can delete a task"
 msgstr "Удалить задачу может только ее автор"
 
@@ -144,19 +128,19 @@ msgstr "У вас нет разрешения на изменение друго
 msgid "You do not have permission to delete another user"
 msgstr "У вас нет разрешения на удаление другого пользователя"
 
-#: task_manager/app_users/views.py:65
+#: task_manager/app_users/views.py:66
 msgid "Cannot delete user because it is in use"
 msgstr "Невозможно удалить пользователя, так как он используется"
 
-#: task_manager/app_users/views.py:66
+#: task_manager/app_users/views.py:69
 msgid "User deleted successfully"
 msgstr "Пользователь успешно удалён"
 
-#: task_manager/app_users/views.py:84
+#: task_manager/app_users/views.py:94
 msgid "You are logged in"
 msgstr "Вы залогинены"
 
-#: task_manager/app_users/views.py:93
+#: task_manager/app_users/views.py:103
 msgid "You are logged out"
 msgstr "Вы разлогинены"
 
