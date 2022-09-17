@@ -23,7 +23,9 @@ class CheckDeleteMixin(AccessMixin, DeleteView):
     success_url = ''
 
     def form_valid(self, request, *args, **kwargs):
-        if Task.objects.filter(status=self.get_object().pk):
+        statuses = Task.objects.filter(status=self.get_object().pk)
+        labels = Task.objects.filter(labels=self.get_object().pk)
+        if statuses or labels:
             messages.warning(
                 self.request,
                 gettext_lazy(self.error_delete_message),

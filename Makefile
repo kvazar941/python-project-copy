@@ -26,6 +26,10 @@ locale-compile:
 	django-admin compilemessages --ignore="static" --ignore="env" -l ru
 
 migration:
+	poetry run python manage.py makemigrations app_users
+	poetry run python manage.py makemigrations app_tasks
+	poetry run python manage.py makemigrations app_statuses
+	poetry run python manage.py makemigrations app_labels
 	poetry run python manage.py makemigrations
 	poetry run python manage.py migrate
 
